@@ -48,8 +48,11 @@ This lab focuses on utilizing the internal peripheral timers of the STM32L432KC 
 
 ### Lab 5: Interrupts
 
-[Learn More About Lab 5](LAB5.qmd){.btn .btn-outline-primary target="_blank"}
+**Overview:**
+In this lab, the STM32L432KC microcontroller was configured to measure the rotational velocity and direction of a 25GA-370 brushed DC motor. A quadrature encoder attached to the motor generates pulse signals that were tracked using hardware interrupts. By triggering external interrupts (EXTI) on both the rising and falling edges of the two out-of-phase encoder channels, the system achieves high-resolution measurements to accurately calculate and display the motor's speed in revolutions per second (rev/s) at a 1 Hz update rate.
 
+[Learn More About Lab 5](LAB5.qmd){.btn .btn-outline-primary target="_blank"}
+![Physical circuit setup including the STM32L432KC and 25GA-370 brushed DC motor.](images/LAB5_circuit.jpeg)
 ---
 
 ### Lab 6: The Internet of Things and Serial Peripheral Interface
