@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -141,6 +170,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Lab 5: Interrupts</h1>
+<p class="subtitle lead">Ivan Jimenez Pineda | ijimenezpineda@g.hmc.edu | October 6, 2026</p>
 </div>
 
 
@@ -157,8 +187,65 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this lab, the STM32L432KC microcontroller was configured to measure the rotational velocity and direction of a 25GA-370 brushed DC motor. A quadrature encoder attached to the motor generates pulse signals that were tracked using hardware interrupts. By triggering external interrupts (EXTI) on both the rising and falling edges of the two out-of-phase encoder channels, the system achieves high-resolution measurements to accurately calculate and display the motor’s speed in revolutions per second (rev/s) at a 1 Hz update rate.</p>
+<p><img src="images/LAB5_circuit.jpeg" class="img-fluid" alt="Physical setup for the MCU and motor."> <em>Figure 1: Complete wiring including the STM32L432KC and 25GA-370 brushed DC motor.</em></p>
+<p><a href="https://github.com/IvanJimenezPineda4/E155-Lab-5">View the Source Code on GitHub</a></p>
+</section>
+<section id="hardware-specifications-schematic" class="level2">
+<h2 class="anchored" data-anchor-id="hardware-specifications-schematic">Hardware Specifications &amp; Schematic</h2>
+<p>The quadrature encoder utilizes two Hall effect sensors to measure the changing magnetic field as the motor shaft rotates. The sensors output 5V logic signals. Because the STM32L432KC operates on 3.3V logic, the encoder’s A and B channels were connected specifically to pins <code>PA8</code> and <code>PA6</code>, which are 5V-tolerant.</p>
+<p><img src="images/LAB5_schematic.jpg" class="img-fluid" alt="Electrical schematic showing the MCU and 25GA-370 brushed DC motor."> <em>Figure 2: Schematic of the off-board encoder circuit.</em></p>
+<p>On-board MCU components and internal pull-ups are not replicated in this schematic; they can be referenced in the motherboard schematic here. <a href="https://hmc-e155.github.io/assets/doc/E155%20FA22%20Development%20Board%20Schematic.pdf">View the Motherboard Schematic</a></p>
+</section>
+<section id="software-and-microcontroller-design" class="level2">
+<h2 class="anchored" data-anchor-id="software-and-microcontroller-design">Software and Microcontroller Design</h2>
+<p>The system architecture is divided into a high-level application loop (<code>main.c</code>) and a encoder driver (<code>encoder.c</code> and <code>encoder.h</code>). The driver initializes the GPIO pins, routes the EXTI lines using the <code>SYSCFG</code> registers, and configures the Nested Vector Interrupt Controller (NVIC) to trigger the <code>EXTI9_5_IRQHandler</code> on every logic transition.</p>
+<section id="flowchart" class="level3">
+<h3 class="anchored" data-anchor-id="flowchart">Flowchart</h3>
+<p><img src="images/LAB5_flow.jpg" class="img-fluid" alt="Flowchart of the encoder system."> <em>Figure 3: Flowchart illustrating the main loop, setups, and interrupt sequence of the system.</em></p>
+</section>
+<section id="velocity-and-direction-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="velocity-and-direction-calculations">Velocity and Direction Calculations</h3>
+<p>The 25GA-370 motor has a specified Pulse Per Revolution (PPR) of 408. Because the interrupt service routine (ISR) triggers on both the rising and falling edges of both Channel A and Channel B, there are 4 distinct state transitions per pulse. This yields a total resolution of 408 X 4 = 1,632 counts per full motor revolution.</p>
+<p>The ISR updates a shared <code>volatile int32_t counter</code>. Every 1000 milliseconds (managed by <code>TIM2</code>), the main loop briefly disables the EXTI interrupts to atomically read and reset this counter.</p>
+<p>Velocity is calculated using the following equation:</p>
+<p><span class="math inline">\(\text{Velocity (rev/s)} = \frac{\text{Current Count}}{408 \text{ pulses/rev} \times 4 \text{ edges/pulse}}\)</span>$</p>
+<p>Direction is determined in the ISR by comparing the previous state of the two pins to their current state. For example, if both pins were LOW (<code>00</code>) and Channel A transitions HIGH (<code>10</code>), Channel A is leading, indicating clockwise (CW) rotation. The calculated speed is then paired with this direction state for output over the ITM debug channel.</p>
+</section>
+<section id="interrupts-vs.-polling" class="level3">
+<h3 class="anchored" data-anchor-id="interrupts-vs.-polling">Interrupts vs.&nbsp;Polling</h3>
+<p>While a continuous polling loop can detect logic changes, it introduces reliability issues at high speeds.</p>
+<p>At a 12V supply, the motor spins at roughly 150 RPM, or 2.5 rev/s. Given our resolution of 1,632 edges per revolution, the encoder generates a signal state change at a frequency of: <span class="math inline">\(2.5 \text{ rev/s} \times 1,632 \text{ edges/rev} = 4,080 \text{ Hz}\)</span>$</p>
+<p>This means an edge occurs approximately every 245 μs. According to the Nyquist-Shannon sampling theorem, a polling loop would need to successfully sample the pins at greater than 8,160 Hz (a loop time of 122 μs) to avoid missing a pulse. However, our main loop utilizes a blocking 1,000 ms delay and relies on floating-point <code>printf</code> operations. During this time, the polling loop is entirely paused, meaning thousands of encoder pulses would be missed, resulting in aliasing and an inaccurate velocity calculation.</p>
+<p>By utilizing EXTI interrupts, the MCU bypasses the main loop entirely. The ISR takes only a few dozen clock cycles to execute (less than 1 μs on an 80 MHz clock). Therefore, the interrupt based code guarantees zero missed pulses at maximum motor speeds, while still registering non-zero velocities at low speeds where a 1 Hz polling loop might incorrectly register stationary behavior due to clipping.</p>
+</section>
+</section>
+<section id="results-and-requirements-statement" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-requirements-statement">Results and Requirements Statement</h2>
+<p>The design meets all requirements outlined in the Lab 5 specifications: * The system utilizes interrupts to read both edges of both encoder channels, capturing all pulses at normal and high speeds. * Motor velocity is calculated in rev/s and displayed via the ITM debug channel at an update rate of 1 Hz. * The measured speed appropriately registers as <code>0.000 rev/s</code> when the motor is stationary. According to the datasheet, at 12V the motor spins at roughly 150 RPM (2.5 rev/s). My debug terminal measured ~2.9 rev/s at 12V, verifying that the calculations and direction states match the true physical motor speed.</p>
+</section>
+<section id="ai-prototype" class="level2">
+<h2 class="anchored" data-anchor-id="ai-prototype">AI Prototype</h2>
+<section id="llm-prompt" class="level3">
+<h3 class="anchored" data-anchor-id="llm-prompt">LLM Prompt</h3>
+<blockquote class="blockquote">
+<p>Write me interrupt handlers to interface with a quadrature encoder. I’m using the STM32L432KC, what pins should I connect the encoder to in order to allow it to easily trigger the interrupts?</p>
+</blockquote>
+</section>
+<section id="reflection" class="level3">
+<h3 class="anchored" data-anchor-id="reflection">Reflection</h3>
+<p><strong>Quality of Output</strong> The quality of ChatGPT 5.0’s response was good but had some downsides. The LLM accurately explained quadrature decoding and provided a bit-shifting state machine to handle the logic. However, it recommended pins <code>PA0</code> and <code>PA1</code>. According to the STM32L432KC datasheet, these pins are not 5V-tolerant so connecting our 5V lab encoder directly to them could damage the board. The LLM also generated code using the STM32 Hardware Abstraction Layer (HAL) library instead of using CMSIS.</p>
+<p><strong>Code Generation Comparison</strong> Because of the HAL library usage, the generated code would not compile in my Segger Embedded Studio setup. My final design manually configures the <code>SYSCFG</code>, <code>EXTI</code>, and <code>NVIC</code> registers and relies on the <code>EXTI9_5_IRQHandler</code> mapped to the 5V-tolerant <code>PA6</code> and <code>PA8</code> pins. For the decoding logic, the LLM used a <code>switch</code> statement evaluating a 4-bit previous/current state (<code>(encoder_state &lt;&lt; 2) | new_state</code>). I used explicit if/else logic gates in my implementation to make the hardware-level state transitions more readable and easier to debug.</p>
+</section>
+</section>
+<section id="time-spent" class="level2">
+<h2 class="anchored" data-anchor-id="time-spent">Time Spent</h2>
+<p><strong>Hours spent working on the lab:</strong> <em>(19 Hours)</em></p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
