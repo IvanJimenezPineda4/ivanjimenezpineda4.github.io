@@ -18,7 +18,7 @@ In this lab, the STM32L432KC microcontroller was configured to measure the rotat
 
 The quadrature encoder utilizes two Hall effect sensors to measure the changing magnetic field as the motor shaft rotates. The sensors output 5V logic signals. Because the STM32L432KC operates on 3.3V logic, the encoder's A and B channels were connected specifically to pins `PA8` and `PA6`, which are 5V-tolerant.
 
-![Electrical schematic showing the MCU and 25GA-370 brushed DC motor.](images/LAB5_schematic.jpg)
+![Electrical schematic showing the MCU and 25GA-370 brushed DC motor.](images/LAB5Schematic.jpg)
 *Figure 2: Schematic of the off-board encoder circuit.*
 
 On-board MCU components and internal pull-ups are not replicated in this schematic; they can be referenced in the motherboard schematic here.
@@ -41,7 +41,7 @@ The ISR updates a shared `volatile int32_t counter`. Every 1000 milliseconds (ma
 
 Velocity is calculated using the following equation:
 
-$\text{Velocity (rev/s)} = \frac{\text{Current Count}}{408 \text{ pulses/rev} \times 4 \text{ edges/pulse}}$$
+$\text{Velocity (rev/s)} = \frac{\text{Current Count}}{408 \text{ pulses/rev} \times 4 \text{ edges/pulse}}$
 
 Direction is determined in the ISR by comparing the previous state of the two pins to their current state. For example, if both pins were LOW (`00`) and Channel A transitions HIGH (`10`), Channel A is leading, indicating clockwise (CW) rotation. The calculated speed is then paired with this direction state for output over the ITM debug channel.
 
@@ -50,7 +50,7 @@ Direction is determined in the ISR by comparing the previous state of the two pi
 While a continuous polling loop can detect logic changes, it introduces reliability issues at high speeds.
 
 At a 12V supply, the motor spins at roughly 150 RPM, or 2.5 rev/s. Given our resolution of 1,632 edges per revolution, the encoder generates a signal state change at a frequency of:
-$2.5 \text{ rev/s} \times 1,632 \text{ edges/rev} = 4,080 \text{ Hz}$$
+$2.5 \text{ rev/s} \times 1,632 \text{ edges/rev} = 4,080 \text{ Hz}$
 
 This means an edge occurs approximately every 245 μs. According to the Nyquist-Shannon sampling theorem, a polling loop would need to successfully sample the pins at greater than 8,160 Hz (a loop time of 122 μs) to avoid missing a pulse. However, our main loop utilizes a blocking 1,000 ms delay and relies on floating-point `printf` operations. During this time, the polling loop is entirely paused, meaning thousands of encoder pulses would be missed, resulting in aliasing and an inaccurate velocity calculation.
 
