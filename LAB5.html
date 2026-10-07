@@ -196,7 +196,7 @@ window.Quarto = {
 <section id="hardware-specifications-schematic" class="level2">
 <h2 class="anchored" data-anchor-id="hardware-specifications-schematic">Hardware Specifications &amp; Schematic</h2>
 <p>The quadrature encoder utilizes two Hall effect sensors to measure the changing magnetic field as the motor shaft rotates. The sensors output 5V logic signals. Because the STM32L432KC operates on 3.3V logic, the encoder’s A and B channels were connected specifically to pins <code>PA8</code> and <code>PA6</code>, which are 5V-tolerant.</p>
-<p><img src="images/LAB5_schematic.jpg" class="img-fluid" alt="Electrical schematic showing the MCU and 25GA-370 brushed DC motor."> <em>Figure 2: Schematic of the off-board encoder circuit.</em></p>
+<p><img src="images/LAB5Schematic.jpg" class="img-fluid" alt="Electrical schematic showing the MCU and 25GA-370 brushed DC motor."> <em>Figure 2: Schematic of the off-board encoder circuit.</em></p>
 <p>On-board MCU components and internal pull-ups are not replicated in this schematic; they can be referenced in the motherboard schematic here. <a href="https://hmc-e155.github.io/assets/doc/E155%20FA22%20Development%20Board%20Schematic.pdf">View the Motherboard Schematic</a></p>
 </section>
 <section id="software-and-microcontroller-design" class="level2">
@@ -211,13 +211,13 @@ window.Quarto = {
 <p>The 25GA-370 motor has a specified Pulse Per Revolution (PPR) of 408. Because the interrupt service routine (ISR) triggers on both the rising and falling edges of both Channel A and Channel B, there are 4 distinct state transitions per pulse. This yields a total resolution of 408 X 4 = 1,632 counts per full motor revolution.</p>
 <p>The ISR updates a shared <code>volatile int32_t counter</code>. Every 1000 milliseconds (managed by <code>TIM2</code>), the main loop briefly disables the EXTI interrupts to atomically read and reset this counter.</p>
 <p>Velocity is calculated using the following equation:</p>
-<p><span class="math inline">\(\text{Velocity (rev/s)} = \frac{\text{Current Count}}{408 \text{ pulses/rev} \times 4 \text{ edges/pulse}}\)</span>$</p>
+<p><span class="math inline">\(\text{Velocity (rev/s)} = \frac{\text{Current Count}}{408 \text{ pulses/rev} \times 4 \text{ edges/pulse}}\)</span></p>
 <p>Direction is determined in the ISR by comparing the previous state of the two pins to their current state. For example, if both pins were LOW (<code>00</code>) and Channel A transitions HIGH (<code>10</code>), Channel A is leading, indicating clockwise (CW) rotation. The calculated speed is then paired with this direction state for output over the ITM debug channel.</p>
 </section>
 <section id="interrupts-vs.-polling" class="level3">
 <h3 class="anchored" data-anchor-id="interrupts-vs.-polling">Interrupts vs.&nbsp;Polling</h3>
 <p>While a continuous polling loop can detect logic changes, it introduces reliability issues at high speeds.</p>
-<p>At a 12V supply, the motor spins at roughly 150 RPM, or 2.5 rev/s. Given our resolution of 1,632 edges per revolution, the encoder generates a signal state change at a frequency of: <span class="math inline">\(2.5 \text{ rev/s} \times 1,632 \text{ edges/rev} = 4,080 \text{ Hz}\)</span>$</p>
+<p>At a 12V supply, the motor spins at roughly 150 RPM, or 2.5 rev/s. Given our resolution of 1,632 edges per revolution, the encoder generates a signal state change at a frequency of: <span class="math inline">\(2.5 \text{ rev/s} \times 1,632 \text{ edges/rev} = 4,080 \text{ Hz}\)</span></p>
 <p>This means an edge occurs approximately every 245 μs. According to the Nyquist-Shannon sampling theorem, a polling loop would need to successfully sample the pins at greater than 8,160 Hz (a loop time of 122 μs) to avoid missing a pulse. However, our main loop utilizes a blocking 1,000 ms delay and relies on floating-point <code>printf</code> operations. During this time, the polling loop is entirely paused, meaning thousands of encoder pulses would be missed, resulting in aliasing and an inaccurate velocity calculation.</p>
 <p>By utilizing EXTI interrupts, the MCU bypasses the main loop entirely. The ISR takes only a few dozen clock cycles to execute (less than 1 μs on an 80 MHz clock). Therefore, the interrupt based code guarantees zero missed pulses at maximum motor speeds, while still registering non-zero velocities at low speeds where a 1 Hz polling loop might incorrectly register stationary behavior due to clipping.</p>
 </section>
