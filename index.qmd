@@ -1,6 +1,6 @@
 ---
 title: "Ivan Jimenez Pineda"
-image: images/headshot.jpg
+image: images/junior_head_shot.jpg
 about:
   template: jolla
   links:
