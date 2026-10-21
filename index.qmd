@@ -20,6 +20,6 @@ Outside of my coursework, I am one of the co-presidents of SALSA Mudd (Society f
 
 ### Resume
 
-[Open Full Resume in New Tab](RESUME_JIMENEZ_PINEDA_IVAN.pdf){.btn .btn-outline-primary target="_blank"}
+[Open Full Resume in New Tab](RESUME.pdf){.btn .btn-outline-primary target="_blank"}
 
-<iframe src="RESUME_JIMENEZ_PINEDA_IVAN.pdf" width="100%" height="800px" style="border: none; margin-top: 20px;"></iframe>
+<iframe src="RESUME.pdf" width="100%" height="800px" style="border: none; margin-top: 20px;"></iframe>
