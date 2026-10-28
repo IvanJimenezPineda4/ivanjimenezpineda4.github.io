@@ -141,6 +141,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Lab 7: The Advanced Encryption Standard</h1>
+<p class="subtitle lead">Ivan Jimenez Pineda | ijimenezpineda@g.hmc.edu | October 27, 2026</p>
 </div>
 
 
@@ -157,8 +158,108 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this lab, a hardware accelerator for 128-bit Advanced Encryption Standard was designed and implemented on an iCE40 UP5K FPGA, interfacing with an STM32L432KC microcontroller over Serial Peripheral Interface. Following the specifications outlined in the NIST FIPS-197 standard, the MCU transmits a 128-bit plaintext message and a 128-bit cipher key to the FPGA over SPI while asserting a <code>load</code> control signal. Once the transfer completes, the <code>load</code> signal is deasserted and the FPGA sequentially executes the ten rounds of the AES-128 algorithm byte substitution (<code>SubBytes</code>), row shifting (<code>ShiftRows</code>), column mixing (<code>MixColumns</code>), round key addition (<code>AddRoundKey</code>), and round key generation (<code>KeyExpansion</code>). Upon completion, the FPGA asserts a <code>done</code> flag and shifts the resulting 128-bit ciphertext back to the MCU over SPI, which verifies the output against the expected FIPS-197 Appendix B test vector and illuminates a status LED.</p>
+</section>
+<section id="design-and-testing-methodology" class="level2">
+<h2 class="anchored" data-anchor-id="design-and-testing-methodology">Design and Testing Methodology</h2>
+<section id="system-architecture" class="level3">
+<h3 class="anchored" data-anchor-id="system-architecture">System Architecture</h3>
+<p>Implementing all ten rounds of AES-128 combinationally would exceed the Lookup Table capacity of the iCE40 UP5K FPGA so a single round datapath is reused across ten sequential encryption rounds. To conserve logic cells, the S-Box byte substitutions (<code>sbox_sync</code>) are mapped to the FPGA’s Embedded Block RAMs (EBRs) rather than combinational LUTs. Sixteen <code>sbox_sync</code> instances are used in parallel within <code>aes_sub_bytes</code> to substitute all 16 bytes of the 128-bit state simultaneously, and four <code>sbox_sync</code> instances are used within <code>aes_key_expansion</code> to perform the <code>SubWord</code> operation, consuming 20 of the 30 available EBR blocks on the iCE40 UP5K. Each round executes across two clock cycles:</p>
+<ol type="1">
+<li><strong><code>WAIT</code> State</strong>: The current 128-bit state (XORed with the round key via <code>aes_add_round_key</code>) and the rotated key word are presented to the address inputs of the 20 <code>sbox_sync</code> BRAM blocks.On the next rising clock edge, the substituted bytes are latched at the BRAM outputs.</li>
+<li><strong><code>CALC</code> State</strong>: At the rising clock edge, <code>update_regs</code> asserts to latch <code>next_round_key</code> into <code>current_round_key</code> and <code>next_mixed_text</code> into <code>current_mixed_text</code> (and on Round 10, <code>shifted_text</code> into <code>round_10_shifted_text</code> to bypass <code>MixColumns</code> per FIPS-197 Section 5.1).</li>
+</ol>
+<p>Using this two-cycle-per-round architecture, all ten rounds complete in 21 clock cycles after <code>load</code> is deasserted, after which the FSM enters the <code>RETURN</code> state and asserts <code>done</code>.</p>
+</section>
+<section id="mcu-and-fpga-spi-interface" class="level3">
+<h3 class="anchored" data-anchor-id="mcu-and-fpga-spi-interface">MCU and FPGA SPI Interface</h3>
+<p>The provided MCU starter code configures <code>SPI1</code> on pins <code>PB3</code> (<code>SCK</code>), <code>PB4</code> (<code>MISO</code>/<code>SDO</code>), and <code>PB5</code> (<code>MOSI</code>/<code>SDI</code>) with clock polarity <code>CPOL = 0</code> and clock phase <code>CPHA = 0</code>. Pin <code>PA5</code> drives the <code>LOAD</code> signal, <code>PA6</code> monitors the <code>DONE</code> signal from the FPGA, <code>PA11</code> and <code>PA9</code> / <code>PA10</code> drive indicator LEDs for pass/fail verification. On the FPGA side, the internal high-speed oscillator (<code>HSOSC</code>) is configured with a divider of <code>2'b11</code> to supply a 6 MHz system clock (<code>clk</code>) to <code>aes_core</code>for the combinational path through <code>aes_row_shift</code> and <code>mixcolumns</code>.</p>
+</section>
+<section id="block-diagram" class="level3">
+<h3 class="anchored" data-anchor-id="block-diagram">Block Diagram</h3>
+<p><img src="images/LAB7_block_diagram.jpeg" class="img-fluid" alt="Block Diagram of the AES-128 FPGA Accelerator"> <em>Figure 1: Top-level and submodule hardware block diagram of the AES-128 FPGA accelerator.</em></p>
+<p>The top-level <code>lab7_ijp</code> instantiates the 6 MHz <code>HSOSC</code> , the <code>aes_spi</code> shift-register interface, and <code>aes_core</code>. Inside <code>aes_core</code>, control logic is isolated in <code>aes_controller</code>, which outputs <code>current_round</code>, <code>update_regs</code>, and <code>done</code>. Multiplexers select <code>key</code> and <code>plaintext</code> during Round 1 (<code>current_round == 4'd1</code>), and select the registered <code>current_round_key</code> and <code>current_mixed_text</code> during Rounds 2 through 10. A final <code>aes_add_round_key</code> instance (<code>add_key_10</code>) XORs <code>round_10_shifted_text</code> with Round 10’s expanded key to produce the final <code>cyphertext</code>.</p>
+</section>
+<section id="finite-state-machine-design" class="level3">
+<h3 class="anchored" data-anchor-id="finite-state-machine-design">Finite State Machine Design</h3>
+<p><img src="images/aes_fsm.jpg" class="img-fluid" alt="State Transition Diagram for aes_controller"> <em>Figure 2: State transition diagram for <code>aes_controller</code>.</em></p>
+<p>As shown in Figure 2, <code>aes_controller</code> has four states:</p>
+<ul>
+<li><strong><code>START</code> (<code>2'b00</code>)</strong>: Entered synchronously whenever <code>load</code> is asserted. Initializes <code>current_round</code> to <code>1</code> and keeps <code>done</code> low. Transitions to <code>WAIT</code> once <code>load</code> is deasserted (<code>load == 0</code>).</li>
+<li><strong><code>WAIT</code> (<code>2'b01</code>)</strong>: Waits one clock cycle for the 20 synchronous <code>sbox_sync</code> EBR modules in <code>aes_sub_bytes</code> and <code>aes_key_expansion</code> to latch their substituted byte outputs. Unconditionally transitions to <code>CALC</code>.</li>
+<li><strong><code>CALC</code> (<code>2'b10</code>)</strong>: Asserts <code>update_regs = 1'b1</code> to capture the newly computed round key and mixed column state (or Round 10 shifted state) on the next clock edge, and increments <code>current_round</code>. Transitions back to <code>WAIT</code> if <code>current_round &lt; 10</code>, or to <code>RETURN</code> when <code>current_round == 10</code>.</li>
+<li><strong><code>RETURN</code> (<code>2'b11</code>)</strong>: Holds <code>done = 1'b1</code> (with <code>current_round == 11</code>) so <code>aes_spi</code> can capture and shift out the final <code>cyphertext</code> to the MCU. Remains in <code>RETURN</code> until <code>load</code> is asserted for a new encryption request.</li>
+</ul>
+</section>
+</section>
+<section id="results-and-discussion" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
+<section id="testbench-simulation-waveforms" class="level3">
+<h3 class="anchored" data-anchor-id="testbench-simulation-waveforms">Testbench Simulation Waveforms</h3>
+<p>Each individual submodule was verified in QuestaSim against the official test vectors in FIPS-197 Appendix A.1 and Appendix B (<code>plaintext = 3243f6a8_885a308d_313198a2_e0370734</code>, <code>key = 2b7e1516_28aed2a6_abf71588_09cf4f3c</code>, <code>expected = 3925841d_02dc09fb_dc118597_196a0b32</code>).</p>
+<section id="aes_core-simulation" class="level4">
+<h4 class="anchored" data-anchor-id="aes_core-simulation"><code>aes_core</code> Simulation</h4>
+<p><img src="images/core.png" class="img-fluid" alt="Waveform for aes_core_tb"> <em>Figure 3: Waveform for <code>aes_core_tb</code>, showing the progression through Rounds 1–10 and final assertion of <code>done</code> with <code>cyphertext</code> matching <code>expected</code> (<code>3925841d02dc09fbdc118597196a0b32</code>).</em></p>
+<section id="aes_key_expansion" class="level5">
+<h5 class="anchored" data-anchor-id="aes_key_expansion"><code>aes_key_expansion</code></h5>
+<p><img src="images/key_expansion.png" class="img-fluid" alt="Waveform for aes_key_expansion_tb"> <em>Figure 4: <code>aes_key_expansion_tb</code> waveform verifying Round 1 (<code>a0fafe17_88542cb1_23a33939_2a6c7605</code>) and Round 2 (<code>f2c295f2_7a96b943_5935807a_7359f67f</code>) key schedule generation.</em></p>
+</section>
+<section id="aes_add_round_key" class="level5">
+<h5 class="anchored" data-anchor-id="aes_add_round_key"><code>aes_add_round_key</code></h5>
+<p><img src="images/add_round_key.png" class="img-fluid" alt="Waveform for aes_add_round_key_tb"> <em>Figure 5: <code>aes_add_round_key_tb</code> waveform verifying bitwise XOR round key addition.</em></p>
+</section>
+<section id="aes_sub_bytes-sbox_sync" class="level5">
+<h5 class="anchored" data-anchor-id="aes_sub_bytes-sbox_sync"><code>aes_sub_bytes</code> &amp; <code>sbox_sync</code></h5>
+<p><img src="images/sub_bytes.png" class="img-fluid" alt="Waveform for aes_sub_bytes_tb"> <em>Figure 6: <code>aes_sub_bytes_tb</code> waveform demonstrating synchronous 1-cycle BRAM S-Box byte substitution.</em></p>
+</section>
+<section id="aes_row_shift" class="level5">
+<h5 class="anchored" data-anchor-id="aes_row_shift"><code>aes_row_shift</code></h5>
+<p><img src="images/row_shift.png" class="img-fluid" alt="Waveform for aes_row_shift_tb"> <em>Figure 7: <code>aes_row_shift_tb</code> waveform verifying cyclic left-shifting of rows 0 through 3.</em></p>
+</section>
+<section id="galoismult-mixcolumn-and-mixcolumns" class="level5">
+<h5 class="anchored" data-anchor-id="galoismult-mixcolumn-and-mixcolumns"><code>galoismult</code>, <code>mixcolumn</code>, and <code>mixcolumns</code></h5>
+<p><img src="images/galoismult.png" class="img-fluid" alt="Waveform for galoismult"> <img src="images/mixcolumn.png" class="img-fluid" alt="Waveform for mixcolumn"> <img src="images/mixcolumns.png" class="img-fluid" alt="Waveform for mixcolumns"></p>
+<p><em>Figure 8: Waveforms for <code>galoismult</code>, single-column <code>mixcolumn</code>, and 128-bit <code>mixcolumns</code> against FIPS-197 Appendix B Round 1 and Round 2 intermediate states.</em></p>
+</section>
+<section id="aes_controller" class="level5">
+<h5 class="anchored" data-anchor-id="aes_controller"><code>aes_controller</code></h5>
+<p><img src="images/controller.png" class="img-fluid" alt="Waveform for aes_controller_tb"> <em>Figure 9: <code>aes_controller_tb</code> waveform verifying state transitions (<code>START</code>, <code>WAIT</code>, <code>CALC</code>, <code>RETURN</code>), <code>update_regs</code>, and <code>done</code> assertion at <code>current_round == 11</code>.</em></p>
+</section>
+<section id="full-system-aes_spi_tb" class="level5">
+<h5 class="anchored" data-anchor-id="full-system-aes_spi_tb">Full System (<code>aes_spi_tb</code>)</h5>
+<p><img src="images/spi.png" class="img-fluid" alt="Waveform for aes_spi_tb"> <img src="images/spi_zoom.png" class="img-fluid" alt="Waveform for aes_spi_tb zoomed in"> <em>Figure 10: Full-system <code>aes_spi_tb</code> waveforms showing the 256-bit SPI shift-in while <code>load</code> is high, AES encryption, <code>done</code> assertion, and 128-bit SPI shift-out of the verified ciphertext.</em></p>
+</section>
+</section>
+</section>
+<section id="oscilloscope-traces" class="level3">
+<h3 class="anchored" data-anchor-id="oscilloscope-traces">Oscilloscope Traces</h3>
+<p>The design was synthesized in Lattice Radiant and deployed onto the iCE40 UP5K alongside the STM32L432KC running <code>lab7.c</code>. Upon execution, the MCU’s success indicator LED (<code>PA9</code>) illuminated for both the FIPS-197 Appendix B and Appendix C.1 test vectors, confirming end-to-end hardware-accelerated encryption.</p>
+<p><img src="images/LAB7_fsm_diagram.jpeg" class="img-fluid" alt="State Transition Diagram for aes_controller"> <em>Figure 11: Hardware setup showing indicator LED illuminated on successful ciphertext verification.</em></p>
+<p><img src="images/LAB7_fsm_diagram.jpeg" class="img-fluid" alt="State Transition Diagram for aes_controller"> <em>Figure 12: Oscilloscope trace of the SPI Write transaction (<code>LOAD</code> asserted, MCU transmitting <code>plaintext</code> and <code>key</code> over <code>MOSI</code>).</em></p>
+<p><img src="images/LAB7_fsm_diagram.jpeg" class="img-fluid" alt="State Transition Diagram for aes_controller"> <em>Figure 13: Oscilloscope trace of the SPI Read transaction (<code>DONE</code> asserted, FPGA returning encrypted <code>cyphertext</code> over <code>MISO</code>).</em></p>
+<hr>
+</section>
+</section>
+<section id="ai-prototype-reflection" class="level2">
+<h2 class="anchored" data-anchor-id="ai-prototype-reflection">AI Prototype Reflection</h2>
+<p><strong>Output Quality &amp; Approach:</strong></p>
+<p><strong>(Prompt 1):</strong> When given the explicit FIPS-197 context, the LLM generated a highly specific, ready-to-use AES-128 <code>KeyExpansion</code> module. It correctly inferred the 10 rounds, hardcoded the exact <code>Rcon</code> values in a <code>case</code> statement, and implemented a clean, sequential XOR chain.</p>
+<p><strong>(Prompt 2):</strong> When provided only generic pseudocode, the LLM took a much more parameterized approach. It utilized <code>generate</code> <code>for</code> loops, <code>genvar</code>, and parameters (<code>Nk</code>, <code>Nr</code>) to unroll the logic. It also correctly inferred that the <code>Rcon</code> values would need to be supplied as an external array since it lacked the context of what those constants should be. The second prompt forced the LLM to use <code>generate</code> and <code>genvar</code> loops.</p>
+<p><strong>Synthesis:</strong> Prompt 1 correctly synthesized but Prompt 2 did not. The LLM’s output for Prompt 2 was a generic, parameterized module that would require additional context to synthesize correctly. Prompt 1’s output was a complete, synthesizable module that could be directly integrated into the larger AES datapath.</p>
+<hr>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>The hardware accelerated AES-128 encryption system met all Proficiency and Excellence specifications for Lab 7. All individual module testbenches, core simulations, full-system SPI simulations, and physical hardware logic analyzer verifications passed with zero errors.</p>
+<ul>
+<li><strong>Requirement Status</strong>: All Proficiency and Excellence requirements for simulation, Verilog structure/style, block diagrams, and hardware execution were fully met.</li>
+<li><strong>Time Spent</strong>: 19 Hours</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
