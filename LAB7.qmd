@@ -7,28 +7,34 @@ format: html
 
 ## Introduction
 
-In this lab, a hardware accelerator for 128-bit Advanced Encryption Standard was designed and implemented on an iCE40 UP5K FPGA, interfacing with an STM32L432KC microcontroller over Serial Peripheral Interface. Following the specifications outlined in the NIST FIPS-197 standard, the MCU transmits a 128-bit plaintext message and a 128-bit cipher key to the FPGA over SPI while asserting a `load` control signal. Once the transfer completes, the `load` signal is deasserted and the FPGA sequentially executes the ten rounds of the AES-128 algorithm byte substitution (`SubBytes`), row shifting (`ShiftRows`), column mixing (`MixColumns`), round key addition (`AddRoundKey`), and round key generation (`KeyExpansion`). Upon completion, the FPGA asserts a `done` flag and shifts the resulting 128-bit ciphertext back to the MCU over SPI, which verifies the output against the expected FIPS-197 Appendix B test vector and illuminates a status LED.
+In this lab, a hardware accelerator for 128-bit Advanced Encryption Standard was designed and implemented on an iCE40 UP5K FPGA, interfacing with an STM32L432KC microcontroller over Serial Peripheral Interface. Following the specifications outlined in the NIST FIPS-197 standard, the MCU transmits a 128-bit plaintext message and a 128-bit cipher key to the FPGA over SPI while asserting a `load` control signal. Once the transfer completes, the load signal is deasserted and the FPGA sequentially executes the ten rounds of the AES-128 algorithm byte substitution (`SubBytes`), row shifting (`ShiftRows`), column mixing (`MixColumns`), round key addition (`AddRoundKey`), and round key generation (`KeyExpansion`). Upon completion, the FPGA asserts a `done` flag and shifts the resulting 128-bit ciphertext back to the MCU over SPI, which verifies the output against the expected FIPS-197 Appendix B test vector and illuminates a status LED.
 
 ## Design and Testing Methodology
 
 ### System Architecture
 
-Implementing all ten rounds of AES-128 combinationally would exceed the Lookup Table capacity of the iCE40 UP5K FPGA so a single round datapath is reused across ten sequential encryption rounds. To conserve logic cells, the S-Box byte substitutions (`sbox_sync`) are mapped to the FPGA's Embedded Block RAMs (EBRs) rather than combinational LUTs. Sixteen `sbox_sync` instances are used in parallel within `aes_sub_bytes` to substitute all 16 bytes of the 128-bit state simultaneously, and four `sbox_sync` instances are used within `aes_key_expansion` to perform the `SubWord` operation, consuming 20 of the 30 available EBR blocks on the iCE40 UP5K. Each round executes across two clock cycles:
+Implementing all ten rounds of AES-128 combinationally would exceed the Lookup Table capacity of the iCE40 UP5K FPGA so a single round datapath is reused across ten sequential encryption rounds. To conserve logic cells, the S-Box byte substitutions (`sbox_sync`) are mapped to the FPGA's Embedded Block RAMs (EBRs) rather than combinational LUTs. Sixteen sbox_sync instances are used in parallel within `aes_sub_bytes` to substitute all 16 bytes of the 128-bit state simultaneously, and four sbox_sync instances are used within `aes_key_expansion` to perform the SubWord operation, consuming 20 of the 30 available EBR blocks on the iCE40 UP5K. Each round executes across two clock cycles:
 
-1. **`WAIT` State**: The current 128-bit state (XORed with the round key via `aes_add_round_key`) and the rotated key word are presented to the address inputs of the 20 `sbox_sync` BRAM blocks.On the next rising clock edge, the substituted bytes are latched at the BRAM outputs.
+1. **`WAIT` State**: The current 128-bit state (XORed with the round key via `aes_add_round_key`) and the rotated key word are presented to the address inputs of the 20 sbox_sync BRAM blocks.On the next rising clock edge, the substituted bytes are latched at the BRAM outputs.
 2. **`CALC` State**: At the rising clock edge, `update_regs` asserts to latch `next_round_key` into `current_round_key` and `next_mixed_text` into `current_mixed_text` (and on Round 10, `shifted_text` into `round_10_shifted_text` to bypass `MixColumns` per FIPS-197 Section 5.1).
 
-Using this two-cycle-per-round architecture, all ten rounds complete in 21 clock cycles after `load` is deasserted, after which the FSM enters the `RETURN` state and asserts `done`.
+Using this two-cycle-per-round architecture, all ten rounds complete in 21 clock cycles after load is deasserted, after which the FSM enters the RETURN state and asserts done.
 
 ### MCU and FPGA SPI Interface
 
-The provided MCU starter code configures `SPI1` on pins `PB3` (`SCK`), `PB4` (`MISO`/`SDO`), and `PB5` (`MOSI`/`SDI`) with clock polarity `CPOL = 0` and clock phase `CPHA = 0`. Pin `PA5` drives the `LOAD` signal, `PA6` monitors the `DONE` signal from the FPGA, `PA11` and `PA9` / `PA10` drive indicator LEDs for pass/fail verification. On the FPGA side, the internal high-speed oscillator (`HSOSC`) is configured with a divider of `2'b11` to supply a 6 MHz system clock (`clk`) to `aes_core`for the combinational path through `aes_row_shift` and `mixcolumns`.
+The provided MCU starter code configures SPI1 on pins `PB3` (`SCK`), `PB4` (`MISO`/`SDO`), and `PB5` (`MOSI`/`SDI`) with clock polarity CPOL = 0 and clock phase CPHA = 0. Pin `PA5` drives the `LOAD` signal, `PA6` monitors the `DONE` signal from the FPGA, `PA11` and `PA9` / `PA10` drive indicator LEDs for pass/fail verification. On the FPGA side, the internal high-speed oscillator (`HSOSC`) is configured with a divider of `2'b11` to supply a 6 MHz system clock (`clk`) to `aes_core`for the combinational path through `aes_row_shift` and `mixcolumns`.
 
 
 ### Block Diagram
 
-![Block Diagram of the AES-128 FPGA Accelerator](images/LAB7_block_diagram.jpeg)
+![Block Diagram of the top level module](images/lab7_block_ijp.png)
 *Figure 1: Top-level and submodule hardware block diagram of the AES-128 FPGA accelerator.*
+
+![Block Diagram of the aes_core module](images/lab7_block_core.png)
+*Figure 1b: Block diagram of the aes_core module.*
+
+![Block Diagram of the aes_spi module](images/lab7_block_spi.png)
+*Figure 1c: Block diagram of the aes_spi module.*
 
 The top-level `lab7_ijp` instantiates the 6 MHz `HSOSC` , the `aes_spi` shift-register interface, and `aes_core`. Inside `aes_core`, control logic is isolated in `aes_controller`, which outputs `current_round`, `update_regs`, and `done`. Multiplexers select `key` and `plaintext` during Round 1 (`current_round == 4'd1`), and select the registered `current_round_key` and `current_mixed_text` during Rounds 2 through 10. A final `aes_add_round_key` instance (`add_key_10`) XORs `round_10_shifted_text` with Round 10's expanded key to produce the final `cyphertext`.
 
