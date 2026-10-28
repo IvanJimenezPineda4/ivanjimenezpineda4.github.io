@@ -160,6 +160,7 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p><img src="images/working_aes.jpeg" class="img-fluid" alt="Picture of the AES-128 FPGA Accelerator"> <em>Picture of the AES-128 FPGA Accelerator Hardware setup showing indicator LED illuminated on successful ciphertext verification.</em></p>
 <p>In this lab, a hardware accelerator for 128-bit Advanced Encryption Standard was designed and implemented on an iCE40 UP5K FPGA, interfacing with an STM32L432KC microcontroller over Serial Peripheral Interface. Following the specifications outlined in the NIST FIPS-197 standard, the MCU transmits a 128-bit plaintext message and a 128-bit cipher key to the FPGA over SPI while asserting a <code>load</code> control signal. Once the transfer completes, the load signal is deasserted and the FPGA sequentially executes the ten rounds of the AES-128 algorithm byte substitution (<code>SubBytes</code>), row shifting (<code>ShiftRows</code>), column mixing (<code>MixColumns</code>), round key addition (<code>AddRoundKey</code>), and round key generation (<code>KeyExpansion</code>). Upon completion, the FPGA asserts a <code>done</code> flag and shifts the resulting 128-bit ciphertext back to the MCU over SPI, which verifies the output against the expected FIPS-197 Appendix B test vector and illuminates a status LED.</p>
 </section>
 <section id="design-and-testing-methodology" class="level2">
@@ -238,9 +239,9 @@ ul.task-list li input[type="checkbox"] {
 <section id="oscilloscope-traces" class="level3">
 <h3 class="anchored" data-anchor-id="oscilloscope-traces">Oscilloscope Traces</h3>
 <p>The design was synthesized in Lattice Radiant and deployed onto the iCE40 UP5K alongside the STM32L432KC running <code>lab7.c</code>. Upon execution, the MCU’s success indicator LED (<code>PA9</code>) illuminated for both the FIPS-197 Appendix B and Appendix C.1 test vectors, confirming end-to-end hardware-accelerated encryption.</p>
-<p><img src="images/LAB7_fsm_diagram.jpeg" class="img-fluid" alt="State Transition Diagram for aes_controller"> <em>Figure 11: Hardware setup showing indicator LED illuminated on successful ciphertext verification.</em></p>
-<p><img src="images/LAB7_fsm_diagram.jpeg" class="img-fluid" alt="State Transition Diagram for aes_controller"> <em>Figure 12: Oscilloscope trace of the SPI Write transaction (<code>LOAD</code> asserted, MCU transmitting <code>plaintext</code> and <code>key</code> over <code>MOSI</code>).</em></p>
-<p><img src="images/LAB7_fsm_diagram.jpeg" class="img-fluid" alt="State Transition Diagram for aes_controller"> <em>Figure 13: Oscilloscope trace of the SPI Read transaction (<code>DONE</code> asserted, FPGA returning encrypted <code>cyphertext</code> over <code>MISO</code>).</em></p>
+<p><img src="images/working_aes.jpeg" class="img-fluid" alt="Picture of the AES-128 FPGA Accelerator"> <em>Figure 11: Hardware setup showing indicator LED illuminated on successful ciphertext verification.</em></p>
+<p><img src="images/LAB7_fsm_diagram.jpeg" class="img-fluid" alt="Oscilloscope Trace of SPI Write Transaction"> <em>Figure 12: Oscilloscope trace of the SPI Write transaction (<code>LOAD</code> asserted, MCU transmitting <code>plaintext</code> and <code>key</code> over <code>MOSI</code>).</em></p>
+<p><img src="images/LAB7_fsm_diagram.jpeg" class="img-fluid" alt="Oscilloscope Trace of SPI Read Transaction"> <em>Figure 13: Oscilloscope trace of the SPI Read transaction (<code>DONE</code> asserted, FPGA returning encrypted <code>cyphertext</code> over <code>MISO</code>).</em></p>
 <hr>
 </section>
 </section>
