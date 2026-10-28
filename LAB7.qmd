@@ -7,6 +7,9 @@ format: html
 
 ## Introduction
 
+![Picture of the AES-128 FPGA Accelerator](images/working_aes.jpeg)
+*Picture of the AES-128 FPGA Accelerator Hardware setup showing indicator LED illuminated on successful ciphertext verification.*
+
 In this lab, a hardware accelerator for 128-bit Advanced Encryption Standard was designed and implemented on an iCE40 UP5K FPGA, interfacing with an STM32L432KC microcontroller over Serial Peripheral Interface. Following the specifications outlined in the NIST FIPS-197 standard, the MCU transmits a 128-bit plaintext message and a 128-bit cipher key to the FPGA over SPI while asserting a `load` control signal. Once the transfer completes, the load signal is deasserted and the FPGA sequentially executes the ten rounds of the AES-128 algorithm byte substitution (`SubBytes`), row shifting (`ShiftRows`), column mixing (`MixColumns`), round key addition (`AddRoundKey`), and round key generation (`KeyExpansion`). Upon completion, the FPGA asserts a `done` flag and shifts the resulting 128-bit ciphertext back to the MCU over SPI, which verifies the output against the expected FIPS-197 Appendix B test vector and illuminates a status LED.
 
 ## Design and Testing Methodology
@@ -104,13 +107,13 @@ Each individual submodule was verified in QuestaSim against the official test ve
 
 The design was synthesized in Lattice Radiant and deployed onto the iCE40 UP5K alongside the STM32L432KC running `lab7.c`. Upon execution, the MCU's success indicator LED (`PA9`) illuminated for both the FIPS-197 Appendix B and Appendix C.1 test vectors, confirming end-to-end hardware-accelerated encryption.
 
-![State Transition Diagram for `aes_controller`](images/LAB7_fsm_diagram.jpeg)
+![Picture of the AES-128 FPGA Accelerator](images/working_aes.jpeg)
 *Figure 11: Hardware setup showing indicator LED illuminated on successful ciphertext verification.*
 
-![State Transition Diagram for `aes_controller`](images/LAB7_fsm_diagram.jpeg)
+![Oscilloscope Trace of SPI Write Transaction](images/LAB7_fsm_diagram.jpeg)
 *Figure 12: Oscilloscope trace of the SPI Write transaction (`LOAD` asserted, MCU transmitting `plaintext` and `key` over `MOSI`).*
 
-![State Transition Diagram for `aes_controller`](images/LAB7_fsm_diagram.jpeg)
+![Oscilloscope Trace of SPI Read Transaction](images/LAB7_fsm_diagram.jpeg)
 *Figure 13: Oscilloscope trace of the SPI Read transaction (`DONE` asserted, FPGA returning encrypted `cyphertext` over `MISO`).*
 
 ---
