@@ -329,6 +329,55 @@
     "text": "AI Prototype Reflection\nQuality and Speed of Output: The quality of the ChatGPT5’s output was faster than manually searching through the 1600-page STM32L432KC Reference Manual. Instead of utilizing Ctrl-F to hunt for scattered information across the RCC and Timer chapters, the LLM immediately synthesized the necessary configuration steps and provided the core equation for frequency.\nReasoning and Timer Selection: The LLM recommended using TIM2 because of its 32-bit counter and 4-channel GPIO routing. Because the target frequency range was only 220 Hz to 1 kHz, the 16-bit counters of TIM15 and TIM16 were more than sufficient, and TIM16_CH1N routed perfectly to my chosen output pin (PB6).\nDocument Search The most impressive part of the interaction occurred when the RM0394 manual was attached to the prompt. As a document search assistant, the LLM proved better to standard keyword searches.\nTime Spent: Approximately 17 hours were spent developing, debugging, and documenting this lab."
   },
   {
+    "objectID": "LAB6.html",
+    "href": "LAB6.html",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "",
+    "text": "In Lab 6, an Internet of Things (IoT) device was designed and implemented using the STM32L432KC microcontroller, an ESP8266 WiFi module, and a DS1722 digital temperature sensor. The goal of this lab was to develop an embedded system capable of reading environmental data over a Serial Peripheral Interface (SPI) and serving it to a web interface over a USART connection. Users can interact with the webpage to toggle a hardware LED, select the temperature sensor’s resolution (8 to 12 bits), and view real-time temperature updates.\n Figure 1: Complete wiring including the STM32L432KC, ESP8266 WiFi Module, and the DS1722 Temperature Sensor."
+  },
+  {
+    "objectID": "LAB6.html#introduction",
+    "href": "LAB6.html#introduction",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "",
+    "text": "In Lab 6, an Internet of Things (IoT) device was designed and implemented using the STM32L432KC microcontroller, an ESP8266 WiFi module, and a DS1722 digital temperature sensor. The goal of this lab was to develop an embedded system capable of reading environmental data over a Serial Peripheral Interface (SPI) and serving it to a web interface over a USART connection. Users can interact with the webpage to toggle a hardware LED, select the temperature sensor’s resolution (8 to 12 bits), and view real-time temperature updates.\n Figure 1: Complete wiring including the STM32L432KC, ESP8266 WiFi Module, and the DS1722 Temperature Sensor."
+  },
+  {
+    "objectID": "LAB6.html#system-architecture-and-hardware-design",
+    "href": "LAB6.html#system-architecture-and-hardware-design",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "System Architecture and Hardware Design",
+    "text": "System Architecture and Hardware Design\nThe hardware for this lab consists of three main components: 1. STM32L432KC MCU: Acts as the central processor, managing the SPI and USART peripherals. 2. ESP8266 WiFi Module: Configured as an access point and web server. It communicates with the MCU via a 125000 baud USART link (with RX and TX lines crossed). 3. DS1722 Digital Thermometer: Interfaced with the MCU over SPI. The sensor requires an active-high Chip Enable (CE) and operates in continuous conversion mode.\n\nSchematic\n Figure 2: Schematic of the IoT Device."
+  },
+  {
+    "objectID": "LAB6.html#software-and-microcontroller-design",
+    "href": "LAB6.html#software-and-microcontroller-design",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "Software and Microcontroller Design",
+    "text": "Software and Microcontroller Design\n\nSPI Driver Implementation\nA custom SPI driver was written using the CMSIS device templates to interface with the DS1722. - Pins: PA5 (SCK), PB4 (MISO), PB5 (MOSI), and PA8 (CE). - Configuration: The SPI peripheral (SPI1) was configured for a 625 kHz clock (derived from the 80 MHz system clock). The DS1722 requires a clock phase (CPHA) of 1 and a clock polarity (CPOL) of 0. - Data Handling: The 8-bit FIFO reception threshold (FRXTH) was enabled to allow proper byte-by-byte transmission and reception using the SPI1-&gt;DR register. Software Slave Management (SSM) was utilized so the active-high CE pin could be controlled manually as a standard GPIO output.\n\n\nTemperature Conversion\nThe DS1722 outputs temperature as a 16-bit two’s complement value. The MCU reads the LSB (0x01) and MSB (0x02) registers, concatenates them into a signed 16-bit integer, and divides by 256.0 to calculate the temperature in Celsius. This automatically handles both positive and negative temperatures across the sensor’s full range.\n\n\nUSART and Webserver Logic\nThe ESP8266 forwards HTTP requests to the MCU in the format /REQ:&lt;command&gt;\\n. The MCU parses this string to: - Update the LED state (e.g., ledon, ledoff). - Update the DS1722 resolution (e.g., res8 through res12) by writing to its configuration register (0x80). After processing the request, the MCU generates an HTML string containing the current temperature, resolution, and LED status, and transmits it back to the ESP8266. State-tracking variables ensure the LED and resolution do not reset unexpectedly when the page is refreshed."
+  },
+  {
+    "objectID": "LAB6.html#results-and-testing",
+    "href": "LAB6.html#results-and-testing",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "Results and Testing",
+    "text": "Results and Testing\n\nWeb Interface\nThe web interface successfully loads and displays the current temperature. Toggling the LED and changing the resolution updates the hardware and the webpage accurately.\n Figure 3: Webpage UI with different resolutions and temperatures.\n\n\nSPI Logic Analyzer Capture\nTo verify the SPI protocol, an oscilloscope was used to capture a full SPI read transaction. The trace demonstrates the active-high CE, the clock idling low, and data being sampled on the correct clock edges (CPHA=1).\n Figure 4: Oscilloscope SPI Write Trace.\n Figure 5: Oscilloscope SPI Read Trace."
+  },
+  {
+    "objectID": "LAB6.html#ai-prototype-reflection",
+    "href": "LAB6.html#ai-prototype-reflection",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "AI Prototype Reflection",
+    "text": "AI Prototype Reflection\nWhen comparing the LLM’s proficiency between frontend web development and low-level embedded C, it is clear that the AI is better at frontend web development. For the HTML prompt, the LLM instantly generated a highly polished, responsive dashboard complete with CSS styling, interactive toggle switches, and even a simulated Chart.js graph. Because web development relies on universal standards and flexible environments, the AI’s frontend output was structurally complete and visually impressive out of the box. Conversely, while the LLM correctly identified the DS1722’s unique datasheet requirements—such as an active-high Chip Enable, CPHA = 1, and the \\(1/256^\\circ\\text{C}\\) two’s complement conversion its embedded C code was difficult to integrate. It rigidly hardcoded assumptions about the hardware (assigning SPI to PA4-PA7 instead of the project’s specific wiring) and used raw bit-shifting macros that didn’t perfectly align with the STM32L432KC CMSIS templates.\nUltimately, the LLM served as a good conceptual guide, but a poor direct code generator for hardware specific tasks. Its detailed breakdown of the SPI initialization requirements and the scaling mathematics were incredibly helpful for verifying the driver’s logic. However, the experience reinforced that while AI can practically write a web app for you, embedded systems require too much board-specific context such as shared pins, specific header macros, and register-level specifics to blindly trust AI-generated C code."
+  },
+  {
+    "objectID": "LAB6.html#conclusion",
+    "href": "LAB6.html#conclusion",
+    "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design meets all the requirements for Proficiency and Excellence. The IoT device successfully hosts a web server, controls hardware peripherals, and correctly parses two’s complement SPI data across multiple resolutions.\nHours Spent: 19 Hours"
+  },
+  {
     "objectID": "microprocessor_projects.html",
     "href": "microprocessor_projects.html",
     "title": "Microprocessor Labs",
