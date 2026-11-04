@@ -361,7 +361,7 @@
     "href": "LAB6.html#results-and-testing",
     "title": "Lab 6: The Internet of Things and Serial Peripheral Interface",
     "section": "Results and Testing",
-    "text": "Results and Testing\n\nWeb Interface\nThe web interface successfully loads and displays the current temperature. Toggling the LED and changing the resolution updates the hardware and the webpage accurately.\n Figure 3: Webpage UI with different resolutions and temperatures.\n\n\nSPI Logic Analyzer Capture\nTo verify the SPI protocol, an oscilloscope was used to capture a full SPI read transaction. The trace demonstrates the active-high CE, the clock idling low, and data being sampled on the correct clock edges (CPHA=1).\n Figure 4: Oscilloscope SPI Write Trace.\n Figure 5: Oscilloscope SPI Read Trace."
+    "text": "Results and Testing\n\nWeb Interface\nThe web interface successfully loads and displays the current temperature. Toggling the LED and changing the resolution updates the hardware and the webpage accurately.\n\n\n\nE155 Web Server\n\n\nFigure 3: Webpage UI with different resolutions and temperatures.\n\n\nSPI Logic Analyzer Capture\nTo verify the SPI protocol, an oscilloscope was used to capture a full SPI read transaction. The trace demonstrates the active-high CE, the clock idling low, and data being sampled on the correct clock edges (CPHA=1).\n Figure 4: Oscilloscope SPI Write Trace.\n Figure 5: Oscilloscope SPI Read Trace."
   },
   {
     "objectID": "LAB6.html#ai-prototype-reflection",
