@@ -49,6 +49,7 @@ After processing the request, the MCU generates an HTML string containing the cu
 The web interface successfully loads and displays the current temperature. Toggling the LED and changing the resolution updates the hardware and the webpage accurately.
 
 ![E155 Web Server](images/E155_web_server_lab6.png)
+
 *Figure 3: Webpage UI with different resolutions and temperatures.*
 
 ### SPI Logic Analyzer Capture
