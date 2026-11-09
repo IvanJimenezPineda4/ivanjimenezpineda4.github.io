@@ -6,7 +6,6 @@ format:
   html:
     toc: true
     toc-depth: 2
-    theme: cosmo
 ---
 
 ## Introduction
@@ -71,3 +70,12 @@ Ultimately, the LLM served as a good conceptual guide, but a poor direct code ge
 The design meets all the requirements for Proficiency and Excellence. The IoT device successfully hosts a web server, controls hardware peripherals, and correctly parses two's complement SPI data across multiple resolutions.
 
 **Hours Spent:** 19 Hours
+
+<!-- lab-nav -->
+```{=html}
+<nav class="lab-nav" aria-label="Lab navigation">
+  <a class="lab-nav-prev" href="LAB5.html"><small>&larr; Previous</small>Lab 5: Interrupts</a>
+  <a class="lab-nav-all" href="microprocessor_projects.html"><small>Back to</small>All Labs</a>
+  <a class="lab-nav-next" href="LAB7.html"><small>Next &rarr;</small>Lab 7: AES Encryption</a>
+</nav>
+```

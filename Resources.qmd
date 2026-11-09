@@ -1,12 +1,41 @@
 ---
 title: "Resources"
+subtitle: "Course materials and references behind my work."
+page-layout: full
 toc: false
 format: html
 ---
-## Microprocessors (E155)
+
+:::: {.tile-grid}
+
+::: {.tile .lead-card}
+[Microprocessors (E155)]{.tile-kicker}
+
+### E155 Course Website
 
 All E155 Microprocessors labs are referenced from the provided lab resources from the course linked below.
 
-[Link to course website](https://hmc-e155.github.io/)
+[Link to course website](https://hmc-e155.github.io/){.btn .btn-primary target="_blank"}
+:::
 
----
+::: {.tile .lead-card}
+[Portfolio]{.tile-kicker}
+
+### My Lab Write-Ups
+
+Every E155 lab, with design notes, schematics, waveforms, and source code links.
+
+[Browse the labs](microprocessor_projects.qmd){.btn .btn-outline-primary}
+:::
+
+::: {.tile .lead-card}
+[Code]{.tile-kicker}
+
+### GitHub
+
+Source code for my labs and projects.
+
+[Visit my GitHub](https://github.com/IvanJimenezPineda4){.btn .btn-outline-primary target="_blank"}
+:::
+
+::::

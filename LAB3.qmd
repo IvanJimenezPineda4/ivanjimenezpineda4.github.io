@@ -1,7 +1,7 @@
 ---
 title: "Lab 3: Keypad Scanner"
 subtitle: "Ivan Jimenez Pineda | ijimenezpineda@g.hmc.edu | September 23, 2026"
-toc: false
+toc: true
 format: html
 ---
 ## Introduction
@@ -140,3 +140,12 @@ In future workflows, I will use the decomposed prompting strategy from the start
 
 **Time Spent:**
 The lab took a total of 28 hours to complete.
+
+<!-- lab-nav -->
+```{=html}
+<nav class="lab-nav" aria-label="Lab navigation">
+  <a class="lab-nav-prev" href="LAB2.html"><small>&larr; Previous</small>Lab 2: Multiplexed Display</a>
+  <a class="lab-nav-all" href="microprocessor_projects.html"><small>Back to</small>All Labs</a>
+  <a class="lab-nav-next" href="LAB4.html"><small>Next &rarr;</small>Lab 4: Digital Audio</a>
+</nav>
+```

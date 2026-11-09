@@ -1,49 +1,112 @@
 ---
 title: "Engineering Projects"
+subtitle: "Hands-on builds: robots, machined parts, CAD models, and code."
+page-layout: full
+toc: false
 ---
 
-### Autonomous Underwater Vehicle
-*August 2025 - May 2026*
-
+:::: {.feature-card}
+::: {.feature-media}
 ![AUV Deployed at Dana Point Harbor](images/AUV_photo.png)
+:::
 
+::: {.feature-head}
+[August 2025 – May 2026]{.meta-date}
+[]{.meta-line}
+
+### Autonomous Underwater Vehicle
+
+[Analog Circuits]{.tag} [Op-Amps]{.tag} [Teensy]{.tag} [Arduino IDE]{.tag} [MATLAB]{.tag}
+
+[View Poster](#auv-docs){.btn .btn-primary} [Read Report](E80_Final_Report_Ivan_Jimenez_Pineda.pdf){.btn .btn-outline-primary target="_blank"}
+:::
+
+::: {.feature-detail}
 * Engineered and fabricated a low-cost autonomous electro-mechanical robot featuring a custom winch mechanism to deploy a tethered sensor payload for depth-resolved environmental data collection.
 * Designed analog signal conditioning circuitry, utilizing unity gain and inverting offset operational amplifiers, to interface an NTC thermistor, pressure sensor, and amorphous silicon solar cell with a Teensy microcontroller.
 * Programmed the Teensy using Arduino IDE for synchronized sensor logging and utilized MATLAB to calibrate raw data, capturing temperature and luminosity fluctuations relative to depth during coastal field deployments at Dana Point Harbor.
+:::
+::::
 
-### Project Presentation Poster
+::::: {.doc-viewer #auv-docs}
+#### AUV Poster & Report
 
+:::: {.panel-tabset}
+##### Project Presentation Poster
+
+::: {.doc-actions}
 [Open Full Poster in New Tab](E80_Poster.pdf){.btn .btn-outline-primary target="_blank"}
+:::
 
-<iframe src="E80_Poster.pdf" width="100%" height="800px" style="border: none; margin-top: 20px;"></iframe>
+<iframe src="E80_Poster.pdf" title="AUV project poster"></iframe>
 
-### Project Report
+##### Project Report
 
+::: {.doc-actions}
 [Open Full Report in New Tab](E80_Final_Report_Ivan_Jimenez_Pineda.pdf){.btn .btn-outline-primary target="_blank"}
+:::
 
-<iframe src="E80_Final_Report_Ivan_Jimenez_Pineda.pdf" width="100%" height="800px" style="border: none; margin-top: 20px;"></iframe>
+<iframe src="E80_Final_Report_Ivan_Jimenez_Pineda.pdf" title="AUV final report"></iframe>
+::::
+:::::
+
+:::: {.feature-card}
+::: {.feature-media}
+![Completely Machined and Assembled Hammer](images/Hammer.png)
+:::
+
+::: {.feature-head}
+[March 2025 – April 2025]{.meta-date}
+[]{.meta-line}
 
 ### The Machinist's Hammer
-*March 2025 - April 2025*
 
-![Completely Machined and Assembled Hammer](images/Hammer.png)
+[Mill]{.tag} [Lathe]{.tag} [Heat Treatment]{.tag} [Rockwell Testing]{.tag} [Laser Cutter]{.tag}
+:::
 
+::: {.feature-detail}
 * Machined a multi-material alloy steel hammer including a hard face, soft face, handle, and a stand (AISI 4340 and AISI 1015).
 * Applied heat treatment (857°C) to hard face and verified results using a Rockwell hardness tester (RC 43-48).
 * Used a mill, lathe, vertical bandsaw, belt sander, sand blaster, laser cutter, and 3D printer.
+:::
+::::
+
+:::: {.feature-card}
+::: {.feature-media}
+![Fabrication, CAD, and Completion of Brachistochrone Curve Model](images/Brachistochrone.png)
+:::
+
+::: {.feature-head}
+[February 2025 – May 2025]{.meta-date}
+[]{.meta-line}
 
 ### Brachistochrone Curve Model
-*February 2025 - May 2025*
 
-![Fabrication, CAD, and Completion of Brachistochrone Curve Model](images/Brachistochrone.png)
+[SolidWorks]{.tag} [Equation Driven Curves]{.tag} [CNC Router]{.tag}
+:::
 
+::: {.feature-detail}
 * Modeled cycloid, linear, and parabolic descent paths in SolidWorks using the Equation Driven Curve feature to optimize geometric accuracy and demonstrate kinematic principles for a client-requested physics demonstration.
 * Fabricated the primary ramp structures and custom corner fixtures using a CNC Router, ensuring precise assembly and tolerances.
+:::
+::::
+
+:::: {.feature-card}
+::: {.feature-media}
+![MITES Summer 2023 Symposium Presentation](images/MITES.png)
+:::
+
+::: {.feature-head}
+[June 2023 – July 2023]{.meta-date}
+[]{.meta-line}
 
 ### MITES Summer Scholar Symposium Project
-*June 2023 - July 2023*
 
-![MITES Summer 2023 Symposium Presentation](images/MITES.png)
+[Python]{.tag} [Machine Learning]{.tag} [Markov Chains]{.tag}
+:::
 
+::: {.feature-detail}
 * Co-developed "Project Beatzthoven," an interactive machine learning application built in Python that algorithmically generates classical music utilizing Markov Chain logic.
 * Applied systematic debugging practices and software engineering fundamentals to process data structures and balance competing project priorities within a strict 6-week development cycle to present at an MIT showcase.
+:::
+::::

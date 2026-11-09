@@ -1,7 +1,7 @@
 ---
 title: "Lab 2: Multiplexed 7-Segment Display"
 subtitle: "Ivan Jimenez Pineda | ijimenezpineda@g.hmc.edu | September 16, 2026"
-toc: false
+toc: true
 format: html
 ---
 ## Introduction
@@ -110,3 +110,12 @@ Adding the Lab 1 files as context in the second prompt improved the hardware acc
 However, the generated code still contained flaws based on my prompt's phrasing. Because I asked it to drive two sets of seven output bits, the LLM created two 7-bit outputs (`seg0` and `seg1`). In reality, time-multiplexing a dual display involves sharing a single 7-bit segment bus and using transistors to toggle the common anodes one at a time.
 
 I would rate the quality of the output an 8/10. The SystemVerilog syntax was great and it correctly utilized `always_comb` and `always_ff` blocks. The code would synthesize in Lattice Radiant the first time around without syntax errors.
+
+<!-- lab-nav -->
+```{=html}
+<nav class="lab-nav" aria-label="Lab navigation">
+  <a class="lab-nav-prev" href="LAB1.html"><small>&larr; Previous</small>Lab 1: FPGA &amp; MCU Setup</a>
+  <a class="lab-nav-all" href="microprocessor_projects.html"><small>Back to</small>All Labs</a>
+  <a class="lab-nav-next" href="LAB3.html"><small>Next &rarr;</small>Lab 3: Keypad Scanner</a>
+</nav>
+```

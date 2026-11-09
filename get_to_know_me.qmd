@@ -1,25 +1,85 @@
 ---
 title: "Get to Know Ivan!"
+page-layout: full
+toc: false
+title-block-style: none
 ---
 
-### Who is Ivan outside of the classroom? Does he have a life?
+```{=html}
+<header class="gk-hero">
+  <div class="gk-hero__text">
+    <p class="gk-hero__eyebrow">Ivan Jimenez Pineda</p>
+    <h1 class="gk-hero__title">Get to Know Ivan!</h1>
+    <p class="gk-hero__sub">Who is Ivan outside of the classroom? Does he have a life?</p>
+    <div class="gk-hero__chips">
+      <span>&#127474;&#127485; Proud First-Gen Latino</span>
+      <span>&#128761; Skateboarder</span>
+      <span>&#128131; SALSA Mudd Co-President</span>
+    </div>
+  </div>
+  <div class="gk-hero__photo">
+    <img src="images/web/mexico_jersey.jpg" alt="Ivan pointing proudly at the Mexico crest on his jersey" width="1200" height="926">
+  </div>
+</header>
+```
+
+::::::: {.stories}
+
+:::: {.story}
+::: {.story-media}
+![Summer Trip to Mexico!](images/Mexico.png)
+:::
+::: {.story-text}
+## Family & Roots
 
 Believe it or not, yes, I do like to live outside of problem sets and academic projects! I have many hobbies and interests that I am passionate about and am always happy to talk about. Most notably, I am very proud of my roots as a First-Generation Low-Income Latino Student! I am currently at Harvey Mudd College seeking a better future for my family who have sacrificed plenty in order to provide me the opportunity to attend college and pursue engineering. So, of course I always love to visit my parent's homeland in Mexico whenever possible!
+:::
+::::
 
-![Summer Trip to Mexico!](images/Mexico.png)
+:::: {.story}
+::: {.story-media}
+![SALSA Mudd Leadership at the Club Fair](images/SALSA.JPEG)
+:::
+::: {.story-text}
+## SALSA Mudd
 
 I am passionate about my Latino heritage and proud to be one of the co-presidents of SALSA Mudd (Society for the Advancement of Latinx Students At Mudd). Uplifting the Latinx community at Harvey Mudd is an important mission that my friends and I care deeply about and share by hosting weekly club meetings and hosting events such as carne asadas, resume and interview workshops, career fair preparation events, and weekly study breaks to build community!
+:::
+::::
 
-![SALSA Mudd Leadership at the Club Fair](images/SALSA.jpeg)
+:::: {.story}
+::: {.story-media}
+![Very Nice Day at the Skatepark!](images/Skate.png)
+:::
+::: {.story-text}
+## Skateboarding
 
 Besides that, I love skateboarding! I randomly picked up the hobby one day in high school because my mom kept telling me to go outside and I have loved it ever since. I know how to do ollies, pop shuvs, front-side 180s, and back-side 180s even though it came at the cost of many bruises and scars. I hope to keep improving my skateboarding skills before I become too old for it!
 
-![Very Nice Day at the Skatepark!](images/Skate.png)
+[Ollie]{.tag} [Pop Shuv]{.tag} [FS 180]{.tag} [BS 180]{.tag}
+:::
+::::
+
+:::: {.story}
+::: {.story-media}
+![Disneyland!](images/disney.png)
+:::
+::: {.story-text}
+## Disneyland, Finally!
 
 As a kid, I always wished for an opportunity to visit Disneyland. Sadly, that day never came for me as a kid due to the financial struggles that my family was facing. However, that didn't stop the grown up version of me from finally going! During my 2026 Summer Mechanical Engineering internship at ALLFAST, I had started saving some cash to finally make that wish a reality for my inner child. Here are some pictures that I took at Disneyland this summer with my beautiful girlfriend Joselyn! p.s. my favorite ride was the Guardians of the Galaxy ride.
+:::
+::::
 
-![Disneyland!](images/disney.png)
+:::: {.story}
+::: {.story-media}
+![Evil CVS Pharmacy!](images/CVS.jpeg)
+:::
+::: {.story-text}
+## The Evil CVS
 
 Lastly, this is this very strange, evil-looking CVS Pharmacy in California that my friends and I became obsessed with and drove out to visit!
+:::
+::::
 
-![Evil CVS Pharmacy!](images/CVS.jpeg)
+:::::::

@@ -1,7 +1,7 @@
 ---
 title: "Lab 5: Interrupts"
 subtitle: "Ivan Jimenez Pineda | ijimenezpineda@g.hmc.edu | October 6, 2026"
-toc: false
+toc: true
 format: html
 ---
 
@@ -80,3 +80,12 @@ Because of the HAL library usage, the generated code would not compile in my Seg
 ## Time Spent
 
 **Hours spent working on the lab:** *(19 Hours)*
+
+<!-- lab-nav -->
+```{=html}
+<nav class="lab-nav" aria-label="Lab navigation">
+  <a class="lab-nav-prev" href="LAB4.html"><small>&larr; Previous</small>Lab 4: Digital Audio</a>
+  <a class="lab-nav-all" href="microprocessor_projects.html"><small>Back to</small>All Labs</a>
+  <a class="lab-nav-next" href="LAB6.html"><small>Next &rarr;</small>Lab 6: IoT &amp; SPI</a>
+</nav>
+```

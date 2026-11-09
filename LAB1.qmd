@@ -1,7 +1,7 @@
 ---
 title: "Lab 1: FPGA & MCU Setup & Testing"
 subtitle: "Ivan Jimenez Pineda | ijimenezpineda@g.hmc.edu | September 14, 2026"
-toc: false
+toc: true
 format: html
 ---
 
@@ -119,4 +119,13 @@ AI Prompt: Write SystemVerilog HDL to leverage the internal high speed oscillato
 The prompt was given to ChatGPT, and it created a good counter using systemverilog syntax. However, when the code was imported into Lattice Radiant and synthesized, it failed with the following error: Error ../source/impl_1/ai_proto.sv(15): instantiating unknown module SB_HFOSC. VERI-1063.
 When the error was fed back to ChatGPT, it was not able to correct it. 
 
-Overall, I would rate the quality of ChatGPT's output as a 5/10 because it did correctly calculate that a 48MHz clock required a 12,000,000 count to toggle twice a second for a 2Hz blink rate but it could not correct error messages from the synthesis. 
+Overall, I would rate the quality of ChatGPT's output as a 5/10 because it did correctly calculate that a 48MHz clock required a 12,000,000 count to toggle twice a second for a 2Hz blink rate but it could not correct error messages from the synthesis.
+
+<!-- lab-nav -->
+```{=html}
+<nav class="lab-nav" aria-label="Lab navigation">
+  <span class="placeholder-cell"></span>
+  <a class="lab-nav-all" href="microprocessor_projects.html"><small>Back to</small>All Labs</a>
+  <a class="lab-nav-next" href="LAB2.html"><small>Next &rarr;</small>Lab 2: Multiplexed Display</a>
+</nav>
+```

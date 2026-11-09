@@ -1,11 +1,20 @@
 project:
   type: website
+  resources:
+    - "*.pdf"
+    - images/skater-mini.svg
 
 website:
-  title: "Ivan Jimenez Pineda Portfolio"
-  site-url: "https://ivanjimenezpineda4.github.io" 
+  title: "Ivan Jimenez Pineda"
+  site-url: "https://ivanjimenezpineda4.github.io"
+  favicon: images/logo.svg
   navbar:
-    background: "#E5A823"
+    title: "Ivan Jimenez Pineda"
+    logo: images/logo.svg
+    logo-alt: "IJ monogram"
+    background: light
+    pinned: true
+    collapse-below: xl
     left:
       - href: index.qmd
         text: Home
@@ -21,6 +30,25 @@ website:
         text: Resources
       - href: get_to_know_me.qmd
         text: Get to Know Me!
+    right:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/ivan-jimenez-pineda/
+        aria-label: LinkedIn
+      - icon: github
+        href: https://github.com/IvanJimenezPineda4
+        aria-label: GitHub
+  page-footer:
+    left: "© 2026 Ivan Jimenez Pineda · Engineering @ Harvey Mudd College"
+    right:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/ivan-jimenez-pineda/
+        aria-label: LinkedIn
+      - icon: github
+        href: https://github.com/IvanJimenezPineda4
+        aria-label: GitHub
+      - icon: envelope
+        href: mailto:ijimenezpineda@g.hmc.edu
+        aria-label: Email
 
 format:
   html:
@@ -29,3 +57,6 @@ format:
       - brand
     css: styles.css
     toc: true
+    smooth-scroll: true
+    lightbox: auto
+    include-after-body: _site-scripts.html

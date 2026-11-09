@@ -1,7 +1,7 @@
 ---
 title: "Lab 4: Digital Audio"
 subtitle: "Ivan Jimenez Pineda | ijimenezpineda@g.hmc.edu | September 30, 2026"
-toc: false
+toc: true
 format: html
 ---
 
@@ -72,3 +72,12 @@ The most impressive part of the interaction occurred when the RM0394 manual was 
 
 **Time Spent:**
 Approximately 17 hours were spent developing, debugging, and documenting this lab.
+
+<!-- lab-nav -->
+```{=html}
+<nav class="lab-nav" aria-label="Lab navigation">
+  <a class="lab-nav-prev" href="LAB3.html"><small>&larr; Previous</small>Lab 3: Keypad Scanner</a>
+  <a class="lab-nav-all" href="microprocessor_projects.html"><small>Back to</small>All Labs</a>
+  <a class="lab-nav-next" href="LAB5.html"><small>Next &rarr;</small>Lab 5: Interrupts</a>
+</nav>
+```

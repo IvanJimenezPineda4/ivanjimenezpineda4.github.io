@@ -1,68 +1,121 @@
 ---
 title: "Microprocessor Labs"
+subtitle: "E155: Microprocessor Systems at Harvey Mudd College"
+page-layout: full
+toc: false
 ---
 
-In E155: Microprocessor Systems, I designed and built digital electronic systems using FPGAs, microcontrollers, and other hardware components to perform specific tasks. Through hands-on labs and continuous iteration, I developed skills in embedded programming, FPGA development, and systematic debugging. 
+::: {.lead-card}
+In E155: Microprocessor Systems, I designed and built digital electronic systems using FPGAs, microcontrollers, and other hardware components to perform specific tasks. Through hands-on labs and continuous iteration, I developed skills in embedded programming, FPGA development, and systematic debugging.
 
----
+[FPGA]{.tag} [SystemVerilog]{.tag} [STM32 / C]{.tag} [SPI]{.tag} [Interrupts]{.tag} [Questa Sim]{.tag}
+:::
 
-### Lab 1: FPGA & MCU Setup & Testing
+::::::: {.tile-grid .tile-grid--wide}
 
-**Overview:**
-The purpose of this lab was to assemble a development board with an FPGA and MCU on-board. Then, digital designs were implemented using SystemVerilog to verify the hardware functionality. The board utilizes the onboard high-speed oscillator to drive a 2.4 Hz LED blink, map discrete logic to additional LEDs based on DIP switch inputs, and decode a 4-bit binary input to display hexadecimal characters `0` through `F` on a 7-segment display. 
+:::: {.tile}
+::: {.tile-media}
+![](images/web/assembledboard.jpg){fig-alt="Complete μP Dev Board with all components soldered."}
+:::
+::: {.tile-body}
+[Lab 1]{.tile-kicker}
 
-[Learn More About Lab 1](LAB1.qmd){.btn .btn-outline-primary target="_blank"}
-![Complete μP Dev Board with all components soldered.](images/AssembledBoard.jpeg)
+### FPGA & MCU Setup & Testing
 
----
+The purpose of this lab was to assemble a development board with an FPGA and MCU on-board. Then, digital designs were implemented using SystemVerilog to verify the hardware functionality. The board utilizes the onboard high-speed oscillator to drive a 2.4 Hz LED blink, map discrete logic to additional LEDs based on DIP switch inputs, and decode a 4-bit binary input to display hexadecimal characters `0` through `F` on a 7-segment display.
 
-### Lab 2: Multiplexed 7-Segment Display
+[Learn More About Lab 1](LAB1.qmd){.btn .btn-outline-primary}
+:::
+::::
 
-**Overview:**
+:::: {.tile}
+::: {.tile-media}
+![](images/web/lab2_circuit.jpg){fig-alt="Complete Dual Seven Segment Display and Keypad Breadboard."}
+:::
+::: {.tile-body}
+[Lab 2]{.tile-kicker}
+
+### Multiplexed 7-Segment Display
+
 The purpose of this lab was to implement a time-multiplexing scheme to efficiently use the FPGA's I/O pins. The design drives two independent hexadecimal numbers on a dual seven-segment display using only a single seven-segment decoder module. Additionally, a scanning circuit was developed to interact with a 4x4 matrix keypad by driving its rows and reading its columns. The system was designed using SystemVerilog and verified using Questa Sim before physical implementation on the UPduino v3.1 development board.
 
-[Learn More About Lab 2](LAB2.qmd){.btn .btn-outline-primary target="_blank"}
-![Complete Dual Seven Segment Display and Keypad Breadboard.](images/lab2_circuit.jpg)
+[Learn More About Lab 2](LAB2.qmd){.btn .btn-outline-primary}
+:::
+::::
 
----
+:::: {.tile}
+::: {.tile-media}
+![](images/web/keypad_scanner_lab3.jpg){fig-alt="Keypad Scanner Circuit"}
+:::
+::: {.tile-body}
+[Lab 3]{.tile-kicker}
 
-### Lab 3: Keypad Scanner
+### Keypad Scanner
 
-**Overview:**
 This lab focuses on designing a circuit interface to read a 4x4 matrix keypad and display the results on a dual seven-segment display. The design must display the last two hexadecimal digits pressed, with the most recent entry appearing on the right. Because mechanical switches are prone to bouncing making and breaking connections rapidly over a few milliseconds, the system must implement a debouncing strategy to ensure each key press is registered exactly once. Furthermore, the system must handle multi-press edge cases, ignoring additional inputs if a button is already held down and refusing to lock up if multiple buttons are pressed simultaneously. The design was written in SystemVerilog, verified using Questa Sim, and synthesized for the UPduino v3.1 FPGA.
 
-[Learn More About Lab 3](LAB3.qmd){.btn .btn-outline-primary target="_blank"}
-![Keypad Scanner Circuit](images/keypad_scanner_lab3.jpg)
+[Learn More About Lab 3](LAB3.qmd){.btn .btn-outline-primary}
+:::
+::::
 
----
+:::: {.tile}
+::: {.tile-media}
+![](images/web/lab4_circuit.jpg){fig-alt="Physical circuit setup for MCU, potentiometer, amplifier, and speaker components."}
+:::
+::: {.tile-body}
+[Lab 4]{.tile-kicker}
 
-### Lab 4: Digital Audio
+### Digital Audio
 
-**Overview:**
 This lab focuses on utilizing the internal peripheral timers of the STM32L432KC microcontroller to generate digital audio. By producing precisely timed PWM square waves, the microcontroller functions as a digital synthesizer capable of playing musical sequences with varying pitches and durations. The system was programmed in C to play Beethoven's *Für Elise* and the *Super Mario Bros.* theme by interacting directly with memory-mapped hardware registers. An external LM386 audio amplifier circuit was constructed to safely drive an 8-ohm speaker, incorporating a potentiometer for manual volume control.
 
-[Learn More About Lab 4](LAB4.qmd){.btn .btn-outline-primary target="_blank"}
-![Physical circuit setup for MCU, potentiometer, amplifier, and speaker components.](images/LAB4_circuit.jpeg)
+[Learn More About Lab 4](LAB4.qmd){.btn .btn-outline-primary}
+:::
+::::
 
----
+:::: {.tile}
+::: {.tile-media}
+![](images/web/lab5_circuit.jpg){fig-alt="Physical circuit setup including the STM32L432KC and 25GA-370 brushed DC motor."}
+:::
+::: {.tile-body}
+[Lab 5]{.tile-kicker}
 
-### Lab 5: Interrupts
+### Interrupts
 
-**Overview:**
 In this lab, the STM32L432KC microcontroller was configured to measure the rotational velocity and direction of a 25GA-370 brushed DC motor. A quadrature encoder attached to the motor generates pulse signals that were tracked using hardware interrupts. By triggering external interrupts (EXTI) on both the rising and falling edges of the two out-of-phase encoder channels, the system achieves high-resolution measurements to accurately calculate and display the motor's speed in revolutions per second (rev/s) at a 1 Hz update rate.
 
-[Learn More About Lab 5](LAB5.qmd){.btn .btn-outline-primary target="_blank"}
-![Physical circuit setup including the STM32L432KC and 25GA-370 brushed DC motor.](images/LAB5_circuit.jpeg)
----
+[Learn More About Lab 5](LAB5.qmd){.btn .btn-outline-primary}
+:::
+::::
 
-### Lab 6: The Internet of Things and Serial Peripheral Interface
+:::: {.tile}
+::: {.tile-media}
+![](images/web/lab6_circuit.jpg){fig-alt="Wiring for the STM32L432KC, ESP8266 WiFi module, and DS1722 temperature sensor."}
+:::
+::: {.tile-body}
+[Lab 6]{.tile-kicker}
 
-[Learn More About Lab 6](LAB6.qmd){.btn .btn-outline-primary target="_blank"}
+### The Internet of Things and Serial Peripheral Interface
 
----
+An Internet of Things device built with the STM32L432KC microcontroller, an ESP8266 WiFi module, and a DS1722 digital temperature sensor. The MCU reads temperature data over SPI and serves it to a web interface over USART, where users can toggle an LED, select the sensor's resolution (8 to 12 bits), and view real-time temperature updates.
 
-### Lab 7: The Advanced Encryption Standard
+[Learn More About Lab 6](LAB6.qmd){.btn .btn-outline-primary}
+:::
+::::
 
-[Learn More About Lab 7](LAB7.qmd){.btn .btn-outline-primary target="_blank"}
+:::: {.tile}
+::: {.tile-media}
+![](images/web/working_aes.jpg){fig-alt="AES-128 FPGA accelerator hardware with the verification LED lit."}
+:::
+::: {.tile-body}
+[Lab 7]{.tile-kicker}
 
----
+### The Advanced Encryption Standard
+
+A hardware accelerator for 128-bit AES implemented on an iCE40 UP5K FPGA following the NIST FIPS-197 standard. The STM32L432KC sends the plaintext and key over SPI, the FPGA runs ten rounds on a reused single-round datapath with S-boxes mapped to block RAM, and the ciphertext is shifted back to the MCU and verified against the FIPS-197 test vector.
+
+[Learn More About Lab 7](LAB7.qmd){.btn .btn-outline-primary}
+:::
+::::
+
+:::::::
