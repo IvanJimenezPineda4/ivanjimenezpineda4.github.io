@@ -7,13 +7,6 @@
     "text": "Microprocessors (E155)\n\nE155 Course Website\nAll E155 Microprocessors labs are referenced from the provided lab resources from the course linked below.\nLink to course website\n\n\n\nPortfolio\n\nMy Lab Write-Ups\nEvery E155 lab, with design notes, schematics, waveforms, and source code links.\nBrowse the labs\n\n\n\nCode\n\nGitHub\nSource code for my labs and projects.\nVisit my GitHub"
   },
   {
-    "objectID": "Resources.html#microprocessors-e155",
-    "href": "Resources.html#microprocessors-e155",
-    "title": "Resources",
-    "section": "",
-    "text": "All E155 Microprocessors labs are referenced from the provided lab resources from the course linked below.\nLink to course website"
-  },
-  {
     "objectID": "LAB7.html",
     "href": "LAB7.html",
     "title": "Lab 7: The Advanced Encryption Standard",
@@ -203,11 +196,39 @@
     "text": "AI Reflection\nAI Prompt: Write SystemVerilog HDL to leverage the internal high speed oscillator in the Lattice UP5K FPGA and blink an LED at 2 Hz. Take full advantage of SystemVerilog syntax, for example, using logic instead of wire and reg.\nThe prompt was given to ChatGPT, and it created a good counter using systemverilog syntax. However, when the code was imported into Lattice Radiant and synthesized, it failed with the following error: Error ../source/impl_1/ai_proto.sv(15): instantiating unknown module SB_HFOSC. VERI-1063. When the error was fed back to ChatGPT, it was not able to correct it.\nOverall, I would rate the quality of ChatGPT’s output as a 5/10 because it did correctly calculate that a 48MHz clock required a 12,000,000 count to toggle twice a second for a 2Hz blink rate but it could not correct error messages from the synthesis.\n\n\n  \n  Back toAll Labs\n  Next →Lab 2: Multiplexed Display"
   },
   {
-    "objectID": "get_to_know_me.html",
-    "href": "get_to_know_me.html",
+    "objectID": "get_to_know_me.html#family-roots",
+    "href": "get_to_know_me.html#family-roots",
     "title": "Get to Know Ivan!",
-    "section": "",
-    "text": "Summer Trip to Mexico!\n\n\n\n\n\nBelieve it or not, yes, I do like to live outside of problem sets and academic projects! I have many hobbies and interests that I am passionate about and am always happy to talk about. Most notably, I am very proud of my roots as a First-Generation Low-Income Latino Student! I am currently at Harvey Mudd College seeking a better future for my family who have sacrificed plenty in order to provide me the opportunity to attend college and pursue engineering. So, of course I always love to visit my parent’s homeland in Mexico whenever possible!\n\n\n\n\n\n\n\nSALSA Mudd Leadership at the Club Fair\n\n\n\n\n\nI am passionate about my Latino heritage and proud to be one of the co-presidents of SALSA Mudd (Society for the Advancement of Latinx Students At Mudd). Uplifting the Latinx community at Harvey Mudd is an important mission that my friends and I care deeply about and share by hosting weekly club meetings and hosting events such as carne asadas, resume and interview workshops, career fair preparation events, and weekly study breaks to build community!\n\n\n\n\n\n\n\nVery Nice Day at the Skatepark!\n\n\n\n\n\nBesides that, I love skateboarding! I randomly picked up the hobby one day in high school because my mom kept telling me to go outside and I have loved it ever since. I know how to do ollies, pop shuvs, front-side 180s, and back-side 180s even though it came at the cost of many bruises and scars. I hope to keep improving my skateboarding skills before I become too old for it!\nOllie Pop Shuv FS 180 BS 180\n\n\n\n\n\n\n\nDisneyland!\n\n\n\n\n\nAs a kid, I always wished for an opportunity to visit Disneyland. Sadly, that day never came for me as a kid due to the financial struggles that my family was facing. However, that didn’t stop the grown up version of me from finally going! During my 2026 Summer Mechanical Engineering internship at ALLFAST, I had started saving some cash to finally make that wish a reality for my inner child. Here are some pictures that I took at Disneyland this summer with my beautiful girlfriend Joselyn! p.s. my favorite ride was the Guardians of the Galaxy ride.\n\n\n\n\n\n\n\nEvil CVS Pharmacy!\n\n\n\n\n\nLastly, this is this very strange, evil-looking CVS Pharmacy in California that my friends and I became obsessed with and drove out to visit!"
+    "section": "Family & Roots",
+    "text": "Family & Roots\nBelieve it or not, yes, I do like to live outside of problem sets and academic projects! I have many hobbies and interests that I am passionate about and am always happy to talk about. Most notably, I am very proud of my roots as a First-Generation Low-Income Latino Student! I am currently at Harvey Mudd College seeking a better future for my family who have sacrificed plenty in order to provide me the opportunity to attend college and pursue engineering. So, of course I always love to visit my parent’s homeland in Mexico whenever possible!"
+  },
+  {
+    "objectID": "get_to_know_me.html#salsa-mudd",
+    "href": "get_to_know_me.html#salsa-mudd",
+    "title": "Get to Know Ivan!",
+    "section": "SALSA Mudd",
+    "text": "SALSA Mudd\nI am passionate about my Latino heritage and proud to be one of the co-presidents of SALSA Mudd (Society for the Advancement of Latinx Students At Mudd). Uplifting the Latinx community at Harvey Mudd is an important mission that my friends and I care deeply about and share by hosting weekly club meetings and hosting events such as carne asadas, resume and interview workshops, career fair preparation events, and weekly study breaks to build community!"
+  },
+  {
+    "objectID": "get_to_know_me.html#skateboarding",
+    "href": "get_to_know_me.html#skateboarding",
+    "title": "Get to Know Ivan!",
+    "section": "Skateboarding",
+    "text": "Skateboarding\nBesides that, I love skateboarding! I randomly picked up the hobby one day in high school because my mom kept telling me to go outside and I have loved it ever since. I know how to do ollies, pop shuvs, front-side 180s, and back-side 180s even though it came at the cost of many bruises and scars. I hope to keep improving my skateboarding skills before I become too old for it!\nOllie Pop Shuv FS 180 BS 180"
+  },
+  {
+    "objectID": "get_to_know_me.html#disneyland-finally",
+    "href": "get_to_know_me.html#disneyland-finally",
+    "title": "Get to Know Ivan!",
+    "section": "Disneyland, Finally!",
+    "text": "Disneyland, Finally!\nAs a kid, I always wished for an opportunity to visit Disneyland. Sadly, that day never came for me as a kid due to the financial struggles that my family was facing. However, that didn’t stop the grown up version of me from finally going! During my 2026 Summer Mechanical Engineering internship at ALLFAST, I had started saving some cash to finally make that wish a reality for my inner child. Here are some pictures that I took at Disneyland this summer with my beautiful girlfriend Joselyn! p.s. my favorite ride was the Guardians of the Galaxy ride."
+  },
+  {
+    "objectID": "get_to_know_me.html#the-evil-cvs",
+    "href": "get_to_know_me.html#the-evil-cvs",
+    "title": "Get to Know Ivan!",
+    "section": "The Evil CVS",
+    "text": "The Evil CVS\nLastly, this is this very strange, evil-looking CVS Pharmacy in California that my friends and I became obsessed with and drove out to visit!"
   },
   {
     "objectID": "blog.html",
@@ -222,13 +243,6 @@
     "title": "Engineering Projects",
     "section": "",
     "text": "AUV Deployed at Dana Point Harbor\n\n\n\n\nAugust 2025 – May 2026 \n\nAutonomous Underwater Vehicle\nAnalog Circuits Op-Amps Teensy Arduino IDE MATLAB\nView Poster Read Report\n\n\n\n\nEngineered and fabricated a low-cost autonomous electro-mechanical robot featuring a custom winch mechanism to deploy a tethered sensor payload for depth-resolved environmental data collection.\nDesigned analog signal conditioning circuitry, utilizing unity gain and inverting offset operational amplifiers, to interface an NTC thermistor, pressure sensor, and amorphous silicon solar cell with a Teensy microcontroller.\nProgrammed the Teensy using Arduino IDE for synchronized sensor logging and utilized MATLAB to calibrate raw data, capturing temperature and luminosity fluctuations relative to depth during coastal field deployments at Dana Point Harbor.\n\n\n\n\n\nAUV Poster & Report\n\nProject Presentation PosterProject Report\n\n\n\nOpen Full Poster in New Tab\n\n\n\n\n\n\nOpen Full Report in New Tab\n\n\n\n\n\n\n\n\n\n\n\n\n\nCompletely Machined and Assembled Hammer\n\n\n\n\nMarch 2025 – April 2025 \n\nThe Machinist’s Hammer\nMill Lathe Heat Treatment Rockwell Testing Laser Cutter\n\n\n\n\nMachined a multi-material alloy steel hammer including a hard face, soft face, handle, and a stand (AISI 4340 and AISI 1015).\nApplied heat treatment (857°C) to hard face and verified results using a Rockwell hardness tester (RC 43-48).\nUsed a mill, lathe, vertical bandsaw, belt sander, sand blaster, laser cutter, and 3D printer.\n\n\n\n\n\n\n\n\nFabrication, CAD, and Completion of Brachistochrone Curve Model\n\n\n\n\nFebruary 2025 – May 2025 \n\nBrachistochrone Curve Model\nSolidWorks Equation Driven Curves CNC Router\n\n\n\n\nModeled cycloid, linear, and parabolic descent paths in SolidWorks using the Equation Driven Curve feature to optimize geometric accuracy and demonstrate kinematic principles for a client-requested physics demonstration.\nFabricated the primary ramp structures and custom corner fixtures using a CNC Router, ensuring precise assembly and tolerances.\n\n\n\n\n\n\n\n\nMITES Summer 2023 Symposium Presentation\n\n\n\n\nJune 2023 – July 2023 \n\nMITES Summer Scholar Symposium Project\nPython Machine Learning Markov Chains\n\n\n\n\nCo-developed “Project Beatzthoven,” an interactive machine learning application built in Python that algorithmically generates classical music utilizing Markov Chain logic.\nApplied systematic debugging practices and software engineering fundamentals to process data structures and balance competing project priorities within a strict 6-week development cycle to present at an MIT showcase."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Ivan Jimenez Pineda",
-    "section": "",
-    "text": "Hello! My name is Ivan, and I’m an Engineering student at Harvey Mudd College with a strong focus on electro-mechanical systems and manufacturing engineering. I enjoy building and testing hardware, with hands-on experience ranging from designing analog signal processing circuitry for an autonomous underwater vehicle to machining custom mounting fixtures for the characterization of controlled reception pattern antennas for the FAA and The Aerospace Corporation.\n\n\n  \n  \n    \n      Engineering @ Harvey Mudd College\n      Hi, I'm Ivan Jimenez Pineda\n      \n        I build hardware.|\n      \n      \n        I'm an engineering student focused on electro-mechanical systems and manufacturing.\n        I love building and testing hardware, from analog signal-conditioning circuits for an\n        autonomous underwater vehicle to machining custom fixtures for antenna characterization\n        with the FAA and The Aerospace Corporation.\n      \n      \n         Co-President, SALSA Mudd\n         Machine Shop Proctor\n         ME Intern @ ALLFAST\n      \n      \n        View Projects \n        Resume \n        \n        \n      \n    \nOutside of my coursework, I am one of the co-presidents of SALSA Mudd (Society for the Advancement of Latinx Students At Mudd) where I help lead events and efforts for uplifting and representing the Latinx community at Harvey Mudd. I also work as a Machine Shop Proctor at the Harvey Mudd Machine Shop, where I train students on manual mills, lathes, and CNC routers. Every semester I get the opportunity to train new shop users in machining their very own hammer! I also recently completed a Mechanical Engineering internship at ALLFAST Fastening Systems, where I created SolidWorks tooling layouts to support a massive production backlog. I am passionate about hands-on engineering, continuous iteration, and having fun all along the way!\n    \n      \n        \n      \n       Electro-Mechanical\n    \n  \n  \n\n---\n\n\n  \n    0Tooling layout drawings created\n    0Backlogged parts supported\n    0Microprocessor labs built\n    0Machining tolerances taught\n  \n\n\n\n  \n    \n      ProfessionalExperience\n      Where I've been building, machining, and testing.\n      Full details \n    \n    \n      \n        \n          \n          \n            CRPA Characterization Clinic Project\n            The Aerospace Corporation / Federal Aviation Administration\n          \n          Sep 2026 – Present\n          \n        \n        \n          Machined custom mounting fixtures for positioning turntables so the Controlled Reception Pattern Antenna can be secured inside the anechoic chamber.\n          Ran preliminary benchtop RF measurements with a Vector Network Analyzer and dual probe antennas.\n          Collaborating with Aerospace Corp. and FAA liaisons to evaluate a GPS anti-jamming CRPA for commercial aviation safety.\n        \n        RF TestingVNAManual Machining\n      \n      \n        \n          \n          \n            Mechanical Engineering Intern\n            ALLFAST Fastening Systems (Penn Aero)\n          \n          May 2026 – Aug 2026\n          \n        \n        \n          Created 65 tooling layout drawings and modeled tooling assemblies in SolidWorks to support 224M+ parts in the production backlog.\n          Updated ERP BOMs with accurate tooling numbers and quantities so tools could be ordered quickly through MRP.\n          Validated layouts by physically assembling tooling and reviewing with machine operators and engineers.\n        \n        SolidWorksBOM / ERPTooling Design\n      \n      \n        \n          \n          \n            Machine Shop Proctor / Workshop Proctor\n            Harvey Mudd College\n          \n          May 2025 – Present\n          \n        \n        \n          Instruct students on safe operation of manual mills, lathes, and CNC routers, holding tolerances down to 0.001\".\n          Train students to read technical drawings and apply GD&T to reduce fabrication errors.\n          Guide students through custom projects like machined pens, rings, spinning tops, and hammers.\n        \n        MillLatheCNC RouterGD&T\n      \n    \n  \n\n\n\n  \n    \n      Projects\n      \n        All\n        Engineering\n        Microprocessor\n      \n    \n    \n      \n      \n        \n        \n          Engineering\n          Autonomous Underwater Vehicle\n          Aug 2025 – May 2026\n          Low-cost robot with a custom winch that deploys a tethered sensor payload, with analog signal conditioning for temperature, pressure, and light.\n          Op-AmpsTeensyMATLAB\n        \n      \n      \n        \n        \n          Engineering\n          The Machinist's Hammer\n          Mar 2025 – Apr 2025\n          Multi-material alloy steel hammer with a heat-treated hard face (RC 43–48), soft face, handle, and stand.\n          MillLatheHeat Treat\n        \n      \n      \n        \n        \n          Engineering\n          Brachistochrone Curve Model\n          Feb 2025 – May 2025\n          Cycloid, linear, and parabolic descent ramps modeled with equation-driven curves and cut on a CNC router for a physics demo.\n          SolidWorksCNC Router\n        \n      \n      \n        \n        \n          Engineering\n          Project Beatzthoven (MITES)\n          Jun 2023 – Jul 2023\n          Python machine-learning app that generates classical music with Markov chains, presented at an MIT showcase.\n          PythonMarkov Chains\n        \n      \n      \n      \n        \n        \n          Microprocessor\n          Lab 1: FPGA & MCU Setup\n          Assembled the dev board and drove LEDs and a hex 7-segment decoder in SystemVerilog.\n          FPGASystemVerilog\n        \n      \n      \n        \n        \n          Microprocessor\n          Lab 2: Multiplexed Display\n          Time-multiplexed two hex digits on a dual 7-segment display with a single decoder.\n          FPGAMultiplexing\n        \n      \n      \n        \n        \n          Microprocessor\n          Lab 3: Keypad Scanner\n          Debounced 4x4 keypad scanner FSM that handles multi-press edge cases.\n          FSMDebouncing\n        \n      \n      \n        \n        \n          Microprocessor\n          Lab 4: Digital Audio\n          STM32 timer-driven PWM synthesizer playing Für Elise through an LM386 amplifier.\n          STM32CPWM\n        \n      \n      \n        \n        \n          Microprocessor\n          Lab 5: Interrupts\n          Quadrature-encoder motor speed and direction measured with edge-triggered interrupts.\n          EXTIEncoders\n        \n      \n      \n        \n        \n          Microprocessor\n          Lab 6: IoT & SPI\n          SPI temperature sensor driver with readings served on an ESP-hosted web page.\n          SPIUSARTIoT\n        \n      \n      \n        \n        \n          Microprocessor\n          Lab 7: AES Encryption\n          Hardware AES-128 accelerator on the FPGA, fed by the MCU over SPI.\n          AESFPGASPI\n        \n      \n    \n    \n      All engineering projects \n      All microprocessor labs \n    \n  \n\n### Resume\n\n\n  \n    \n      Resume\n      \n        Open in New Tab \n        Download \n      \n    \n    \n      \n    \n  \n\n[Open Full Resume in New Tab](RESUME.pdf){.btn .btn-outline-primary target=\"_blank\"}\n\n\n  \n    There's more to me than engineering!\n    Skateboarding, SALSA Mudd, trips to Mexico, Disneyland, and one very evil-looking CVS.\n    Get to Know Me!"
   },
   {
     "objectID": "LAB2.html",
@@ -390,61 +404,5 @@
     "title": "Professional Experience",
     "section": "",
     "text": "Fall 2026 Harvey Mudd Clinic Project: FAA and The Aerospace Corporation\n\n\n\n\nSep 2026 – Present \n\nCRPA Characterization Clinic Project\nThe Aerospace Corporation / Federal Aviation Administration\nPositioner Automation Lead\nPython Raspberry Pi ESP32 Automation RF Testing Vector Network Analyzer Manual Machining Anechoic Chamber\n\n\n\n\nLeading the automation of the AntRunner positioner that orients the CRPA to commanded angles inside the anechoic chamber, owning its electrical, software, and mechanical setup.\nDeveloping the Python control script that drives the positioner’s rotors, and deploying it to the AntRunner’s ESP32 controller from a Raspberry Pi.\nMachined custom mounting fixtures for mechanical positioning turntables using manual operations, designing the hardware so the Controlled Reception Pattern Antenna may be placed securely inside the anechoic chamber for testing.\nExecuted preliminary benchtop RF test and measurement procedures using a Vector Network Analyzer and dual probe antennas to prepare for upcoming element-level and array-level characterization of the CRPA.\nCollaborated with technical liaisons from The Aerospace Corporation and FAA to evaluate key parameters of a GPS CRPA anti-jamming antenna, supporting ongoing research to inform use of CRPAs for commercial aviation safety.\n\n\n\n\n\n\n\n\nSummer 2026 Mechanical Engineering Internship: ALLFAST Fastening Systems\n\n\n\n\nMay 2026 – Aug 2026 \n\nMechanical Engineering Intern\nALLFAST Fastening Systems (Penn Aero)\nSolidWorks Tooling Design BOM / ERP / MRP Manufacturing\n\n\n\n\nCreated 65 tooling layout drawings and modeled parts for tooling assemblies using SolidWorks to support over 224 million parts from the production backlog.\nUpdated BOMs in the ERP system with accurate tooling numbers and quantities, enabling proper tracking and forecasting to mitigate heading downtime as a result of tooling shortages to allow for tools to be ordered quickly through MRP.\nValidated tooling layouts and BOM updates by physically assembling tooling and conducting reviews with machine operators and engineering teams to ensure accuracy.\n\n\n\n\n\n\n\n\nHarvey Mudd College Machine Shop\n\n\n\n\nMay 2025 – Present \n\nMachine Shop Proctor / Workshop Proctor\nHarvey Mudd College\nManual Mill Lathe CNC Router GD&T Teaching\n\n\n\n\nInstruct students on the safe operation of machining equipment (Manual Mill, Lathe, CNC Router), emphasizing adherence to process specifications and tolerances down to 0.001”.\nTrain students to interpret technical drawings and apply GD&T to optimize production processes and reduce fabrication errors.\nGuided students through manual machining and metalworking processes to safely fabricate custom projects, including machined pens, rings, spinning tops, and sheet metal flowers.\n\n\n\n\nWant the full picture? View My Resume Connect on LinkedIn"
-  },
-  {
-    "objectID": "index.html#work-experience",
-    "href": "index.html#work-experience",
-    "title": "Ivan Jimenez Pineda",
-    "section": "",
-    "text": "Explore Full Experience →"
-  },
-  {
-    "objectID": "index.html#featured-projects",
-    "href": "index.html#featured-projects",
-    "title": "Ivan Jimenez Pineda",
-    "section": "",
-    "text": "All Engineering Projects →"
-  },
-  {
-    "objectID": "index.html#resume",
-    "href": "index.html#resume",
-    "title": "Ivan Jimenez Pineda",
-    "section": "",
-    "text": "Download PDF ↓"
-  },
-  {
-    "objectID": "get_to_know_me.html#family-roots",
-    "href": "get_to_know_me.html#family-roots",
-    "title": "Get to Know Ivan!",
-    "section": "Family & Roots",
-    "text": "Family & Roots\nBelieve it or not, yes, I do like to live outside of problem sets and academic projects! I have many hobbies and interests that I am passionate about and am always happy to talk about. Most notably, I am very proud of my roots as a First-Generation Low-Income Latino Student! I am currently at Harvey Mudd College seeking a better future for my family who have sacrificed plenty in order to provide me the opportunity to attend college and pursue engineering. So, of course I always love to visit my parent’s homeland in Mexico whenever possible!"
-  },
-  {
-    "objectID": "get_to_know_me.html#salsa-mudd",
-    "href": "get_to_know_me.html#salsa-mudd",
-    "title": "Get to Know Ivan!",
-    "section": "SALSA Mudd",
-    "text": "SALSA Mudd\nI am passionate about my Latino heritage and proud to be one of the co-presidents of SALSA Mudd (Society for the Advancement of Latinx Students At Mudd). Uplifting the Latinx community at Harvey Mudd is an important mission that my friends and I care deeply about and share by hosting weekly club meetings and hosting events such as carne asadas, resume and interview workshops, career fair preparation events, and weekly study breaks to build community!"
-  },
-  {
-    "objectID": "get_to_know_me.html#skateboarding",
-    "href": "get_to_know_me.html#skateboarding",
-    "title": "Get to Know Ivan!",
-    "section": "Skateboarding",
-    "text": "Skateboarding\nBesides that, I love skateboarding! I randomly picked up the hobby one day in high school because my mom kept telling me to go outside and I have loved it ever since. I know how to do ollies, pop shuvs, front-side 180s, and back-side 180s even though it came at the cost of many bruises and scars. I hope to keep improving my skateboarding skills before I become too old for it!\nOllie Pop Shuv FS 180 BS 180"
-  },
-  {
-    "objectID": "get_to_know_me.html#disneyland-finally",
-    "href": "get_to_know_me.html#disneyland-finally",
-    "title": "Get to Know Ivan!",
-    "section": "Disneyland, Finally!",
-    "text": "Disneyland, Finally!\nAs a kid, I always wished for an opportunity to visit Disneyland. Sadly, that day never came for me as a kid due to the financial struggles that my family was facing. However, that didn’t stop the grown up version of me from finally going! During my 2026 Summer Mechanical Engineering internship at ALLFAST, I had started saving some cash to finally make that wish a reality for my inner child. Here are some pictures that I took at Disneyland this summer with my beautiful girlfriend Joselyn! p.s. my favorite ride was the Guardians of the Galaxy ride."
-  },
-  {
-    "objectID": "get_to_know_me.html#the-evil-cvs",
-    "href": "get_to_know_me.html#the-evil-cvs",
-    "title": "Get to Know Ivan!",
-    "section": "The Evil CVS",
-    "text": "The Evil CVS\nLastly, this is this very strange, evil-looking CVS Pharmacy in California that my friends and I became obsessed with and drove out to visit!"
   }
 ]

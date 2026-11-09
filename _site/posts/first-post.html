@@ -230,6 +230,18 @@ ul.task-list li input[type="checkbox"] {
     window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
   });
 
+  /* 1b. Little skateboarding stick figure next to the name in the navbar */
+  var logo = document.querySelector(".navbar-logo");
+  var brandLink = document.querySelector(".navbar-brand:not(.navbar-brand-logo)");
+  if (logo && brandLink) {
+    var sk = document.createElement("img");
+    sk.className = "nav-skater";
+    sk.alt = "";
+    sk.setAttribute("aria-hidden", "true");
+    sk.src = logo.getAttribute("src").replace("logo.svg", "skater-mini.svg");
+    brandLink.appendChild(sk);
+  }
+
   /* 2. Sliding hover pill in the navbar (desktop only) */
   var navList = document.querySelector("#navbarCollapse .navbar-nav.me-auto");
   if (navList && window.matchMedia("(hover: hover)").matches) {
