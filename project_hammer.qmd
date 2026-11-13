@@ -1,0 +1,88 @@
+---
+title: "The Machinist's Hammer"
+subtitle: "A multi-material alloy steel hammer, machined, heat treated, and hardness tested"
+toc: true
+toc-title: "Case Study"
+---
+
+:::: {.glance}
+::: {.glance-item}
+[Context]{.glance-k}
+Harvey Mudd machine shop project. Individual build, Mar – Apr 2025.
+:::
+::: {.glance-item}
+[My Role]{.glance-k}
+Everything: machining, heat treatment, hardness testing, finishing, and the display stand.
+:::
+::: {.glance-item}
+[Tools]{.glance-k}
+Mill · Lathe · Vertical bandsaw · Belt sander · Sand blaster · Heat-treat oven · Rockwell tester · Laser cutter · 3D printer
+:::
+::: {.glance-item}
+[Status]{.glance-k}
+[Completed]{.status .status--done}
+<br>[Build]{.skill .skill--build} [Analyze]{.skill .skill--analyze}
+:::
+::::
+
+## Context
+
+The Harvey Mudd machine shop's hammer project takes a hammer from raw alloy steel stock to a finished, working tool. It's a crash course in precision machining and materials processing. I now train new shop users through this same project every semester as a Machine Shop Proctor.
+
+**Parameters:** a multi-material hammer made from **AISI 4340** and **AISI 1015** steel, with a hard face, a soft face, a handle, and a stand. The hard face had to be heat treated to a target hardness.
+
+## My Role
+
+I built the hammer myself: I machined every steel component, heat treated and tested the hard face, and finished and assembled it with its stand.
+
+## What I Built
+
+![The finished hammer on its laser-engraved stand.](images/Hammer.png){width="75%" fig-align="center"}
+
+## How I Built It
+
+::: {.steps}
+1. **Rough and finish the parts** on the mill and lathe, using the vertical bandsaw and belt sander for stock prep and edges.
+2. **Heat treat the hard face at 857 °C** to harden it.
+3. **Verify the hardness** on a Rockwell tester, reading **RC 43–48**.
+4. **Finish the surfaces** with the sand blaster.
+5. **Make the stand** with the laser cutter (engraved) and the 3D printer, then assemble.
+:::
+
+## Why I Did It This Way
+
+:::: {.decisions}
+::: {.decision}
+#### Heat treat the hard face
+[Why:]{.why} A hardened striking face resists denting and mushrooming when it hits other metal, so the hammer lasts.
+:::
+::: {.decision}
+#### Verify the hardness
+[Why:]{.why} The Rockwell test confirms the heat treatment actually reached the target hardness (RC 43–48) instead of trusting the oven settings.
+:::
+::: {.decision}
+#### Hard face + soft face
+[Why:]{.why} One head does two jobs: the hard face for striking, and the soft face for tapping parts into place without damaging them.
+:::
+::::
+
+## Results
+
+:::: {.result-stats}
+::: {.result-stat}
+**857 °C**
+[Heat-treat temperature]{}
+:::
+::: {.result-stat}
+**RC 43–48**
+[Measured hardness]{}
+:::
+::: {.result-stat}
+**9**
+[Shop tools & processes used]{}
+:::
+::::
+
+A finished, working hammer, and the hands-on foundation I now use to teach other students the same project.
+
+[← Back to all projects](engineering_projects.qmd){.btn .btn-outline-primary}

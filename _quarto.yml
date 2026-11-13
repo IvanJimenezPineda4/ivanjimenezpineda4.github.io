@@ -3,6 +3,8 @@ project:
   resources:
     - "*.pdf"
     - images/skater-mini.svg
+    - videos/*.mp4
+    - images/projects/*/*_poster.jpg
 
 website:
   title: "Ivan Jimenez Pineda"

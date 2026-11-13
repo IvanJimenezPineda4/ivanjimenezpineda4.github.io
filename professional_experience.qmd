@@ -11,7 +11,7 @@ toc: false
 :::
 
 ::: {.feature-head}
-[Sep 2026 – Present]{.meta-date}
+[In Progress]{.status .status--progress} [Sep 2026 – Present]{.meta-date}
 []{.meta-line}
 
 ### CRPA Characterization Clinic Project {#crpa}
@@ -21,11 +21,14 @@ toc: false
 [Positioner Automation Lead]{.feature-org}
 
 [Python]{.tag} [Raspberry Pi]{.tag} [ESP32]{.tag} [Automation]{.tag} [RF Testing]{.tag} [Vector Network Analyzer]{.tag} [Manual Machining]{.tag} [Anechoic Chamber]{.tag}
+
+[Read the Case Study →](project_clinic.qmd){.btn .btn-primary}
 :::
 
 ::: {.feature-detail}
 * Leading the automation of the AntRunner positioner that orients the CRPA to commanded angles inside the anechoic chamber, owning its electrical, software, and mechanical setup.
 * Developing the Python control script that drives the positioner's rotors, and deploying it to the AntRunner's ESP32 controller from a Raspberry Pi.
+* Built a wooden mount for a reference FRPA antenna and ran a manual, hand-rotated radiation-pattern test with the VNA, then repeated it with the automated AntRunner sweep, producing a more symmetric, consistent pattern.
 * Machined custom mounting fixtures for mechanical positioning turntables using manual operations, designing the hardware so the Controlled Reception Pattern Antenna may be placed securely inside the anechoic chamber for testing.
 * Executed preliminary benchtop RF test and measurement procedures using a Vector Network Analyzer and dual probe antennas to prepare for upcoming element-level and array-level characterization of the CRPA.
 * Collaborated with technical liaisons from The Aerospace Corporation and FAA to evaluate key parameters of a GPS CRPA anti-jamming antenna, supporting ongoing research to inform use of CRPAs for commercial aviation safety.

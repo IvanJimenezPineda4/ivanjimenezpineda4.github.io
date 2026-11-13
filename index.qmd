@@ -29,9 +29,9 @@ resources:
     <p class="hx-role">Electro-Mechanical &amp; Manufacturing Engineering</p>
     <p class="hx-typed">I build <span id="typed-role">hardware.</span><span class="hx-cursor">|</span></p>
     <p class="hx-bio">
-      I love building and testing hardware, from analog signal-conditioning circuits for an
-      autonomous underwater vehicle to machining custom fixtures for antenna characterization
-      with the FAA and The Aerospace Corporation. Enjoy write-ups of my projects, labs, and
+      I love building and testing hardware, from analog signal conditioning circuits for an
+      autonomous underwater vehicle to designing and machining custom fixtures for antenna characterization
+      with the FAA and The Aerospace Corporation. Enjoy write ups of my projects, labs, and
       experience below!
     </p>
     <div class="hx-chips">
@@ -60,7 +60,7 @@ resources:
           <div class="hx-xp__img hx-xp__img--logo"><img src="images/web/clinic_logo.jpg" alt="FAA and The Aerospace Corporation" draggable="false"></div>
           <p class="hx-xp__role">CRPA Characterization Clinic</p>
           <p class="hx-xp__org">The Aerospace Corp. / FAA</p>
-          <p class="hx-xp__text">Leading Python automation of the AntRunner positioner via Raspberry Pi and ESP32, plus machined fixtures and VNA RF tests for a GPS anti-jamming CRPA.</p>
+          <p class="hx-xp__text">Leading Python automation and mechanical design of the AntRunner positioner via Raspberry Pi and ESP32, plus machined and designed fixtures and VNA RF tests for a GPS anti jamming CRPA.</p>
           <span class="hx-xp__date">SEP 2026 — PRESENT</span>
         </div>
       </a>
@@ -130,13 +130,26 @@ resources:
 
   <article class="hx-proj hx-glass">
     <div class="hx-proj__body">
+      <p class="hx-proj__date">SEP 2026 — PRESENT &nbsp;<span class="status status--progress">In Progress</span></p>
+      <h3>Automating Antenna Pattern Testing</h3>
+      <div class="hx-tags"><span>Python</span><span>Raspberry Pi</span><span>ESP32</span><span>VNA</span><span>Clinic</span></div>
+      <p>For The Aerospace Corporation and the FAA, I'm leading the automation of an AntRunner antenna positioner. A Python script on a Raspberry Pi drives the ESP32-controlled rotors through azimuth and elevation sweeps in an anechoic chamber. The automated sweep produced a more symmetric radiation pattern than our hand-rotated wooden-mount test.</p>
+      <a class="hx-btn hx-btn--gold" href="project_clinic.html">Read the Case Study <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <a class="hx-proj__media" href="project_clinic.html" tabindex="-1">
+      <img src="images/projects/clinic/antrunner_positioner.jpg" alt="FRPA antenna on the AntRunner positioner" loading="lazy" style="object-position: 50% 30%;">
+    </a>
+  </article>
+
+  <article class="hx-proj hx-glass">
+    <div class="hx-proj__body">
       <p class="hx-proj__date">AUG 2025 — MAY 2026</p>
       <h3>Autonomous Underwater Vehicle</h3>
       <div class="hx-tags"><span>Analog Circuits</span><span>Teensy</span><span>MATLAB</span><span>Build</span></div>
       <p>Engineered a low-cost autonomous robot with a custom winch that deploys a tethered sensor payload. Designed op-amp signal conditioning for a thermistor, pressure sensor, and solar cell, then logged depth-resolved data at Dana Point Harbor.</p>
-      <a class="hx-btn hx-btn--gold" href="engineering_projects.html#autonomous-underwater-vehicle">View More <i class="bi bi-arrow-right"></i></a>
+      <a class="hx-btn hx-btn--gold" href="project_auv.html">View More <i class="bi bi-arrow-right"></i></a>
     </div>
-    <a class="hx-proj__media" href="engineering_projects.html#autonomous-underwater-vehicle" tabindex="-1">
+    <a class="hx-proj__media" href="project_auv.html" tabindex="-1">
       <img src="images/web/auv_card.jpg" alt="AUV floating at Dana Point Harbor" loading="lazy">
     </a>
   </article>
@@ -147,9 +160,9 @@ resources:
       <h3>The Machinist's Hammer</h3>
       <div class="hx-tags"><span>Mill</span><span>Lathe</span><span>Heat Treatment</span><span>Build</span></div>
       <p>Machined a multi-material alloy steel hammer (AISI 4340 &amp; 1015) with a hard face, soft face, handle, and stand. Heat treated the hard face at 857 °C and verified RC 43–48 on a Rockwell tester.</p>
-      <a class="hx-btn hx-btn--gold" href="engineering_projects.html#the-machinists-hammer">View More <i class="bi bi-arrow-right"></i></a>
+      <a class="hx-btn hx-btn--gold" href="project_hammer.html">View More <i class="bi bi-arrow-right"></i></a>
     </div>
-    <a class="hx-proj__media" href="engineering_projects.html#the-machinists-hammer" tabindex="-1">
+    <a class="hx-proj__media" href="project_hammer.html" tabindex="-1">
       <img src="images/web/hammer.jpg" alt="Finished machinist's hammer on its stand" loading="lazy">
     </a>
   </article>
@@ -160,9 +173,9 @@ resources:
       <h3>Brachistochrone Curve Model</h3>
       <div class="hx-tags"><span>SolidWorks</span><span>CNC Router</span><span>Physics Demo</span></div>
       <p>Modeled cycloid, linear, and parabolic descent paths with equation-driven curves for a client physics demonstration, then cut the ramps and custom corner fixtures on a CNC router.</p>
-      <a class="hx-btn hx-btn--gold" href="engineering_projects.html#brachistochrone-curve-model">View More <i class="bi bi-arrow-right"></i></a>
+      <a class="hx-btn hx-btn--gold" href="project_brachistochrone.html">View More <i class="bi bi-arrow-right"></i></a>
     </div>
-    <a class="hx-proj__media" href="engineering_projects.html#brachistochrone-curve-model" tabindex="-1">
+    <a class="hx-proj__media" href="project_brachistochrone.html" tabindex="-1">
       <img src="images/web/brachistochrone_card.jpg" alt="Team with the finished brachistochrone model" loading="lazy">
     </a>
   </article>

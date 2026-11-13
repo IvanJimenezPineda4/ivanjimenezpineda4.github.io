@@ -1,112 +1,110 @@
 ---
 title: "Engineering Projects"
-subtitle: "Hands-on builds: robots, machined parts, CAD models, and code."
+subtitle: "Each project is a short case study: context, my role, what I built, how I built it, and why I made the decisions I did."
 page-layout: full
 toc: false
+lightbox: false
 ---
 
-:::: {.feature-card}
-::: {.feature-media}
-![AUV Deployed at Dana Point Harbor](images/AUV_photo.png)
+:::: {.cs-card}
+::: {.cs-media}
+[![](images/projects/clinic/antrunner_positioner.jpg){fig-alt="FRPA antenna mounted on the AntRunner positioner"}](project_clinic.qmd)
 :::
+::: {.cs-body}
+[In Progress]{.status .status--progress} [Sep 2026 – Present]{.meta-date}
 
-::: {.feature-head}
-[August 2025 – May 2026]{.meta-date}
-[]{.meta-line}
+### Automating Antenna Pattern Testing {#clinic}
 
-### Autonomous Underwater Vehicle
+**Context** Harvey Mudd Engineering Clinic for The Aerospace Corporation and the FAA: characterizing a GPS anti-jamming CRPA in an anechoic chamber.
 
-[Analog Circuits]{.tag} [Op-Amps]{.tag} [Teensy]{.tag} [Arduino IDE]{.tag} [MATLAB]{.tag}
+**My Role** Lead for automating the AntRunner positioner. I write the Python script that runs on a Raspberry Pi and sends commands to the positioner's ESP32. I also built the wooden mount for our manual baseline test.
 
-[View Poster](#auv-docs){.btn .btn-primary} [Read Report](E80_Final_Report_Ivan_Jimenez_Pineda.pdf){.btn .btn-outline-primary target="_blank"}
-:::
+**Outcome so far** The automated sweep produced a more symmetric, consistent radiation pattern than the hand-rotated test.
 
-::: {.feature-detail}
-* Engineered and fabricated a low-cost autonomous electro-mechanical robot featuring a custom winch mechanism to deploy a tethered sensor payload for depth-resolved environmental data collection.
-* Designed analog signal conditioning circuitry, utilizing unity gain and inverting offset operational amplifiers, to interface an NTC thermistor, pressure sensor, and amorphous silicon solar cell with a Teensy microcontroller.
-* Programmed the Teensy using Arduino IDE for synchronized sensor logging and utilized MATLAB to calibrate raw data, capturing temperature and luminosity fluctuations relative to depth during coastal field deployments at Dana Point Harbor.
+[Python]{.tag} [Raspberry Pi]{.tag} [ESP32]{.tag} [VNA]{.tag} [Test Automation]{.tag}
+
+[Read the Case Study →](project_clinic.qmd){.btn .btn-primary}
 :::
 ::::
 
-::::: {.doc-viewer #auv-docs}
-#### AUV Poster & Report
-
-:::: {.panel-tabset}
-##### Project Presentation Poster
-
-::: {.doc-actions}
-[Open Full Poster in New Tab](E80_Poster.pdf){.btn .btn-outline-primary target="_blank"}
+:::: {.cs-card}
+::: {.cs-media}
+[![](images/web/auv_card.jpg){fig-alt="The robot on the water at Dana Point Harbor"}](project_auv.qmd)
 :::
+::: {.cs-body}
+[Completed]{.status .status--done} [Aug 2025 – May 2026]{.meta-date}
 
-<iframe src="E80_Poster.pdf" title="AUV project poster"></iframe>
+### Autonomous Underwater Vehicle {#autonomous-underwater-vehicle}
 
-##### Project Report
+**Context** E80: Experimental Engineering team project. A low-cost robot that measures light, temperature, and depth at Dana Point Harbor.
 
-::: {.doc-actions}
-[Open Full Report in New Tab](E80_Final_Report_Ivan_Jimenez_Pineda.pdf){.btn .btn-outline-primary target="_blank"}
-:::
+**My Role** I designed the op-amp sensor-interface circuits, wrote the Teensy logging code, did the MATLAB calibration, and helped build the robot and its winch.
 
-<iframe src="E80_Final_Report_Ivan_Jimenez_Pineda.pdf" title="AUV final report"></iframe>
-::::
-:::::
+**Outcome** Lowered the payload to 1.84 m and measured light falling from about 100,000 to 88,000 lux. Saltwater shorted the thermistor, which taught us a hard lesson about waterproofing.
 
-:::: {.feature-card}
-::: {.feature-media}
-![Completely Machined and Assembled Hammer](images/Hammer.png)
-:::
+[Op-Amps]{.tag} [Teensy]{.tag} [MATLAB]{.tag} [CAD]{.tag} [Field Testing]{.tag}
 
-::: {.feature-head}
-[March 2025 – April 2025]{.meta-date}
-[]{.meta-line}
-
-### The Machinist's Hammer
-
-[Mill]{.tag} [Lathe]{.tag} [Heat Treatment]{.tag} [Rockwell Testing]{.tag} [Laser Cutter]{.tag}
-:::
-
-::: {.feature-detail}
-* Machined a multi-material alloy steel hammer including a hard face, soft face, handle, and a stand (AISI 4340 and AISI 1015).
-* Applied heat treatment (857°C) to hard face and verified results using a Rockwell hardness tester (RC 43-48).
-* Used a mill, lathe, vertical bandsaw, belt sander, sand blaster, laser cutter, and 3D printer.
+[Read the Case Study →](project_auv.qmd){.btn .btn-primary} [Report (PDF)](E80_Final_Report_Ivan_Jimenez_Pineda.pdf){.btn .btn-outline-primary target="_blank"}
 :::
 ::::
 
-:::: {.feature-card}
-::: {.feature-media}
-![Fabrication, CAD, and Completion of Brachistochrone Curve Model](images/Brachistochrone.png)
+:::: {.cs-card}
+::: {.cs-media}
+[![](images/projects/brachistochrone/finished_model.jpg){fig-alt="Finished brachistochrone model with the team"}](project_brachistochrone.qmd)
 :::
+::: {.cs-body}
+[Completed]{.status .status--done} [Feb 2025 – May 2025]{.meta-date}
 
-::: {.feature-head}
-[February 2025 – May 2025]{.meta-date}
-[]{.meta-line}
+### Brachistochrone Curve Model {#brachistochrone-curve-model}
 
-### Brachistochrone Curve Model
+**Context** Team project for a client who requested a physics demonstration of the fastest path of descent.
 
-[SolidWorks]{.tag} [Equation Driven Curves]{.tag} [CNC Router]{.tag}
-:::
+**My Role** I modeled the descent paths in SolidWorks with equation-driven curves and cut the ramps and corner fixtures on a CNC router.
 
-::: {.feature-detail}
-* Modeled cycloid, linear, and parabolic descent paths in SolidWorks using the Equation Driven Curve feature to optimize geometric accuracy and demonstrate kinematic principles for a client-requested physics demonstration.
-* Fabricated the primary ramp structures and custom corner fixtures using a CNC Router, ensuring precise assembly and tolerances.
+**Outcome** A finished race-track model where three balls released together race down three different paths.
+
+[SolidWorks]{.tag} [CNC Router]{.tag} [Fixturing]{.tag}
+
+[Read the Case Study →](project_brachistochrone.qmd){.btn .btn-primary}
 :::
 ::::
 
-:::: {.feature-card}
-::: {.feature-media}
-![MITES Summer 2023 Symposium Presentation](images/MITES.png)
+:::: {.cs-card}
+::: {.cs-media}
+[![](images/web/hammer.jpg){fig-alt="Finished machinist's hammer"}](project_hammer.qmd)
 :::
+::: {.cs-body}
+[Completed]{.status .status--done} [Mar 2025 – Apr 2025]{.meta-date}
 
-::: {.feature-head}
-[June 2023 – July 2023]{.meta-date}
-[]{.meta-line}
+### The Machinist's Hammer {#the-machinists-hammer}
 
-### MITES Summer Scholar Symposium Project
+**Context** Harvey Mudd machine shop project, built individually.
 
-[Python]{.tag} [Machine Learning]{.tag} [Markov Chains]{.tag}
+**My Role** I machined every part in AISI 4340 and 1015 steel, heat treated the hard face, and verified its hardness.
+
+**Outcome** Heat treated at 857 °C, measuring RC 43–48 on a Rockwell tester. I now teach this same project as a shop proctor.
+
+[Mill]{.tag} [Lathe]{.tag} [Heat Treatment]{.tag} [Rockwell Testing]{.tag}
+
+[Read the Case Study →](project_hammer.qmd){.btn .btn-primary}
 :::
+::::
 
-::: {.feature-detail}
-* Co-developed "Project Beatzthoven," an interactive machine learning application built in Python that algorithmically generates classical music utilizing Markov Chain logic.
-* Applied systematic debugging practices and software engineering fundamentals to process data structures and balance competing project priorities within a strict 6-week development cycle to present at an MIT showcase.
+:::: {.cs-card}
+::: {.cs-media}
+![](images/web/mites_card.jpg){fig-alt="Project Beatzthoven team at the MITES symposium"}
+:::
+::: {.cs-body}
+[Completed]{.status .status--done} [Jun 2023 – Jul 2023]{.meta-date}
+
+### MITES Summer Scholar Symposium Project {#mites-summer-scholar-symposium-project}
+
+**Context** MIT MITES summer program. A team software project built in a strict 6-week cycle and presented at an MIT showcase.
+
+**My Role** I co-developed "Project Beatzthoven," an interactive Python machine-learning app that algorithmically generates classical music with Markov chain logic.
+
+**Why it matters** It's where I built my debugging habits and learned to balance competing priorities on a fixed deadline.
+
+[Python]{.tag} [Markov Chains]{.tag} [Teamwork]{.tag}
 :::
 ::::
