@@ -57,12 +57,12 @@ I built the hammer myself: I machined every steel component, heat treated and te
 [Why:]{.why} A hardened striking face resists denting and mushrooming when it hits other metal, so the hammer lasts.
 :::
 ::: {.decision}
-#### Verify the hardness
+#### Measure, don't assume
 [Why:]{.why} The Rockwell test confirms the heat treatment actually reached the target hardness (RC 43–48) instead of trusting the oven settings.
 :::
 ::: {.decision}
 #### Hard face + soft face
-[Why:]{.why} One head does two jobs: the hard face for striking, and the soft face for tapping parts into place without damaging them.
+[Why:]{.why} One head does two jobs: the hard face for striking, and the soft face for tapping parts into place without marring them.
 :::
 ::::
 

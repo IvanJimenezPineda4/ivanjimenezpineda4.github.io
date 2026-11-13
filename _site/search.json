@@ -7,6 +7,118 @@
     "text": "Microprocessors (E155)\n\nE155 Course Website\nAll E155 Microprocessors labs are referenced from the provided lab resources from the course linked below.\nLink to course website\n\n\n\nPortfolio\n\nMy Lab Write-Ups\nEvery E155 lab, with design notes, schematics, waveforms, and source code links.\nBrowse the labs\n\n\n\nCode\n\nGitHub\nSource code for my labs and projects.\nVisit my GitHub"
   },
   {
+    "objectID": "project_clinic.html",
+    "href": "project_clinic.html",
+    "title": "Automating Antenna Pattern Testing",
+    "section": "",
+    "text": "In Progress\nThis is an active project (September 2026 – present). What you see here is the current state, plus the next steps and areas I’m improving."
+  },
+  {
+    "objectID": "project_clinic.html#context",
+    "href": "project_clinic.html#context",
+    "title": "Automating Antenna Pattern Testing",
+    "section": "Context",
+    "text": "Context\nOur clinic team is helping The Aerospace Corporation and the FAA evaluate a Controlled Reception Pattern Antenna (CRPA), a GPS anti-jamming antenna, to inform whether CRPAs can be used for commercial aviation safety. The end goal is element-level and array-level characterization of the CRPA inside an anechoic chamber.\nBefore testing the CRPA, we are validating our measurement process on a simpler Fixed Reception Pattern Antenna (FRPA), a NovAtel GPS antenna. Measuring a radiation pattern means pointing the antenna at many known angles and recording its response with a Vector Network Analyzer (VNA) at each one. That requires two things:\n\na way to hold the antenna securely in the chamber, and\na way to set its angle accurately and repeatably."
+  },
+  {
+    "objectID": "project_clinic.html#my-role",
+    "href": "project_clinic.html#my-role",
+    "title": "Automating Antenna Pattern Testing",
+    "section": "My Role",
+    "text": "My Role\nI’m leading the automation of the AntRunner positioner, the motorized mount that rotates the antenna through each angle. I’m also on the mechanical team. My responsibilities:\n\nSoftware: writing the Python control script that drives the positioner’s rotors, run from a Raspberry Pi that sends commands to the AntRunner’s ESP32 controller.\nMechanical team: supporting the design, assembly, and implementation of the antenna mount and positioner in the chamber.\nElectrical setup: wiring and powering the AntRunner and antenna inside the chamber.\nManual baseline: I built the wooden mount used for our first, hand-rotated FRPA radiation-pattern test.\nFixturing and RF testing: machining mounting fixtures for the positioning turntables and running benchtop VNA measurements with dual probe antennas."
+  },
+  {
+    "objectID": "project_clinic.html#what-i-built",
+    "href": "project_clinic.html#what-i-built",
+    "title": "Automating Antenna Pattern Testing",
+    "section": "What I Built",
+    "text": "What I Built\nWe’ve measured the FRPA’s radiation pattern two ways, so we can compare a manual setup against an automated one.\n\n\n\n\n\nManual setup. The wooden mount I built holds the FRPA on a turntable with a printed degree scale. We rotated it by hand and read the VNA at each angle.\n\n\n\n\n\n\n\nAutomated setup. The FRPA mounted on the AntRunner positioner, which has a stepper motor for azimuth in the base and a second rotation axis in the head for elevation."
+  },
+  {
+    "objectID": "project_clinic.html#how-it-works",
+    "href": "project_clinic.html#how-it-works",
+    "title": "Automating Antenna Pattern Testing",
+    "section": "How It Works",
+    "text": "How It Works\nThe Python script runs a raster sweep: it steps across azimuth at a fixed elevation, then raises the elevation and sweeps again.\n\n  \n    \n  \n\nAutomated FRPA test in the anechoic chamber: 10° azimuth steps every 3 seconds from −90° to +90°, then a 10° elevation step.\n\n\nBuild a manual baseline. I built a wooden mount and ran a hand-rotated pattern measurement with the VNA (Nov 4).\nMount the AntRunner in the chamber. The positioner slides into an adapter tube on the chamber mast and is clamped with thumbscrews. The FRPA bolts to the elevation bracket.\nWrite the control script. Python on a Raspberry Pi sends move commands to the AntRunner’s ESP32, which drives the rotors.\nRun the raster sweep. The script steps azimuth by 10° every 3 seconds from −90° to +90°. It then raises elevation by 10°, returns to −90° azimuth, and repeats.\nCompare the automated and manual patterns (Nov 11) to see whether automation improves the measurement."
+  },
+  {
+    "objectID": "project_clinic.html#why-i-made-these-decisions",
+    "href": "project_clinic.html#why-i-made-these-decisions",
+    "title": "Automating Antenna Pattern Testing",
+    "section": "Why I Made These Decisions",
+    "text": "Why I Made These Decisions\n\n\nWood for the manual mount\nWhy: Metal near an antenna can reflect and distort the signal being measured. Wood is RF-quiet, cheap, and fast to cut, which suited a first baseline test.\n\n\nTest the FRPA before the CRPA\nWhy: The FRPA is a simpler antenna, so it lets us debug the chamber setup, the positioner, and our process before spending test time on the sponsor’s CRPA.\n\n\nAutomate the positioning\nWhy: Turning the table by hand and reading a printed scale is slow and adds angle error at every point. A motorized positioner hits the same angles every run and can also sweep elevation, which is impractical by hand.\n\n\nRaspberry Pi + ESP32\nWhy: The ESP32 handles low-level motor control on the AntRunner. The Raspberry Pi runs the high-level Python test script, which is easy to edit as the test plan changes.\n\n\n10° steps with a 3-second dwell\nWhy: This balances angular resolution against total test time. The pause lets the antenna settle after each move before a reading is taken.\n\n\nAlways sweep from −90° upward\nWhy: Returning to −90° before each new elevation row means every row is measured in the same direction, so any slack in the drive affects every row the same way."
+  },
+  {
+    "objectID": "project_clinic.html#results-so-far",
+    "href": "project_clinic.html#results-so-far",
+    "title": "Automating Antenna Pattern Testing",
+    "section": "Results So Far",
+    "text": "Results So Far\n\n\n\n\n\n\n\nRadiation pattern of the FRPA: automated AntRunner sweep (Nov 11) vs. manual hand-rotated test (Nov 4). The radial axis is relative response in dB.\n\n\n\nBoth methods show the expected shape: strongest response at boresight (0°), rolling off toward ±90°.\nThe manual test reads noticeably higher on the +60° to +90° side than on the matching negative angles.\nThe automated sweep is much more symmetric about 0°, which is closer to what we expect from this antenna.\n\nAutomating the positioner made the pattern measurement more consistent, and it is now the basis for our CRPA test plan."
+  },
+  {
+    "objectID": "project_clinic.html#next-steps-areas-for-improvement",
+    "href": "project_clinic.html#next-steps-areas-for-improvement",
+    "title": "Automating Antenna Pattern Testing",
+    "section": "Next Steps & Areas for Improvement",
+    "text": "Next Steps & Areas for Improvement\n\nThis project is still in progress. These are the areas I’m working on next:\n\nLog VNA data automatically. Tie VNA data capture into the Python script, so each measurement is saved with its commanded angle and there’s no manual transcription.\nProve repeatability. Run repeated sweeps of the same antenna and report the spread at each angle (error bars), not just a single pattern.\nKeep the antenna on the rotation axis. The FRPA currently sits off to one side of the positioner. A centered adapter would keep the antenna in place as it rotates, instead of swinging it around.\nClean up the RF environment. Route and secure the coax and USB cables away from the antenna, give the battery pack a proper mount, and cover nearby metal (motor, brackets) with absorber to reduce reflections.\nIncrease resolution where it matters. Use finer steps near boresight, and combine all elevation rows into a full 2-D pattern map.\nMove to the CRPA. Apply the validated process to element-level and then array-level characterization of the CRPA.\n\n\n← Back to all projects See this role in Professional Experience"
+  },
+  {
+    "objectID": "project_auv.html",
+    "href": "project_auv.html",
+    "title": "Autonomous Underwater Vehicle",
+    "section": "",
+    "text": "Context Class project for E80: Experimental Engineering at Harvey Mudd (Aug 2025 – May 2026). Team of 4.\n\n\nMy Role Analog sensor-interface circuits, Teensy data-logging code, MATLAB calibration, and building and assembling the robot and its sensor payload.\n\n\nTools Op-amp circuit design · Teensy / Arduino IDE · MATLAB · CAD · 3D printing · Epoxy waterproofing\n\n\nStatus Completed Design Build Analyze Iterate Communicate"
+  },
+  {
+    "objectID": "project_auv.html#context",
+    "href": "project_auv.html#context",
+    "title": "Autonomous Underwater Vehicle",
+    "section": "Context",
+    "text": "Context\nHow much sunlight reaches different depths in the water is a measure of water clarity and suspended pollution, both important for underwater ecosystems. Our task was to design a low-cost autonomous robot that could go to Dana Point Harbor and measure light, temperature, and depth at several depths.\nParameters we had to design around:\n\na target depth of about 2 m,\nsensor outputs that fit the Teensy’s 0–3.3 V analog inputs,\nwaterproof electronics,\na robot that stays upright and holds position on the surface."
+  },
+  {
+    "objectID": "project_auv.html#my-role",
+    "href": "project_auv.html#my-role",
+    "title": "Autonomous Underwater Vehicle",
+    "section": "My Role",
+    "text": "My Role\nThis was a four-person team project. My contributions:\n\nSensor-interface electronics. I designed analog signal-conditioning circuits with unity-gain buffers and inverting offset op-amps. They connect an NTC thermistor, a pressure sensor, and an amorphous silicon solar cell to the Teensy microcontroller.\nFirmware and data. I programmed the Teensy in the Arduino IDE for synchronized sensor logging. I then used MATLAB to calibrate the raw data and plot light and temperature against depth.\nBuild & assembly. I worked on building and assembling the robot and the sensor payload, including the custom winch mechanism that deploys the tethered payload."
+  },
+  {
+    "objectID": "project_auv.html#what-we-built",
+    "href": "project_auv.html#what-we-built",
+    "title": "Autonomous Underwater Vehicle",
+    "section": "What We Built",
+    "text": "What We Built\nA positively buoyant PVC surface robot carries a negatively buoyant sensor payload. A motorized winch lowers the payload in steps, so the robot can stay on the surface while it collects data vertically.\n\n\n\n\n\nCAD of the PVC frame, with foam floats, the electronics box, and the winch.\n\n\n\n\n\n\n\nAnnotated design: frame, winch mechanism, and payload with the solar panel, thermistor, and pressure tube.\n\n\n\n\n\n\n\nThe robot on the water at Dana Point Harbor.\n\n\n\n\n\n  \n    \n  \n\nTank test: the winch lowers the tethered sensor payload and reels it back up."
+  },
+  {
+    "objectID": "project_auv.html#how-we-built-it",
+    "href": "project_auv.html#how-we-built-it",
+    "title": "Autonomous Underwater Vehicle",
+    "section": "How We Built It",
+    "text": "How We Built It\n\n1. Sensor circuits (sketches & schematics)\nThe pressure sensor only swings about 0.16 V over our 2 m depth range. I used a unity-gain buffer followed by an inverting offset amplifier (gain −11.5) to stretch that small signal across most of the ADC’s range. The thermistor uses a voltage divider with the same buffer-and-amplifier approach.\n\n\n\n\n\nPressure-sensor interface: unity-gain buffer, then an inverting offset amplifier (MCP602).\n\n\n\n\n\n\n\nThermistor voltage divider with buffer and offset amplifier (simulation).\n\n\n\n\n\n\n2. Calibration\n\nPressure sensor: we taped its tube to a yardstick and recorded voltages at known depths, then fit a linear model (R² = 0.999).\nThermistor: we measured it in six temperature baths for a linear resistance-vs-temperature fit (R² = 0.997).\nSolar cell: its open-circuit voltage is logarithmic in light, so we calibrated an exponential lux model against a lux meter.\n\n\n\n\n\n\nPressure sensor calibration: depth vs. circuit voltage.\n\n\n\n\n\n\n\nThermistor calibration: resistance vs. temperature.\n\n\n\n\n\n\n3. Mechanical integration & payload\nThe electronics and the 12 V battery sit in a sealed box on the deck. The solar cell, thermistor, and pressure tube are built into a 3D-printed payload. Foam pool noodles around the frame keep the robot stable.\n\n\n\n\n\n\n\nThe 3D-printed sensor payload.\n\n\n\n\n4. Deployment & data processing\nThe Teensy runs a stepped descent: the winch lowers the payload for 3 seconds, then pauses for 3 seconds, until it reaches maximum depth, then reels it back up. Afterwards we decoded the SD-card log in MATLAB.\n\n\n\n\n\nDeployment location at the Dana Point fishing pier.\n\n\n\n\n\n\n\nLogged light, temperature, and depth over the deployment."
+  },
+  {
+    "objectID": "project_auv.html#why-we-made-these-decisions",
+    "href": "project_auv.html#why-we-made-these-decisions",
+    "title": "Autonomous Underwater Vehicle",
+    "section": "Why We Made These Decisions",
+    "text": "Why We Made These Decisions\n\n\nInverting offset amplifier (gain −11.5)\nWhy: The pressure sensor’s raw output only moved from about 0.85 V to 1.01 V over 2 m. Amplifying and offsetting it maps the surface to about 2.7 V and maximum depth to about 1.0 V, using far more of the ADC’s resolution.\n\n\nUnity-gain buffers first\nWhy: The buffer isolates each sensor from the amplifier stage, so the gain circuit doesn’t load the sensor and distort its reading.\n\n\nSolar cell wired straight to the ADC\nWhy: Its open-circuit voltage tops out around 3.3–3.4 V, already matching the ADC range. The Teensy’s high input impedance means the cell runs unloaded, so no extra circuitry was needed.\n\n\nStepped descent (3 s move / 3 s pause)\nWhy: The pauses give the sensors time to settle at each depth, and they keep readings away from electrical noise from the running motor. You can see the steps in the depth plot.\n\n\nWinch motor at 3 V\nWhy: Lifting the payload needs about 0.29 lb·in of torque. At 3 V the motor still gives about 8.25 in·lb, a large margin, at about 30 RPM. That gives a slow, controlled 2.35 in/s descent.\n\n\nFoam floats on a PVC frame\nWhy: The floats around the perimeter keep the center of buoyancy well above the center of mass, so the robot resists capsizing while the winch works."
+  },
+  {
+    "objectID": "project_auv.html#results",
+    "href": "project_auv.html#results",
+    "title": "Autonomous Underwater Vehicle",
+    "section": "Results",
+    "text": "Results\n\n\n1.84 m Max payload depth\n\n\n~100k → 88k lux Light, surface to max depth\n\n\nR² = 0.999 Pressure calibration\n\n\n10 Hz Synchronized logging\n\n\n\n\n\n\n\n\n\nLight intensity vs. depth with an exponential fit.\n\n\n\nThe robot deployed at Dana Point Harbor and recorded synchronized depth, light, and temperature data.\nThe depth trace clearly shows the programmed descent steps.\nLight dropped steeply with depth, as theory predicts for a coastal harbor.\nWhat failed: saltwater got past the thermistor’s epoxy and shorted it, so its reading jumped to the maximum (railed) about 25 seconds into the dive. The same epoxy had held up in freshwater testing at pHake Lake."
+  },
+  {
+    "objectID": "project_auv.html#what-i-learned-would-improve",
+    "href": "project_auv.html#what-i-learned-would-improve",
+    "title": "Autonomous Underwater Vehicle",
+    "section": "What I Learned & Would Improve",
+    "text": "What I Learned & Would Improve\n\nIterating on these:\n\nWaterproof for saltwater, not just freshwater. Use fortified epoxy around the thermistor and seal every electrical connection, then validate the sensors in saltwater before deploying.\nKeep the solar cell facing up. The cell likely flipped on the way back up, producing false low readings.\nAvoid saturation near the surface. The unloaded cell clips at our 100,000 lux limit in bright sun.\nTune sampling timing for more stable readings at each depth step.\n\n\nRead the full report (PDF) View the poster (PDF) ← Back to all projects"
+  },
+  {
     "objectID": "LAB7.html",
     "href": "LAB7.html",
     "title": "Lab 7: The Advanced Encryption Standard",
@@ -242,7 +354,7 @@
     "href": "engineering_projects.html",
     "title": "Engineering Projects",
     "section": "",
-    "text": "In Progress Sep 2026 – Present\n\nAutomating Antenna Pattern Testing\nContext Harvey Mudd Engineering Clinic for The Aerospace Corporation and the FAA: characterizing a GPS anti-jamming CRPA in an anechoic chamber.\nMy Role Lead for automating the AntRunner positioner. I write the Python script that runs on a Raspberry Pi and sends commands to the positioner’s ESP32. I also built the wooden mount for our manual baseline test.\nOutcome so far The automated sweep produced a more symmetric, consistent radiation pattern than the hand-rotated test.\nPython Raspberry Pi ESP32 VNA Test Automation\nRead the Case Study →\n\n\n\n\n\n\n\n\nCompleted Aug 2025 – May 2026\n\nAutonomous Underwater Vehicle\nContext E80: Experimental Engineering team project. A low-cost robot that measures light, temperature, and depth at Dana Point Harbor.\nMy Role I designed the op-amp sensor-interface circuits, wrote the Teensy logging code, did the MATLAB calibration, and helped build the robot and its winch.\nOutcome Lowered the payload to 1.84 m and measured light falling from about 100,000 to 88,000 lux. Saltwater shorted the thermistor, which taught us a hard lesson about waterproofing.\nOp-Amps Teensy MATLAB CAD Field Testing\nRead the Case Study → Report (PDF)\n\n\n\n\n\n\n\n\nCompleted Feb 2025 – May 2025\n\nBrachistochrone Curve Model\nContext Team project for a client who requested a physics demonstration of the fastest path of descent.\nMy Role I modeled the descent paths in SolidWorks with equation-driven curves and cut the ramps and corner fixtures on a CNC router.\nOutcome A finished race-track model where three balls released together race down three different paths.\nSolidWorks CNC Router Fixturing\nRead the Case Study →\n\n\n\n\n\n\n\n\nCompleted Mar 2025 – Apr 2025\n\nThe Machinist’s Hammer\nContext Harvey Mudd machine shop project, built individually.\nMy Role I machined every part in AISI 4340 and 1015 steel, heat treated the hard face, and verified its hardness.\nOutcome Heat treated at 857 °C, measuring RC 43–48 on a Rockwell tester. I now teach this same project as a shop proctor.\nMill Lathe Heat Treatment Rockwell Testing\nRead the Case Study →\n\n\n\n\n\n\n\n\nCompleted Jun 2023 – Jul 2023\n\nMITES Summer Scholar Symposium Project\nContext MIT MITES summer program. A team software project built in a strict 6-week cycle and presented at an MIT showcase.\nMy Role I co-developed “Project Beatzthoven,” an interactive Python machine-learning app that algorithmically generates classical music with Markov chain logic.\nWhy it matters It’s where I built my debugging habits and learned to balance competing priorities on a fixed deadline.\nPython Markov Chains Teamwork"
+    "text": "In Progress Sep 2026 – Present\n\nAutomating Antenna Pattern Testing\nContext Harvey Mudd Engineering Clinic for The Aerospace Corporation and the FAA: characterizing a GPS anti-jamming CRPA in an anechoic chamber.\nMy Role Lead for automating the AntRunner positioner: I write the Python script that runs on a Raspberry Pi and sends commands to the positioner’s ESP32. On the mechanical team, I support the design, assembly, and implementation of the mount and positioner, and I built the wooden mount for our manual baseline test.\nOutcome so far The automated sweep produced a more symmetric, consistent radiation pattern than the hand-rotated test.\nPython Raspberry Pi ESP32 VNA Test Automation\nRead the Case Study →\n\n\n\n\n\n\n\n\nCompleted Aug 2025 – May 2026\n\nAutonomous Underwater Vehicle\nContext E80: Experimental Engineering team project. A low-cost robot that measures light, temperature, and depth at Dana Point Harbor.\nMy Role I designed the op-amp sensor-interface circuits, wrote the Teensy logging code, did the MATLAB calibration, and built and assembled the robot and its sensor payload.\nOutcome Lowered the payload to 1.84 m and measured light falling from about 100,000 to 88,000 lux. Saltwater shorted the thermistor, which taught us a hard lesson about waterproofing.\nOp-Amps Teensy MATLAB CAD Field Testing\nRead the Case Study → Report (PDF)\n\n\n\n\n\n\n\n\nCompleted Feb 2025 – May 2025\n\nBrachistochrone Curve Model\nContext Team project for a client who requested a physics demonstration of the fastest path of descent.\nMy Role I modeled the descent paths in SolidWorks with equation-driven curves, got CNC router certified, and cut the final MDF curves, base, and back wall.\nOutcome Three prototypes later, the brachistochrone won all 5 timed races: 0.704 s, against 0.816 s for the polynomial and 0.900 s for the straight line.\nSolidWorks CNC Router Fixturing\nRead the Case Study →\n\n\n\n\n\n\n\n\nCompleted Mar 2025 – Apr 2025\n\nThe Machinist’s Hammer\nContext Harvey Mudd machine shop project, built individually.\nMy Role I machined every part in AISI 4340 and 1015 steel, heat treated the hard face, and verified its hardness.\nOutcome Heat treated at 857 °C, measuring RC 43–48 on a Rockwell tester. I now teach this same project as a shop proctor.\nMill Lathe Heat Treatment Rockwell Testing\nRead the Case Study →\n\n\n\n\n\n\n\n\nCompleted Jun 2023 – Jul 2023\n\nMITES Summer Scholar Symposium Project\nContext MIT MITES summer program. A team software project built in a strict 6-week cycle and presented at an MIT showcase.\nMy Role I co-developed “Project Beatzthoven,” an interactive Python machine-learning app that algorithmically generates classical music with Markov chain logic.\nWhy it matters It’s where I built my debugging habits and learned to balance competing priorities on a fixed deadline.\nPython Markov Chains Teamwork"
   },
   {
     "objectID": "LAB2.html",
@@ -403,147 +515,35 @@
     "href": "professional_experience.html",
     "title": "Professional Experience",
     "section": "",
-    "text": "Fall 2026 Harvey Mudd Clinic Project: FAA and The Aerospace Corporation\n\n\n\n\nIn Progress Sep 2026 – Present \n\nCRPA Characterization Clinic Project\nThe Aerospace Corporation / Federal Aviation Administration\nPositioner Automation Lead\nPython Raspberry Pi ESP32 Automation RF Testing Vector Network Analyzer Manual Machining Anechoic Chamber\nRead the Case Study →\n\n\n\n\nLeading the automation of the AntRunner positioner that orients the CRPA to commanded angles inside the anechoic chamber, owning its electrical, software, and mechanical setup.\nDeveloping the Python control script that drives the positioner’s rotors, and deploying it to the AntRunner’s ESP32 controller from a Raspberry Pi.\nBuilt a wooden mount for a reference FRPA antenna and ran a manual, hand-rotated radiation-pattern test with the VNA, then repeated it with the automated AntRunner sweep, producing a more symmetric, consistent pattern.\nMachined custom mounting fixtures for mechanical positioning turntables using manual operations, designing the hardware so the Controlled Reception Pattern Antenna may be placed securely inside the anechoic chamber for testing.\nExecuted preliminary benchtop RF test and measurement procedures using a Vector Network Analyzer and dual probe antennas to prepare for upcoming element-level and array-level characterization of the CRPA.\nCollaborated with technical liaisons from The Aerospace Corporation and FAA to evaluate key parameters of a GPS CRPA anti-jamming antenna, supporting ongoing research to inform use of CRPAs for commercial aviation safety.\n\n\n\n\n\n\n\n\nSummer 2026 Mechanical Engineering Internship: ALLFAST Fastening Systems\n\n\n\n\nMay 2026 – Aug 2026 \n\nMechanical Engineering Intern\nALLFAST Fastening Systems (Penn Aero)\nSolidWorks Tooling Design BOM / ERP / MRP Manufacturing\n\n\n\n\nCreated 65 tooling layout drawings and modeled parts for tooling assemblies using SolidWorks to support over 224 million parts from the production backlog.\nUpdated BOMs in the ERP system with accurate tooling numbers and quantities, enabling proper tracking and forecasting to mitigate heading downtime as a result of tooling shortages to allow for tools to be ordered quickly through MRP.\nValidated tooling layouts and BOM updates by physically assembling tooling and conducting reviews with machine operators and engineering teams to ensure accuracy.\n\n\n\n\n\n\n\n\nHarvey Mudd College Machine Shop\n\n\n\n\nMay 2025 – Present \n\nMachine Shop Proctor / Workshop Proctor\nHarvey Mudd College\nManual Mill Lathe CNC Router GD&T Teaching\n\n\n\n\nInstruct students on the safe operation of machining equipment (Manual Mill, Lathe, CNC Router), emphasizing adherence to process specifications and tolerances down to 0.001”.\nTrain students to interpret technical drawings and apply GD&T to optimize production processes and reduce fabrication errors.\nGuided students through manual machining and metalworking processes to safely fabricate custom projects, including machined pens, rings, spinning tops, and sheet metal flowers.\n\n\n\n\nWant the full picture? View My Resume Connect on LinkedIn"
-  },
-  {
-    "objectID": "project_clinic.html",
-    "href": "project_clinic.html",
-    "title": "Automating Antenna Pattern Testing",
-    "section": "",
-    "text": "In Progress\nThis is an active project (September 2026 – present). What you see here is the current state, plus the next steps and areas I’m improving."
-  },
-  {
-    "objectID": "project_clinic.html#context",
-    "href": "project_clinic.html#context",
-    "title": "Automating Antenna Pattern Testing",
-    "section": "Context",
-    "text": "Context\nOur clinic team is helping The Aerospace Corporation and the FAA evaluate a Controlled Reception Pattern Antenna (CRPA), a GPS anti-jamming antenna, to inform whether CRPAs can be used for commercial aviation safety. The end goal is element-level and array-level characterization of the CRPA inside an anechoic chamber.\nBefore testing the CRPA, we are validating our measurement process on a simpler Fixed Reception Pattern Antenna (FRPA), a NovAtel GPS antenna. Measuring a radiation pattern means pointing the antenna at many known angles and recording its response with a Vector Network Analyzer (VNA) at each one. That requires two things:\n\na way to hold the antenna securely in the chamber, and\na way to set its angle accurately and repeatably."
-  },
-  {
-    "objectID": "project_clinic.html#my-role",
-    "href": "project_clinic.html#my-role",
-    "title": "Automating Antenna Pattern Testing",
-    "section": "My Role",
-    "text": "My Role\nI’m leading the automation of the AntRunner positioner, the motorized mount that rotates the antenna through each angle. My responsibilities:\n\nSoftware: writing the Python control script that drives the positioner’s rotors, run from a Raspberry Pi that sends commands to the AntRunner’s ESP32 controller.\nElectrical and mechanical setup: wiring, powering, and mounting the AntRunner and antenna inside the chamber.\nManual baseline: I built the wooden mount used for our first, hand-rotated FRPA radiation-pattern test.\nFixturing and RF testing: machining mounting fixtures for the positioning turntables and running benchtop VNA measurements with dual probe antennas."
-  },
-  {
-    "objectID": "project_clinic.html#what-i-built",
-    "href": "project_clinic.html#what-i-built",
-    "title": "Automating Antenna Pattern Testing",
-    "section": "What I Built",
-    "text": "What I Built\nWe’ve measured the FRPA’s radiation pattern two ways, so we can compare a manual setup against an automated one.\n\n\n\n\n\nManual setup. The wooden mount I built holds the FRPA on a turntable with a printed degree scale. We rotated it by hand and read the VNA at each angle.\n\n\n\n\n\n\n\nAutomated setup. The FRPA mounted on the AntRunner positioner, which has a stepper motor for azimuth in the base and a second rotation axis in the head for elevation."
-  },
-  {
-    "objectID": "project_clinic.html#how-it-works",
-    "href": "project_clinic.html#how-it-works",
-    "title": "Automating Antenna Pattern Testing",
-    "section": "How It Works",
-    "text": "How It Works\nThe Python script runs a raster sweep: it steps across azimuth at a fixed elevation, then raises the elevation and sweeps again.\n\n  \n    \n  \n\nAutomated FRPA test in the anechoic chamber: 10° azimuth steps every 3 seconds from −90° to +90°, then a 10° elevation step.\n\n\nBuild a manual baseline. I built a wooden mount and ran a hand-rotated pattern measurement with the VNA (Nov 4).\nMount the AntRunner in the chamber. The positioner slides into an adapter tube on the chamber mast and is clamped with thumbscrews. The FRPA bolts to the elevation bracket.\nWrite the control script. Python on a Raspberry Pi sends move commands to the AntRunner’s ESP32, which drives the rotors.\nRun the raster sweep. The script steps azimuth by 10° every 3 seconds from −90° to +90°. It then raises elevation by 10°, returns to −90° azimuth, and repeats.\nCompare the automated and manual patterns (Nov 11) to see whether automation improves the measurement."
-  },
-  {
-    "objectID": "project_clinic.html#why-i-made-these-decisions",
-    "href": "project_clinic.html#why-i-made-these-decisions",
-    "title": "Automating Antenna Pattern Testing",
-    "section": "Why I Made These Decisions",
-    "text": "Why I Made These Decisions\n\n\nWood for the manual mount\nWhy: Metal near an antenna can reflect and distort the signal being measured. Wood is RF-quiet, cheap, and fast to cut, which suited a first baseline test.\n\n\nTest the FRPA before the CRPA\nWhy: The FRPA is a simpler antenna, so it lets us debug the chamber setup, the positioner, and our process before spending test time on the sponsor’s CRPA.\n\n\nAutomate the positioning\nWhy: Turning the table by hand and reading a printed scale is slow and adds angle error at every point. A motorized positioner hits the same angles every run and can also sweep elevation, which is impractical by hand.\n\n\nRaspberry Pi + ESP32\nWhy: The ESP32 handles low-level motor control on the AntRunner. The Raspberry Pi runs the high-level Python test script, which is easy to edit as the test plan changes.\n\n\n10° steps with a 3-second dwell\nWhy: This balances angular resolution against total test time. The pause lets the antenna settle after each move before a reading is taken.\n\n\nAlways sweep from −90° upward\nWhy: Returning to −90° before each new elevation row means every row is measured in the same direction, so any slack in the drive affects every row the same way."
-  },
-  {
-    "objectID": "project_clinic.html#results-so-far",
-    "href": "project_clinic.html#results-so-far",
-    "title": "Automating Antenna Pattern Testing",
-    "section": "Results So Far",
-    "text": "Results So Far\n\n\n\n\n\n\n\nRadiation pattern of the FRPA: automated AntRunner sweep (Nov 11) vs. manual hand-rotated test (Nov 4). The radial axis is relative response in dB.\n\n\n\nBoth methods show the expected shape: strongest response at boresight (0°), rolling off toward ±90°.\nThe manual test reads noticeably higher on the +60° to +90° side than on the matching negative angles.\nThe automated sweep is much more symmetric about 0°, which is closer to what we expect from this antenna.\n\nAutomating the positioner made the pattern measurement more consistent, and it is now the basis for our CRPA test plan."
-  },
-  {
-    "objectID": "project_clinic.html#next-steps-areas-for-improvement",
-    "href": "project_clinic.html#next-steps-areas-for-improvement",
-    "title": "Automating Antenna Pattern Testing",
-    "section": "Next Steps & Areas for Improvement",
-    "text": "Next Steps & Areas for Improvement\n\nThis project is still in progress. These are the areas I’m working on next:\n\nLog VNA data automatically. Tie VNA data capture into the Python script, so each measurement is saved with its commanded angle and there’s no manual transcription.\nProve repeatability. Run repeated sweeps of the same antenna and report the spread at each angle (error bars), not just a single pattern.\nKeep the antenna on the rotation axis. The FRPA currently sits off to one side of the positioner. A centered adapter would keep the antenna in place as it rotates, instead of swinging it around.\nClean up the RF environment. Route and secure the coax and USB cables away from the antenna, give the battery pack a proper mount, and cover nearby metal (motor, brackets) with absorber to reduce reflections.\nIncrease resolution where it matters. Use finer steps near boresight, and combine all elevation rows into a full 2-D pattern map.\nMove to the CRPA. Apply the validated process to element-level and then array-level characterization of the CRPA.\n\n\n← Back to all projects See this role in Professional Experience"
-  },
-  {
-    "objectID": "project_auv.html",
-    "href": "project_auv.html",
-    "title": "Autonomous Underwater Vehicle",
-    "section": "",
-    "text": "Context Class project for E80: Experimental Engineering at Harvey Mudd (Aug 2025 – May 2026). Team of 4.\n\n\nMy Role Analog sensor-interface circuits, Teensy data-logging code, MATLAB calibration, and robot build and fabrication.\n\n\nTools Op-amp circuit design · Teensy / Arduino IDE · MATLAB · CAD · 3D printing · Epoxy waterproofing\n\n\nStatus Completed Design Build Analyze Iterate Communicate"
-  },
-  {
-    "objectID": "project_auv.html#context",
-    "href": "project_auv.html#context",
-    "title": "Autonomous Underwater Vehicle",
-    "section": "Context",
-    "text": "Context\nHow much sunlight reaches different depths in the water is a measure of water clarity and suspended pollution, both important for underwater ecosystems. Our task was to design a low-cost autonomous robot that could go to Dana Point Harbor and measure light, temperature, and depth at several depths.\nParameters we had to design around:\n\na target depth of about 2 m,\nsensor outputs that fit the Teensy’s 0–3.3 V analog inputs,\nwaterproof electronics,\na robot that stays upright and holds position on the surface."
-  },
-  {
-    "objectID": "project_auv.html#my-role",
-    "href": "project_auv.html#my-role",
-    "title": "Autonomous Underwater Vehicle",
-    "section": "My Role",
-    "text": "My Role\nThis was a four-person team project. My contributions:\n\nSensor-interface electronics. I designed analog signal-conditioning circuits with unity-gain buffers and inverting offset op-amps. They connect an NTC thermistor, a pressure sensor, and an amorphous silicon solar cell to the Teensy microcontroller.\nFirmware and data. I programmed the Teensy in the Arduino IDE for synchronized sensor logging. I then used MATLAB to calibrate the raw data and plot light and temperature against depth.\nBuild. I helped engineer and fabricate the robot and its custom winch mechanism, which deploys the tethered sensor payload."
-  },
-  {
-    "objectID": "project_auv.html#what-we-built",
-    "href": "project_auv.html#what-we-built",
-    "title": "Autonomous Underwater Vehicle",
-    "section": "What We Built",
-    "text": "What We Built\nA positively buoyant PVC surface robot carries a negatively buoyant sensor payload. A motorized winch lowers the payload in steps, so the robot can stay on the surface while it collects data vertically.\n\n\n\n\n\nCAD of the PVC frame, with foam floats, the electronics box, and the winch.\n\n\n\n\n\n\n\nAnnotated design: frame, winch mechanism, and payload with the solar panel, thermistor, and pressure tube.\n\n\n\n\n\n\n\nThe robot on the water at Dana Point Harbor.\n\n\n\n\n\n  \n    \n  \n\nTank test: the winch lowers the tethered sensor payload and reels it back up."
-  },
-  {
-    "objectID": "project_auv.html#how-we-built-it",
-    "href": "project_auv.html#how-we-built-it",
-    "title": "Autonomous Underwater Vehicle",
-    "section": "How We Built It",
-    "text": "How We Built It\n\n1. Sensor circuits (sketches & schematics)\nThe pressure sensor only swings about 0.16 V over our 2 m depth range. I used a unity-gain buffer followed by an inverting offset amplifier (gain −11.5) to stretch that small signal across most of the ADC’s range. The thermistor uses a voltage divider with the same buffer-and-amplifier approach.\n\n\n\n\n\nPressure-sensor interface: unity-gain buffer, then an inverting offset amplifier (MCP602).\n\n\n\n\n\n\n\nThermistor voltage divider with buffer and offset amplifier (simulation).\n\n\n\n\n\n\n2. Calibration\n\nPressure sensor: we taped its tube to a yardstick and recorded voltages at known depths, then fit a linear model (R² = 0.999).\nThermistor: we measured it in six temperature baths for a linear resistance-vs-temperature fit (R² = 0.997).\nSolar cell: its open-circuit voltage is logarithmic in light, so we calibrated an exponential lux model against a lux meter.\n\n\n\n\n\n\nPressure sensor calibration: depth vs. circuit voltage.\n\n\n\n\n\n\n\nThermistor calibration: resistance vs. temperature.\n\n\n\n\n\n\n3. Mechanical integration & payload\nThe electronics and the 12 V battery sit in a sealed box on the deck. The solar cell, thermistor, and pressure tube are built into a 3D-printed payload. Foam pool noodles around the frame keep the robot stable.\n\n\n\n\n\n\n\nThe 3D-printed sensor payload.\n\n\n\n\n4. Deployment & data processing\nThe Teensy runs a stepped descent: the winch lowers the payload for 3 seconds, then pauses for 3 seconds, until it reaches maximum depth, then reels it back up. Afterwards we decoded the SD-card log in MATLAB.\n\n\n\n\n\nDeployment location at the Dana Point fishing pier.\n\n\n\n\n\n\n\nLogged light, temperature, and depth over the deployment."
-  },
-  {
-    "objectID": "project_auv.html#why-we-made-these-decisions",
-    "href": "project_auv.html#why-we-made-these-decisions",
-    "title": "Autonomous Underwater Vehicle",
-    "section": "Why We Made These Decisions",
-    "text": "Why We Made These Decisions\n\n\nInverting offset amplifier (gain −11.5)\nWhy: The pressure sensor’s raw output only moved from about 0.85 V to 1.01 V over 2 m. Amplifying and offsetting it maps the surface to about 2.7 V and maximum depth to about 1.0 V, using far more of the ADC’s resolution.\n\n\nUnity-gain buffers first\nWhy: The buffer isolates each sensor from the amplifier stage, so the gain circuit doesn’t load the sensor and distort its reading.\n\n\nSolar cell wired straight to the ADC\nWhy: Its open-circuit voltage tops out around 3.3–3.4 V, already matching the ADC range. The Teensy’s high input impedance means the cell runs unloaded, so no extra circuitry was needed.\n\n\nStepped descent (3 s move / 3 s pause)\nWhy: The pauses give the sensors time to settle at each depth, and they keep readings away from electrical noise from the running motor. You can see the steps in the depth plot.\n\n\nWinch motor at 3 V\nWhy: Lifting the payload needs about 0.29 lb·in of torque. At 3 V the motor still gives about 8.25 in·lb, a large margin, at about 30 RPM. That gives a slow, controlled 2.35 in/s descent.\n\n\nFoam floats on a PVC frame\nWhy: The floats around the perimeter keep the center of buoyancy well above the center of mass, so the robot resists capsizing while the winch works."
-  },
-  {
-    "objectID": "project_auv.html#results",
-    "href": "project_auv.html#results",
-    "title": "Autonomous Underwater Vehicle",
-    "section": "Results",
-    "text": "Results\n\n\n1.84 m Max payload depth\n\n\n~100k → 88k lux Light, surface to max depth\n\n\nR² = 0.999 Pressure calibration\n\n\n10 Hz Synchronized logging\n\n\n\n\n\n\n\n\n\nLight intensity vs. depth with an exponential fit.\n\n\n\nThe robot deployed at Dana Point Harbor and recorded synchronized depth, light, and temperature data.\nThe depth trace clearly shows the programmed descent steps.\nLight dropped steeply with depth, as theory predicts for a coastal harbor.\nWhat failed: saltwater got past the thermistor’s epoxy and shorted it, so its reading jumped to the maximum (railed) about 25 seconds into the dive. The same epoxy had held up in freshwater testing at pHake Lake."
-  },
-  {
-    "objectID": "project_auv.html#what-i-learned-would-improve",
-    "href": "project_auv.html#what-i-learned-would-improve",
-    "title": "Autonomous Underwater Vehicle",
-    "section": "What I Learned & Would Improve",
-    "text": "What I Learned & Would Improve\n\nIterating on these:\n\nWaterproof for saltwater, not just freshwater. Use fortified epoxy around the thermistor and seal every electrical connection, then validate the sensors in saltwater before deploying.\nKeep the solar cell facing up. The cell likely flipped on the way back up, producing false low readings.\nAvoid saturation near the surface. The unloaded cell clips at our 100,000 lux limit in bright sun.\nTune sampling timing for more stable readings at each depth step.\n\n\nRead the full report (PDF) View the poster (PDF) ← Back to all projects"
+    "text": "Fall 2026 Harvey Mudd Clinic Project: FAA and The Aerospace Corporation\n\n\n\n\nIn Progress Sep 2026 – Present \n\nCRPA Characterization Clinic Project\nThe Aerospace Corporation / Federal Aviation Administration\nPositioner Automation Lead\nPython Raspberry Pi ESP32 Automation RF Testing Vector Network Analyzer Manual Machining Anechoic Chamber\nRead the Case Study →\n\n\n\n\nLeading the automation of the AntRunner positioner that orients the CRPA to commanded angles inside the anechoic chamber, owning its electrical, software, and mechanical setup.\nDeveloping the Python control script that drives the positioner’s rotors, and deploying it to the AntRunner’s ESP32 controller from a Raspberry Pi.\nMember of the mechanical team, supporting the design, assembly, and implementation of the antenna mount and positioner in the anechoic chamber.\nBuilt a wooden mount for a reference FRPA antenna and ran a manual, hand-rotated radiation-pattern test with the VNA, then repeated it with the automated AntRunner sweep, producing a more symmetric, consistent pattern.\nMachined custom mounting fixtures for mechanical positioning turntables using manual operations, designing the hardware so the Controlled Reception Pattern Antenna may be placed securely inside the anechoic chamber for testing.\nExecuted preliminary benchtop RF test and measurement procedures using a Vector Network Analyzer and dual probe antennas to prepare for upcoming element-level and array-level characterization of the CRPA.\nCollaborated with technical liaisons from The Aerospace Corporation and FAA to evaluate key parameters of a GPS CRPA anti-jamming antenna, supporting ongoing research to inform use of CRPAs for commercial aviation safety.\n\n\n\n\n\n\n\n\nSummer 2026 Mechanical Engineering Internship: ALLFAST Fastening Systems\n\n\n\n\nMay 2026 – Aug 2026 \n\nMechanical Engineering Intern\nALLFAST Fastening Systems (Penn Aero)\nSolidWorks Tooling Design BOM / ERP / MRP Manufacturing\n\n\n\n\nCreated 65 tooling layout drawings and modeled parts for tooling assemblies using SolidWorks to support over 224 million parts from the production backlog.\nUpdated BOMs in the ERP system with accurate tooling numbers and quantities, enabling proper tracking and forecasting to mitigate heading downtime as a result of tooling shortages to allow for tools to be ordered quickly through MRP.\nValidated tooling layouts and BOM updates by physically assembling tooling and conducting reviews with machine operators and engineering teams to ensure accuracy.\n\n\n\n\n\n\n\n\nHarvey Mudd College Machine Shop\n\n\n\n\nMay 2025 – Present \n\nMachine Shop Proctor / Workshop Proctor\nHarvey Mudd College\nManual Mill Lathe CNC Router GD&T Teaching\n\n\n\n\nInstruct students on the safe operation of machining equipment (Manual Mill, Lathe, CNC Router), emphasizing adherence to process specifications and tolerances down to 0.001”.\nTrain students to interpret technical drawings and apply GD&T to optimize production processes and reduce fabrication errors.\nGuided students through manual machining and metalworking processes to safely fabricate custom projects, including machined pens, rings, spinning tops, and sheet metal flowers.\n\n\n\n\nWant the full picture? View My Resume Connect on LinkedIn"
   },
   {
     "objectID": "project_brachistochrone.html",
     "href": "project_brachistochrone.html",
     "title": "Brachistochrone Curve Model",
     "section": "",
-    "text": "Context Team project for a client who requested a physics demonstration. Feb – May 2025.\n\n\nMy Role CAD modeling of the descent paths in SolidWorks, and CNC-router fabrication of the ramps and corner fixtures.\n\n\nTools SolidWorks (Equation Driven Curves) · CNC router · Shop assembly\n\n\nStatus Completed Design Build Communicate"
+    "text": "Context Client-based design project for a professor’s classroom demonstration. Team Kirby, 5 students. Feb – May 2025.\n\n\nMy Role SolidWorks modeling of the curves, plus CNC router certification and fabrication of the final model’s curves, base, and back wall.\n\n\nTools Desmos · SolidWorks (Equation Driven Curves) · 3D printer · Laser cutter · CNC router · Belt & hand sanders · Bandsaw\n\n\nStatus Completed Design Build Analyze Iterate Communicate"
   },
   {
     "objectID": "project_brachistochrone.html#context",
     "href": "project_brachistochrone.html#context",
     "title": "Brachistochrone Curve Model",
     "section": "Context",
-    "text": "Context\nA brachistochrone is the curve of fastest descent between two points. Surprisingly, it isn’t a straight line but a cycloid. Our client asked for a physical demonstration that makes this visible: balls released at the same moment race down different paths, and the audience can see which path wins.\nParameters: the model had to clearly demonstrate kinematic principles to an audience, so the curve geometry had to be accurate, the tracks smooth and consistent, and the whole model sturdy enough to use repeatedly."
+    "text": "Context\nA brachistochrone is the curve of fastest descent between two points, and it isn’t a straight line: it’s a cycloid. Our client, a professor, wanted a physical brachistochrone race for class. A ball on the brachistochrone races a ball on a straight line and a ball on a third curve with a large dip, so students can see which path wins.\nClient requirements:\n\nShow that the brachistochrone mimics a cycloid.\nLarge enough to be seen by a large class.\nDurable enough to be reused in future years of the class.\nTransportable between classrooms.\n\nConstraints we designed to:\n\n\n\n\n\n\n\n\nConstraint\nWhy the client needed it\nFinal result\n\n\n\n\nWeigh under 40 lb\nOne person carries it\n20.7 lb\n\n\nFit on a cart\nMoved between classrooms\nOne person carries it from the ends; it fits on a cart\n\n\nSurvive repeated use\nUsed for many years\nZero damage after 20 test uses"
   },
   {
     "objectID": "project_brachistochrone.html#my-role",
     "href": "project_brachistochrone.html#my-role",
     "title": "Brachistochrone Curve Model",
     "section": "My Role",
-    "text": "My Role\n\nCAD: I modeled the descent paths in SolidWorks with the Equation Driven Curve feature.\nFabrication: I cut the primary ramp structures and custom corner fixtures on a CNC router, keeping assembly precise and within tolerance."
+    "text": "My Role\nOur five-person team shared the design work. My contributions:\n\nCAD: I modeled the descent paths in SolidWorks with the Equation Driven Curve feature, so each curve follows its exact equation.\nCNC fabrication: I was one of two teammates who got CNC router certified so we could build the larger final model. I CNC-routed the MDF curves, the base and back wall, and the custom corner fixtures, keeping assembly precise and in tolerance."
   },
   {
     "objectID": "project_brachistochrone.html#what-we-built",
     "href": "project_brachistochrone.html#what-we-built",
     "title": "Brachistochrone Curve Model",
     "section": "What We Built",
-    "text": "What We Built\nThree side-by-side tracks cut into wooden ramp panels, labeled in the demo video as Linear, Brachistochrone, and Exponential. A release at the top starts all three balls together.\n\n  \n    \n  \n\nThe finished model in action: three balls released together race down three different paths."
+    "text": "What We Built\nThree side-by-side tracks:\n\na mathematically accurate brachistochrone (cycloid),\na straight line, and\na 20th-degree polynomial with a steep dip (labeled “Exponential” in the video).\n\nEach track is two thin MDF rails about 1 inch apart, so the ball rolls in the gap between them. A hinged, pink PVC gate releases all three balls at the same instant.\n\n  \n    \n  \n\nThe final model in real time: all three balls are released together, and the brachistochrone ball wins."
   },
   {
     "objectID": "project_brachistochrone.html#how-we-built-it",
@@ -557,7 +557,7 @@
     "href": "project_brachistochrone.html#why-we-made-these-decisions",
     "title": "Brachistochrone Curve Model",
     "section": "Why We Made These Decisions",
-    "text": "Why We Made These Decisions\n\n\nEquation Driven Curves instead of sketched splines\nWhy: The whole demonstration depends on the exact shape of each path. Driving the geometry from the curve equations keeps the cycloid mathematically accurate, where a hand-fit spline could change the descent times.\n\n\nCNC router instead of hand cutting\nWhy: A router reproduces the CAD profile directly, giving smooth, consistent curves that are very hard to cut accurately by hand. Any bumps in a track would slow the ball and spoil the comparison.\n\n\nCustom corner fixtures\nWhy: The fixtures hold the ramp structures square and aligned during assembly, so the tracks stay where the CAD put them.\n\n\nTracks side by side, released together\nWhy: Viewers can compare all three paths at once in a single run, which makes the physics obvious without any timing equipment."
+    "text": "Why We Made These Decisions\n\n\nEquation Driven Curves instead of sketched splines\nWhy: The whole demonstration depends on each curve’s exact shape. Driving the geometry from the equations keeps the cycloid mathematically accurate, where a hand-fit spline could change the descent times.\n\n\nA cheap printed prototype first\nWhy: Printing a small PLA version tested the curve math quickly before we spent time and material on a large build.\n\n\nTwin “floating ball” rails instead of a walled ramp\nWhy: The ball touches only two thin edges, which cuts friction. Students can also see more of the ball from across a large classroom.\n\n\nMDF, CNC-routed\nWhy: MDF is wear resistant, so it suits a model used for years. The CNC router reproduces the CAD curves accurately at a size too large for our laser cutter.\n\n\nHinged gate with a lip\nWhy: A fair race needs every ball to start at the same instant. The extra lip makes up for the steep start of the polynomial curve.\n\n\nBigger instead of smaller\nWhy: The client cared most about visibility. A larger model made the finishing order obvious to the naked eye, without slowing down the video."
   },
   {
     "objectID": "project_brachistochrone.html#results-next-iteration",
@@ -606,7 +606,7 @@
     "href": "project_hammer.html#why-i-did-it-this-way",
     "title": "The Machinist’s Hammer",
     "section": "Why I Did It This Way",
-    "text": "Why I Did It This Way\n\n\nHeat treat the hard face\nWhy: A hardened striking face resists denting and mushrooming when it hits other metal, so the hammer lasts.\n\n\nVerify the hardness\nWhy: The Rockwell test confirms the heat treatment actually reached the target hardness (RC 43–48) instead of trusting the oven settings.\n\n\nHard face + soft face\nWhy: One head does two jobs: the hard face for striking, and the soft face for tapping parts into place without damaging them."
+    "text": "Why I Did It This Way\n\n\nHeat treat the hard face\nWhy: A hardened striking face resists denting and mushrooming when it hits other metal, so the hammer lasts.\n\n\nMeasure, don’t assume\nWhy: The Rockwell test confirms the heat treatment actually reached the target hardness (RC 43–48) instead of trusting the oven settings.\n\n\nHard face + soft face\nWhy: One head does two jobs: the hard face for striking, and the soft face for tapping parts into place without marring them."
   },
   {
     "objectID": "project_hammer.html#results",
@@ -614,5 +614,26 @@
     "title": "The Machinist’s Hammer",
     "section": "Results",
     "text": "Results\n\n\n857 °C Heat-treat temperature\n\n\nRC 43–48 Measured hardness\n\n\n9 Shop tools & processes used\n\n\nA finished, working hammer, and the hands-on foundation I now use to teach other students the same project.\n← Back to all projects"
+  },
+  {
+    "objectID": "project_brachistochrone.html#how-we-built-it-three-prototypes",
+    "href": "project_brachistochrone.html#how-we-built-it-three-prototypes",
+    "title": "Brachistochrone Curve Model",
+    "section": "How We Built It: Three Prototypes",
+    "text": "How We Built It: Three Prototypes\nWe iterated through three prototypes, each one answering a question from the last.\n\n\n\n\n\nPrototype 1: 3D-printed PLA. Curves first drawn in Desmos, then modeled in SolidWorks and printed to check the equations.\n\n\n\n\n\n\n\nPrototype 2: laser-cut plywood. Twin-rail “floating ball” tracks and the first hinged PVC release gate.\n\n\n\n\n\n\n\nFinal CAD. All curves and the starting mechanism, modeled in SolidWorks before CNC routing.\n\n\n\n\n\n\nProve the math (Prototype 1). We plotted the curves in Desmos, modeled them in SolidWorks, and 3D printed a small PLA version. It behaved close to the predictions, which confirmed the curve equations. The next priorities were a smoother, lower-friction surface and a simultaneous release.\nImprove friction and visibility (Prototype 2). We laser cut each curve twice from ¼-inch plywood and glued the two cuts about 1 inch apart, so the ball rides between two thin rails instead of in a walled channel. A half PVC pipe on two hinges released all the balls together.\nScale up (final). The client told us visibility mattered more than the original size limit, so we went bigger. I got CNC router certified, and we routed ¾-inch MDF planks down to ¼ inch, cutting two of each curve plus the base and back wall.\nFinish and assemble. We sanded every edge smooth on the belt and hand sanders. Then we laid out the tracks 3 inches apart with a 1-inch gap for the ball, and fixed them with wood and hot glue.\nBuild the release gate. We cut a 2-inch PVC pipe in half and to 12 inches on the bandsaw, spray painted it pink, and hinged it to the back wall. A small lip lets the steep polynomial curve start at the same moment as the others.\n\n\n\n\n\n\n\n\n\nThe finished model."
+  },
+  {
+    "objectID": "project_brachistochrone.html#results",
+    "href": "project_brachistochrone.html#results",
+    "title": "Brachistochrone Curve Model",
+    "section": "Results",
+    "text": "Results\nWe released all three balls together five times and timed each run from video.\n\n\n\n\n\n\n\n\n\n\n\n\n\nCurve\nPredicted\nTrial 1\nTrial 2\nTrial 3\nTrial 4\nTrial 5\nAverage\n\n\n\n\nBrachistochrone\nFastest\n0.71 s\n0.71 s\n0.71 s\n0.70 s\n0.69 s\n0.704 s\n\n\n20th-degree polynomial\nMiddle\n0.82 s\n0.82 s\n0.81 s\n0.81 s\n0.82 s\n0.816 s\n\n\nLinear\nSlowest\n0.92 s\n0.90 s\n0.89 s\n0.89 s\n0.90 s\n0.900 s\n\n\n\n\n\n5 / 5 Races won by the brachistochrone\n\n\n~0.2 s Faster than the straight line\n\n\n~0.1 s Faster than the polynomial\n\n\n20.7 lb Under the 40 lb limit\n\n\n\nThe finishing order matched our predictions in every trial: brachistochrone first, polynomial second, straight line last.\nThe model scored the top mark (5/5) on our accuracy metric: “brachistochrone is clearly the fastest curve.”\nWe delivered it to the client ready to use, with balls included (and googly eyes, for fun)."
+  },
+  {
+    "objectID": "project_brachistochrone.html#what-id-improve",
+    "href": "project_brachistochrone.html#what-id-improve",
+    "title": "Brachistochrone Curve Model",
+    "section": "What I’d Improve",
+    "text": "What I’d Improve\n\nNext iteration:\n\nReduce friction and air resistance so the measured times get closer to the ideal, frictionless predictions.\nCompare against theory. Calculate the predicted descent time for each curve and report the percent error alongside the finishing order.\n\n\n← Back to all projects"
   }
 ]

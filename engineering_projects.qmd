@@ -17,7 +17,7 @@ lightbox: false
 
 **Context** Harvey Mudd Engineering Clinic for The Aerospace Corporation and the FAA: characterizing a GPS anti-jamming CRPA in an anechoic chamber.
 
-**My Role** Lead for automating the AntRunner positioner. I write the Python script that runs on a Raspberry Pi and sends commands to the positioner's ESP32. I also built the wooden mount for our manual baseline test.
+**My Role** Lead for automating the AntRunner positioner: I write the Python script that runs on a Raspberry Pi and sends commands to the positioner's ESP32. On the mechanical team, I support the design, assembly, and implementation of the mount and positioner, and I built the wooden mount for our manual baseline test.
 
 **Outcome so far** The automated sweep produced a more symmetric, consistent radiation pattern than the hand-rotated test.
 
@@ -38,7 +38,7 @@ lightbox: false
 
 **Context** E80: Experimental Engineering team project. A low-cost robot that measures light, temperature, and depth at Dana Point Harbor.
 
-**My Role** I designed the op-amp sensor-interface circuits, wrote the Teensy logging code, did the MATLAB calibration, and helped build the robot and its winch.
+**My Role** I designed the op-amp sensor-interface circuits, wrote the Teensy logging code, did the MATLAB calibration, and built and assembled the robot and its sensor payload.
 
 **Outcome** Lowered the payload to 1.84 m and measured light falling from about 100,000 to 88,000 lux. Saltwater shorted the thermistor, which taught us a hard lesson about waterproofing.
 
@@ -59,9 +59,9 @@ lightbox: false
 
 **Context** Team project for a client who requested a physics demonstration of the fastest path of descent.
 
-**My Role** I modeled the descent paths in SolidWorks with equation-driven curves and cut the ramps and corner fixtures on a CNC router.
+**My Role** I modeled the descent paths in SolidWorks with equation-driven curves, got CNC router certified, and cut the final MDF curves, base, and back wall.
 
-**Outcome** A finished race-track model where three balls released together race down three different paths.
+**Outcome** Three prototypes later, the brachistochrone won all 5 timed races: 0.704 s, against 0.816 s for the polynomial and 0.900 s for the straight line.
 
 [SolidWorks]{.tag} [CNC Router]{.tag} [Fixturing]{.tag}
 

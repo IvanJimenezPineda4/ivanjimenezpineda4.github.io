@@ -1,6 +1,6 @@
 ---
 title: "Brachistochrone Curve Model"
-subtitle: "A CNC-cut physics demonstration of the fastest path of descent"
+subtitle: "A classroom race that proves the fastest path down isn't a straight line"
 toc: true
 toc-title: "Case Study"
 ---
@@ -8,37 +8,58 @@ toc-title: "Case Study"
 :::: {.glance}
 ::: {.glance-item}
 [Context]{.glance-k}
-Team project for a client who requested a physics demonstration. Feb – May 2025.
+Client-based design project for a professor's classroom demonstration. Team Kirby, 5 students. Feb – May 2025.
 :::
 ::: {.glance-item}
 [My Role]{.glance-k}
-CAD modeling of the descent paths in SolidWorks, and CNC-router fabrication of the ramps and corner fixtures.
+SolidWorks modeling of the curves, plus CNC router certification and fabrication of the final model's curves, base, and back wall.
 :::
 ::: {.glance-item}
 [Tools]{.glance-k}
-SolidWorks (Equation Driven Curves) · CNC router · Shop assembly
+Desmos · SolidWorks (Equation Driven Curves) · 3D printer · Laser cutter · CNC router · Belt & hand sanders · Bandsaw
 :::
 ::: {.glance-item}
 [Status]{.glance-k}
 [Completed]{.status .status--done}
-<br>[Design]{.skill .skill--design} [Build]{.skill .skill--build} [Communicate]{.skill .skill--communicate}
+<br>[Design]{.skill .skill--design} [Build]{.skill .skill--build} [Analyze]{.skill .skill--analyze} [Iterate]{.skill .skill--iterate} [Communicate]{.skill .skill--communicate}
 :::
 ::::
 
 ## Context
 
-A **brachistochrone** is the curve of fastest descent between two points. Surprisingly, it isn't a straight line but a cycloid. Our client asked for a physical demonstration that makes this visible: balls released at the same moment race down different paths, and the audience can see which path wins.
+A **brachistochrone** is the curve of fastest descent between two points, and it isn't a straight line: it's a cycloid. Our client, a professor, wanted a physical **brachistochrone race** for class. A ball on the brachistochrone races a ball on a straight line and a ball on a third curve with a large dip, so students can see which path wins.
 
-**Parameters:** the model had to clearly demonstrate kinematic principles to an audience, so the curve geometry had to be accurate, the tracks smooth and consistent, and the whole model sturdy enough to use repeatedly.
+**Client requirements:**
+
+* Show that the brachistochrone mimics a cycloid.
+* Large enough to be seen by a large class.
+* Durable enough to be reused in future years of the class.
+* Transportable between classrooms.
+
+**Constraints we designed to:**
+
+| Constraint | Why the client needed it | Final result |
+|---|---|---|
+| Weigh under 40 lb | One person carries it | **20.7 lb** |
+| Fit on a cart | Moved between classrooms | One person carries it from the ends; it fits on a cart |
+| Survive repeated use | Used for many years | **Zero damage after 20 test uses** |
 
 ## My Role
 
-* **CAD:** I modeled the descent paths in SolidWorks with the **Equation Driven Curve** feature.
-* **Fabrication:** I cut the primary ramp structures and custom corner fixtures on a **CNC router**, keeping assembly precise and within tolerance.
+Our five-person team shared the design work. My contributions:
+
+* **CAD:** I modeled the descent paths in SolidWorks with the **Equation Driven Curve** feature, so each curve follows its exact equation.
+* **CNC fabrication:** I was one of two teammates who got **CNC router certified** so we could build the larger final model. I CNC-routed the MDF curves, the base and back wall, and the custom corner fixtures, keeping assembly precise and in tolerance.
 
 ## What We Built
 
-Three side-by-side tracks cut into wooden ramp panels, labeled in the demo video as **Linear**, **Brachistochrone**, and **Exponential**. A release at the top starts all three balls together.
+Three side-by-side tracks:
+
+* a **mathematically accurate brachistochrone (cycloid)**,
+* a **straight line**, and
+* a **20th-degree polynomial with a steep dip** (labeled "Exponential" in the video).
+
+Each track is two thin MDF rails about 1 inch apart, so the ball rolls in the gap between them. A hinged, pink PVC gate releases all three balls at the same instant.
 
 ```{=html}
 <div class="video-frame" style="max-width: 900px;">
@@ -46,60 +67,104 @@ Three side-by-side tracks cut into wooden ramp panels, labeled in the demo video
     <source src="videos/brachistochrone_race.mp4" type="video/mp4">
   </video>
 </div>
-<p class="video-cap">The finished model in action: three balls released together race down three different paths.</p>
+<p class="video-cap">The final model in real time: all three balls are released together, and the brachistochrone ball wins.</p>
 ```
 
-## How We Built It
+## How We Built It: Three Prototypes
+
+We iterated through three prototypes, each one answering a question from the last.
 
 :::: {.media-grid}
 ::: {}
-![**1. CAD.** Descent paths modeled from their equations in SolidWorks.](images/projects/brachistochrone/cad_model.jpg)
+![**Prototype 1: 3D-printed PLA.** Curves first drawn in Desmos, then modeled in SolidWorks and printed to check the equations.](images/projects/brachistochrone/proto1_3d_printed.jpg)
 :::
 ::: {}
-![**2. CNC routing.** Cutting the ramp profiles and fixtures on the CNC router.](images/projects/brachistochrone/cnc_routing.jpg)
+![**Prototype 2: laser-cut plywood.** Twin-rail "floating ball" tracks and the first hinged PVC release gate.](images/projects/brachistochrone/proto2_plywood.jpg)
 :::
 ::: {}
-![**3. Assembly & delivery.** The finished model with the team.](images/projects/brachistochrone/finished_model.jpg)
+![**Final CAD.** All curves and the starting mechanism, modeled in SolidWorks before CNC routing.](images/projects/brachistochrone/final_cad.jpg)
 :::
 ::::
 
 ::: {.steps}
-1. **Model each path from its equation** using SolidWorks' Equation Driven Curve feature.
-2. **Lay out the ramps and corner fixtures** as parts that can be cut on the CNC router.
-3. **CNC-route the ramp structures and fixtures** so each curve matches the CAD profile.
-4. **Assemble, test with the balls, and demonstrate** the race to the client.
+1. **Prove the math (Prototype 1).** We plotted the curves in Desmos, modeled them in SolidWorks, and 3D printed a small PLA version. It behaved close to the predictions, which confirmed the curve equations. The next priorities were a smoother, lower-friction surface and a simultaneous release.
+2. **Improve friction and visibility (Prototype 2).** We laser cut each curve twice from ¼-inch plywood and glued the two cuts about 1 inch apart, so the ball rides between two thin rails instead of in a walled channel. A half PVC pipe on two hinges released all the balls together.
+3. **Scale up (final).** The client told us visibility mattered more than the original size limit, so we went bigger. I got CNC router certified, and we routed ¾-inch MDF planks down to ¼ inch, cutting two of each curve plus the base and back wall.
+4. **Finish and assemble.** We sanded every edge smooth on the belt and hand sanders. Then we laid out the tracks 3 inches apart with a 1-inch gap for the ball, and fixed them with wood and hot glue.
+5. **Build the release gate.** We cut a 2-inch PVC pipe in half and to 12 inches on the bandsaw, spray painted it pink, and hinged it to the back wall. A small lip lets the steep polynomial curve start at the same moment as the others.
 :::
+
+![The finished model.](images/projects/brachistochrone/final_model.jpg){width="55%" fig-align="center"}
 
 ## Why We Made These Decisions
 
 :::: {.decisions}
 ::: {.decision}
 #### Equation Driven Curves instead of sketched splines
-[Why:]{.why} The whole demonstration depends on the exact shape of each path. Driving the geometry from the curve equations keeps the cycloid mathematically accurate, where a hand-fit spline could change the descent times.
+[Why:]{.why} The whole demonstration depends on each curve's exact shape. Driving the geometry from the equations keeps the cycloid mathematically accurate, where a hand-fit spline could change the descent times.
 :::
 ::: {.decision}
-#### CNC router instead of hand cutting
-[Why:]{.why} A router reproduces the CAD profile directly, giving smooth, consistent curves that are very hard to cut accurately by hand. Any bumps in a track would slow the ball and spoil the comparison.
+#### A cheap printed prototype first
+[Why:]{.why} Printing a small PLA version tested the curve math quickly before we spent time and material on a large build.
 :::
 ::: {.decision}
-#### Custom corner fixtures
-[Why:]{.why} The fixtures hold the ramp structures square and aligned during assembly, so the tracks stay where the CAD put them.
+#### Twin "floating ball" rails instead of a walled ramp
+[Why:]{.why} The ball touches only two thin edges, which cuts friction. Students can also see more of the ball from across a large classroom.
 :::
 ::: {.decision}
-#### Tracks side by side, released together
-[Why:]{.why} Viewers can compare all three paths at once in a single run, which makes the physics obvious without any timing equipment.
+#### MDF, CNC-routed
+[Why:]{.why} MDF is wear resistant, so it suits a model used for years. The CNC router reproduces the CAD curves accurately at a size too large for our laser cutter.
+:::
+::: {.decision}
+#### Hinged gate with a lip
+[Why:]{.why} A fair race needs every ball to start at the same instant. The extra lip makes up for the steep start of the polynomial curve.
+:::
+::: {.decision}
+#### Bigger instead of smaller
+[Why:]{.why} The client cared most about visibility. A larger model made the finishing order obvious to the naked eye, without slowing down the video.
 :::
 ::::
 
-## Results & Next Iteration
+## Results
 
-The model was completed and demonstrated to the client: three balls run side by side down the three paths in a single release (see video).
+We released all three balls together five times and timed each run from video.
+
+| Curve | Predicted | Trial 1 | Trial 2 | Trial 3 | Trial 4 | Trial 5 | **Average** |
+|---|---|---|---|---|---|---|---|
+| **Brachistochrone** | Fastest | 0.71 s | 0.71 s | 0.71 s | 0.70 s | 0.69 s | **0.704 s** |
+| 20th-degree polynomial | Middle | 0.82 s | 0.82 s | 0.81 s | 0.81 s | 0.82 s | **0.816 s** |
+| Linear | Slowest | 0.92 s | 0.90 s | 0.89 s | 0.89 s | 0.90 s | **0.900 s** |
+
+:::: {.result-stats}
+::: {.result-stat}
+**5 / 5**
+[Races won by the brachistochrone]{}
+:::
+::: {.result-stat}
+**~0.2 s**
+[Faster than the straight line]{}
+:::
+::: {.result-stat}
+**~0.1 s**
+[Faster than the polynomial]{}
+:::
+::: {.result-stat}
+**20.7 lb**
+[Under the 40 lb limit]{}
+:::
+::::
+
+* The finishing order matched our predictions in every trial: brachistochrone first, polynomial second, straight line last.
+* The model scored the top mark (5/5) on our accuracy metric: "brachistochrone is clearly the fastest curve."
+* We delivered it to the client ready to use, with balls included (and googly eyes, for fun).
+
+## What I'd Improve
 
 ::: {.improve}
-If I iterated on this design, I would:
+Next iteration:
 
-* **Add timing.** Photogates at the finish would measure each descent time to compare against theory.
-* **Quantify losses.** Compare measured times with predicted times to see how much rolling friction and track contact matter.
+* **Reduce friction and air resistance** so the measured times get closer to the ideal, frictionless predictions.
+* **Compare against theory.** Calculate the predicted descent time for each curve and report the percent error alongside the finishing order.
 :::
 
 [← Back to all projects](engineering_projects.qmd){.btn .btn-outline-primary}

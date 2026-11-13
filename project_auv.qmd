@@ -12,7 +12,7 @@ Class project for E80: Experimental Engineering at Harvey Mudd (Aug 2025 – May
 :::
 ::: {.glance-item}
 [My Role]{.glance-k}
-Analog sensor-interface circuits, Teensy data-logging code, MATLAB calibration, and robot build and fabrication.
+Analog sensor-interface circuits, Teensy data-logging code, MATLAB calibration, and building and assembling the robot and its sensor payload.
 :::
 ::: {.glance-item}
 [Tools]{.glance-k}
@@ -42,7 +42,7 @@ This was a four-person team project. My contributions:
 
 * **Sensor-interface electronics.** I designed analog signal-conditioning circuits with unity-gain buffers and inverting offset op-amps. They connect an NTC thermistor, a pressure sensor, and an amorphous silicon solar cell to the Teensy microcontroller.
 * **Firmware and data.** I programmed the Teensy in the Arduino IDE for synchronized sensor logging. I then used MATLAB to calibrate the raw data and plot light and temperature against depth.
-* **Build.** I helped engineer and fabricate the robot and its custom winch mechanism, which deploys the tethered sensor payload.
+* **Build & assembly.** I worked on building and assembling the robot and the sensor payload, including the custom winch mechanism that deploys the tethered payload.
 
 ## What We Built
 

@@ -18,7 +18,7 @@ Harvey Mudd Engineering Clinic, sponsored by The Aerospace Corporation and the F
 :::
 ::: {.glance-item}
 [My Role]{.glance-k}
-Lead for automating the antenna positioner: electrical, software, and mechanical setup. I also built the manual test mount.
+Lead for automating the antenna positioner, and member of the mechanical team that designs, assembles, and implements the mount and positioner.
 :::
 ::: {.glance-item}
 [Tools]{.glance-k}
@@ -41,10 +41,11 @@ Before testing the CRPA, we are validating our measurement process on a simpler 
 
 ## My Role
 
-I'm leading the **automation of the AntRunner positioner**, the motorized mount that rotates the antenna through each angle. My responsibilities:
+I'm leading the **automation of the AntRunner positioner**, the motorized mount that rotates the antenna through each angle. I'm also on the **mechanical team**. My responsibilities:
 
 * **Software:** writing the Python control script that drives the positioner's rotors, run from a Raspberry Pi that sends commands to the AntRunner's ESP32 controller.
-* **Electrical and mechanical setup:** wiring, powering, and mounting the AntRunner and antenna inside the chamber.
+* **Mechanical team:** supporting the design, assembly, and implementation of the antenna mount and positioner in the chamber.
+* **Electrical setup:** wiring and powering the AntRunner and antenna inside the chamber.
 * **Manual baseline:** I built the wooden mount used for our first, hand-rotated FRPA radiation-pattern test.
 * **Fixturing and RF testing:** machining mounting fixtures for the positioning turntables and running benchtop VNA measurements with dual probe antennas.
 
