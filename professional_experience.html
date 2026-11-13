@@ -188,18 +188,20 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 <div class="feature-head">
-<p><span class="meta-date">Sep 2026 – Present</span> <span class="meta-line"></span></p>
+<p><span class="status status--progress">In Progress</span> <span class="meta-date">Sep 2026 – Present</span> <span class="meta-line"></span></p>
 <section id="crpa" class="level3">
 <h3 class="anchored" data-anchor-id="crpa">CRPA Characterization Clinic Project</h3>
 <p><span class="feature-org">The Aerospace Corporation / Federal Aviation Administration</span></p>
 <p><span class="feature-org">Positioner Automation Lead</span></p>
 <p><span class="tag">Python</span> <span class="tag">Raspberry Pi</span> <span class="tag">ESP32</span> <span class="tag">Automation</span> <span class="tag">RF Testing</span> <span class="tag">Vector Network Analyzer</span> <span class="tag">Manual Machining</span> <span class="tag">Anechoic Chamber</span></p>
+<p><a href="./project_clinic.html" class="btn btn-primary">Read the Case Study →</a></p>
 </section>
 </div>
 <div class="feature-detail">
 <ul>
 <li>Leading the automation of the AntRunner positioner that orients the CRPA to commanded angles inside the anechoic chamber, owning its electrical, software, and mechanical setup.</li>
 <li>Developing the Python control script that drives the positioner’s rotors, and deploying it to the AntRunner’s ESP32 controller from a Raspberry Pi.</li>
+<li>Built a wooden mount for a reference FRPA antenna and ran a manual, hand-rotated radiation-pattern test with the VNA, then repeated it with the automated AntRunner sweep, producing a more symmetric, consistent pattern.</li>
 <li>Machined custom mounting fixtures for mechanical positioning turntables using manual operations, designing the hardware so the Controlled Reception Pattern Antenna may be placed securely inside the anechoic chamber for testing.</li>
 <li>Executed preliminary benchtop RF test and measurement procedures using a Vector Network Analyzer and dual probe antennas to prepare for upcoming element-level and array-level characterization of the CRPA.</li>
 <li>Collaborated with technical liaisons from The Aerospace Corporation and FAA to evaluate key parameters of a GPS CRPA anti-jamming antenna, supporting ongoing research to inform use of CRPAs for commercial aviation safety.</li>
@@ -322,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
 
   /* 3. Scroll-reveal for cards, figures and sections */
   var targets = document.querySelectorAll(
-    ".reveal, .feature-card, .tile, .story, .doc-viewer, .lead-card, .quarto-post, .lab-nav, main.content > section > .quarto-figure"
+    ".reveal, .feature-card, .tile, .story, .doc-viewer, .lead-card, .quarto-post, .lab-nav, .cs-card, .glance, .decision, .video-frame, .improve, main.content > section > .quarto-figure"
   );
   if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {

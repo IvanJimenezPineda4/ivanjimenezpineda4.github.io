@@ -46,9 +46,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-ea1971949f186b5d7ecce1fd3cf000e4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -161,7 +158,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Engineering Projects</h1>
-<p class="subtitle lead">Hands-on builds: robots, machined parts, CAD models, and code.</p>
+<p class="subtitle lead">Each project is a short case study: context, my role, what I built, how I built it, and why I made the decisions I did.</p>
 </div>
 
 
@@ -178,123 +175,83 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="feature-card">
-<div class="feature-media">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/AUV_photo.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AUV Deployed at Dana Point Harbor"><img src="images/AUV_photo.png" class="img-fluid figure-img" alt="AUV Deployed at Dana Point Harbor"></a></p>
-<figcaption>AUV Deployed at Dana Point Harbor</figcaption>
-</figure>
+<div class="cs-card">
+<div class="cs-media">
+<p><a href="./project_clinic.html"><img src="images/projects/clinic/antrunner_positioner.jpg" class="img-fluid" alt="FRPA antenna mounted on the AntRunner positioner"></a></p>
+</div>
+<div class="cs-body">
+<p><span class="status status--progress">In Progress</span> <span class="meta-date">Sep 2026 – Present</span></p>
+<section id="clinic" class="level3">
+<h3 class="anchored" data-anchor-id="clinic">Automating Antenna Pattern Testing</h3>
+<p><strong>Context</strong> Harvey Mudd Engineering Clinic for The Aerospace Corporation and the FAA: characterizing a GPS anti-jamming CRPA in an anechoic chamber.</p>
+<p><strong>My Role</strong> Lead for automating the AntRunner positioner. I write the Python script that runs on a Raspberry Pi and sends commands to the positioner’s ESP32. I also built the wooden mount for our manual baseline test.</p>
+<p><strong>Outcome so far</strong> The automated sweep produced a more symmetric, consistent radiation pattern than the hand-rotated test.</p>
+<p><span class="tag">Python</span> <span class="tag">Raspberry Pi</span> <span class="tag">ESP32</span> <span class="tag">VNA</span> <span class="tag">Test Automation</span></p>
+<p><a href="./project_clinic.html" class="btn btn-primary">Read the Case Study →</a></p>
+</section>
 </div>
 </div>
-<div class="feature-head">
-<p><span class="meta-date">August 2025 – May 2026</span> <span class="meta-line"></span></p>
+<div class="cs-card">
+<div class="cs-media">
+<p><a href="./project_auv.html"><img src="images/web/auv_card.jpg" class="img-fluid" alt="The robot on the water at Dana Point Harbor"></a></p>
+</div>
+<div class="cs-body">
+<p><span class="status status--done">Completed</span> <span class="meta-date">Aug 2025 – May 2026</span></p>
 <section id="autonomous-underwater-vehicle" class="level3">
 <h3 class="anchored" data-anchor-id="autonomous-underwater-vehicle">Autonomous Underwater Vehicle</h3>
-<p><span class="tag">Analog Circuits</span> <span class="tag">Op-Amps</span> <span class="tag">Teensy</span> <span class="tag">Arduino IDE</span> <span class="tag">MATLAB</span></p>
-<p><a href="#auv-docs" class="btn btn-primary">View Poster</a> <a href="E80_Final_Report_Ivan_Jimenez_Pineda.pdf" class="btn btn-outline-primary" target="_blank">Read Report</a></p>
+<p><strong>Context</strong> E80: Experimental Engineering team project. A low-cost robot that measures light, temperature, and depth at Dana Point Harbor.</p>
+<p><strong>My Role</strong> I designed the op-amp sensor-interface circuits, wrote the Teensy logging code, did the MATLAB calibration, and helped build the robot and its winch.</p>
+<p><strong>Outcome</strong> Lowered the payload to 1.84 m and measured light falling from about 100,000 to 88,000 lux. Saltwater shorted the thermistor, which taught us a hard lesson about waterproofing.</p>
+<p><span class="tag">Op-Amps</span> <span class="tag">Teensy</span> <span class="tag">MATLAB</span> <span class="tag">CAD</span> <span class="tag">Field Testing</span></p>
+<p><a href="./project_auv.html" class="btn btn-primary">Read the Case Study →</a> <a href="E80_Final_Report_Ivan_Jimenez_Pineda.pdf" class="btn btn-outline-primary" target="_blank">Report (PDF)</a></p>
 </section>
 </div>
-<div class="feature-detail">
-<ul>
-<li>Engineered and fabricated a low-cost autonomous electro-mechanical robot featuring a custom winch mechanism to deploy a tethered sensor payload for depth-resolved environmental data collection.</li>
-<li>Designed analog signal conditioning circuitry, utilizing unity gain and inverting offset operational amplifiers, to interface an NTC thermistor, pressure sensor, and amorphous silicon solar cell with a Teensy microcontroller.</li>
-<li>Programmed the Teensy using Arduino IDE for synchronized sensor logging and utilized MATLAB to calibrate raw data, capturing temperature and luminosity fluctuations relative to depth during coastal field deployments at Dana Point Harbor.</li>
-</ul>
 </div>
+<div class="cs-card">
+<div class="cs-media">
+<p><a href="./project_brachistochrone.html"><img src="images/projects/brachistochrone/finished_model.jpg" class="img-fluid" alt="Finished brachistochrone model with the team"></a></p>
 </div>
-<div id="auv-docs" class="doc-viewer">
-<section id="auv-poster-report" class="level4">
-<h4 class="anchored" data-anchor-id="auv-poster-report">AUV Poster &amp; Report</h4>
-<div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Project Presentation Poster</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Project Report</a></li></ul>
-<div class="tab-content">
-<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="doc-actions">
-<p><a href="E80_Poster.pdf" class="btn btn-outline-primary" target="_blank">Open Full Poster in New Tab</a></p>
-</div>
-<iframe src="E80_Poster.pdf" title="AUV project poster">
-</iframe>
-</div>
-<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<div class="doc-actions">
-<p><a href="E80_Final_Report_Ivan_Jimenez_Pineda.pdf" class="btn btn-outline-primary" target="_blank">Open Full Report in New Tab</a></p>
-</div>
-<iframe src="E80_Final_Report_Ivan_Jimenez_Pineda.pdf" title="AUV final report">
-</iframe>
-</div>
-</div>
-</div>
-</section>
-</div>
-<div class="feature-card">
-<div class="feature-media">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/Hammer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Completely Machined and Assembled Hammer"><img src="images/Hammer.png" class="img-fluid figure-img" alt="Completely Machined and Assembled Hammer"></a></p>
-<figcaption>Completely Machined and Assembled Hammer</figcaption>
-</figure>
-</div>
-</div>
-<div class="feature-head">
-<p><span class="meta-date">March 2025 – April 2025</span> <span class="meta-line"></span></p>
-<section id="the-machinists-hammer" class="level3">
-<h3 class="anchored" data-anchor-id="the-machinists-hammer">The Machinist’s Hammer</h3>
-<p><span class="tag">Mill</span> <span class="tag">Lathe</span> <span class="tag">Heat Treatment</span> <span class="tag">Rockwell Testing</span> <span class="tag">Laser Cutter</span></p>
-</section>
-</div>
-<div class="feature-detail">
-<ul>
-<li>Machined a multi-material alloy steel hammer including a hard face, soft face, handle, and a stand (AISI 4340 and AISI 1015).</li>
-<li>Applied heat treatment (857°C) to hard face and verified results using a Rockwell hardness tester (RC 43-48).</li>
-<li>Used a mill, lathe, vertical bandsaw, belt sander, sand blaster, laser cutter, and 3D printer.</li>
-</ul>
-</div>
-</div>
-<div class="feature-card">
-<div class="feature-media">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/Brachistochrone.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Fabrication, CAD, and Completion of Brachistochrone Curve Model"><img src="images/Brachistochrone.png" class="img-fluid figure-img" alt="Fabrication, CAD, and Completion of Brachistochrone Curve Model"></a></p>
-<figcaption>Fabrication, CAD, and Completion of Brachistochrone Curve Model</figcaption>
-</figure>
-</div>
-</div>
-<div class="feature-head">
-<p><span class="meta-date">February 2025 – May 2025</span> <span class="meta-line"></span></p>
+<div class="cs-body">
+<p><span class="status status--done">Completed</span> <span class="meta-date">Feb 2025 – May 2025</span></p>
 <section id="brachistochrone-curve-model" class="level3">
 <h3 class="anchored" data-anchor-id="brachistochrone-curve-model">Brachistochrone Curve Model</h3>
-<p><span class="tag">SolidWorks</span> <span class="tag">Equation Driven Curves</span> <span class="tag">CNC Router</span></p>
+<p><strong>Context</strong> Team project for a client who requested a physics demonstration of the fastest path of descent.</p>
+<p><strong>My Role</strong> I modeled the descent paths in SolidWorks with equation-driven curves and cut the ramps and corner fixtures on a CNC router.</p>
+<p><strong>Outcome</strong> A finished race-track model where three balls released together race down three different paths.</p>
+<p><span class="tag">SolidWorks</span> <span class="tag">CNC Router</span> <span class="tag">Fixturing</span></p>
+<p><a href="./project_brachistochrone.html" class="btn btn-primary">Read the Case Study →</a></p>
 </section>
 </div>
-<div class="feature-detail">
-<ul>
-<li>Modeled cycloid, linear, and parabolic descent paths in SolidWorks using the Equation Driven Curve feature to optimize geometric accuracy and demonstrate kinematic principles for a client-requested physics demonstration.</li>
-<li>Fabricated the primary ramp structures and custom corner fixtures using a CNC Router, ensuring precise assembly and tolerances.</li>
-</ul>
+</div>
+<div class="cs-card">
+<div class="cs-media">
+<p><a href="./project_hammer.html"><img src="images/web/hammer.jpg" class="img-fluid" alt="Finished machinist's hammer"></a></p>
+</div>
+<div class="cs-body">
+<p><span class="status status--done">Completed</span> <span class="meta-date">Mar 2025 – Apr 2025</span></p>
+<section id="the-machinists-hammer" class="level3">
+<h3 class="anchored" data-anchor-id="the-machinists-hammer">The Machinist’s Hammer</h3>
+<p><strong>Context</strong> Harvey Mudd machine shop project, built individually.</p>
+<p><strong>My Role</strong> I machined every part in AISI 4340 and 1015 steel, heat treated the hard face, and verified its hardness.</p>
+<p><strong>Outcome</strong> Heat treated at 857 °C, measuring RC 43–48 on a Rockwell tester. I now teach this same project as a shop proctor.</p>
+<p><span class="tag">Mill</span> <span class="tag">Lathe</span> <span class="tag">Heat Treatment</span> <span class="tag">Rockwell Testing</span></p>
+<p><a href="./project_hammer.html" class="btn btn-primary">Read the Case Study →</a></p>
+</section>
 </div>
 </div>
-<div class="feature-card">
-<div class="feature-media">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="images/MITES.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="MITES Summer 2023 Symposium Presentation"><img src="images/MITES.png" class="img-fluid figure-img" alt="MITES Summer 2023 Symposium Presentation"></a></p>
-<figcaption>MITES Summer 2023 Symposium Presentation</figcaption>
-</figure>
+<div class="cs-card">
+<div class="cs-media">
+<p><img src="images/web/mites_card.jpg" class="img-fluid" alt="Project Beatzthoven team at the MITES symposium"></p>
 </div>
-</div>
-<div class="feature-head">
-<p><span class="meta-date">June 2023 – July 2023</span> <span class="meta-line"></span></p>
+<div class="cs-body">
+<p><span class="status status--done">Completed</span> <span class="meta-date">Jun 2023 – Jul 2023</span></p>
 <section id="mites-summer-scholar-symposium-project" class="level3">
 <h3 class="anchored" data-anchor-id="mites-summer-scholar-symposium-project">MITES Summer Scholar Symposium Project</h3>
-<p><span class="tag">Python</span> <span class="tag">Machine Learning</span> <span class="tag">Markov Chains</span></p>
+<p><strong>Context</strong> MIT MITES summer program. A team software project built in a strict 6-week cycle and presented at an MIT showcase.</p>
+<p><strong>My Role</strong> I co-developed “Project Beatzthoven,” an interactive Python machine-learning app that algorithmically generates classical music with Markov chain logic.</p>
+<p><strong>Why it matters</strong> It’s where I built my debugging habits and learned to balance competing priorities on a fixed deadline.</p>
+<p><span class="tag">Python</span> <span class="tag">Markov Chains</span> <span class="tag">Teamwork</span></p>
 </section>
-</div>
-<div class="feature-detail">
-<ul>
-<li>Co-developed “Project Beatzthoven,” an interactive machine learning application built in Python that algorithmically generates classical music utilizing Markov Chain logic.</li>
-<li>Applied systematic debugging practices and software engineering fundamentals to process data structures and balance competing project priorities within a strict 6-week development cycle to present at an MIT showcase.</li>
-</ul>
 </div>
 </div>
 
@@ -360,7 +317,7 @@ ul.task-list li input[type="checkbox"] {
 
   /* 3. Scroll-reveal for cards, figures and sections */
   var targets = document.querySelectorAll(
-    ".reveal, .feature-card, .tile, .story, .doc-viewer, .lead-card, .quarto-post, .lab-nav, main.content > section > .quarto-figure"
+    ".reveal, .feature-card, .tile, .story, .doc-viewer, .lead-card, .quarto-post, .lab-nav, .cs-card, .glance, .decision, .video-frame, .improve, main.content > section > .quarto-figure"
   );
   if ("IntersectionObserver" in window && !reduce) {
     var io = new IntersectionObserver(function (entries) {
@@ -809,38 +766,6 @@ ul.task-list li input[type="checkbox"] {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
-(function() {
-  let previousOnload = window.onload;
-  window.onload = () => {
-    if (previousOnload) {
-      previousOnload();
-    }
-    lightboxQuarto.on('slide_before_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      const href = trigger.getAttribute('href');
-      if (href !== null) {
-        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-        if (imgEl !== null) {
-          const srcAttr = imgEl.getAttribute("src");
-          if (srcAttr && srcAttr.startsWith("data:")) {
-            slideConfig.href = srcAttr;
-          }
-        }
-      } 
-    });
-  
-    lightboxQuarto.on('slide_after_load', (data) => {
-      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(slideNode);
-      }
-    });
-  
-  };
-  
-})();
-          </script>
 
 
 
