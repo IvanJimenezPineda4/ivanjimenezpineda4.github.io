@@ -162,9 +162,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#context" id="toc-context" class="nav-link active" data-scroll-target="#context">Context</a></li>
   <li><a href="#my-role" id="toc-my-role" class="nav-link" data-scroll-target="#my-role">My Role</a></li>
   <li><a href="#what-we-built" id="toc-what-we-built" class="nav-link" data-scroll-target="#what-we-built">What We Built</a></li>
-  <li><a href="#how-we-built-it" id="toc-how-we-built-it" class="nav-link" data-scroll-target="#how-we-built-it">How We Built It</a></li>
+  <li><a href="#how-we-built-it-three-prototypes" id="toc-how-we-built-it-three-prototypes" class="nav-link" data-scroll-target="#how-we-built-it-three-prototypes">How We Built It: Three Prototypes</a></li>
   <li><a href="#why-we-made-these-decisions" id="toc-why-we-made-these-decisions" class="nav-link" data-scroll-target="#why-we-made-these-decisions">Why We Made These Decisions</a></li>
-  <li><a href="#results-next-iteration" id="toc-results-next-iteration" class="nav-link" data-scroll-target="#results-next-iteration">Results &amp; Next Iteration</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#what-id-improve" id="toc-what-id-improve" class="nav-link" data-scroll-target="#what-id-improve">What I’d Improve</a></li>
   </ul>
 </nav>
     </div>
@@ -174,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Brachistochrone Curve Model</h1>
-<p class="subtitle lead">A CNC-cut physics demonstration of the fastest path of descent</p>
+<p class="subtitle lead">A classroom race that proves the fastest path down isn’t a straight line</p>
 </div>
 
 
@@ -193,75 +194,132 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="glance">
 <div class="glance-item">
-<p><span class="glance-k">Context</span> Team project for a client who requested a physics demonstration. Feb – May 2025.</p>
+<p><span class="glance-k">Context</span> Client-based design project for a professor’s classroom demonstration. Team Kirby, 5 students. Feb – May 2025.</p>
 </div>
 <div class="glance-item">
-<p><span class="glance-k">My Role</span> CAD modeling of the descent paths in SolidWorks, and CNC-router fabrication of the ramps and corner fixtures.</p>
+<p><span class="glance-k">My Role</span> SolidWorks modeling of the curves, plus CNC router certification and fabrication of the final model’s curves, base, and back wall.</p>
 </div>
 <div class="glance-item">
-<p><span class="glance-k">Tools</span> SolidWorks (Equation Driven Curves) · CNC router · Shop assembly</p>
+<p><span class="glance-k">Tools</span> Desmos · SolidWorks (Equation Driven Curves) · 3D printer · Laser cutter · CNC router · Belt &amp; hand sanders · Bandsaw</p>
 </div>
 <div class="glance-item">
-<p><span class="glance-k">Status</span> <span class="status status--done">Completed</span> <br><span class="skill skill--design">Design</span> <span class="skill skill--build">Build</span> <span class="skill skill--communicate">Communicate</span></p>
+<p><span class="glance-k">Status</span> <span class="status status--done">Completed</span> <br><span class="skill skill--design">Design</span> <span class="skill skill--build">Build</span> <span class="skill skill--analyze">Analyze</span> <span class="skill skill--iterate">Iterate</span> <span class="skill skill--communicate">Communicate</span></p>
 </div>
 </div>
 <section id="context" class="level2">
 <h2 class="anchored" data-anchor-id="context">Context</h2>
-<p>A <strong>brachistochrone</strong> is the curve of fastest descent between two points. Surprisingly, it isn’t a straight line but a cycloid. Our client asked for a physical demonstration that makes this visible: balls released at the same moment race down different paths, and the audience can see which path wins.</p>
-<p><strong>Parameters:</strong> the model had to clearly demonstrate kinematic principles to an audience, so the curve geometry had to be accurate, the tracks smooth and consistent, and the whole model sturdy enough to use repeatedly.</p>
+<p>A <strong>brachistochrone</strong> is the curve of fastest descent between two points, and it isn’t a straight line: it’s a cycloid. Our client, a professor, wanted a physical <strong>brachistochrone race</strong> for class. A ball on the brachistochrone races a ball on a straight line and a ball on a third curve with a large dip, so students can see which path wins.</p>
+<p><strong>Client requirements:</strong></p>
+<ul>
+<li>Show that the brachistochrone mimics a cycloid.</li>
+<li>Large enough to be seen by a large class.</li>
+<li>Durable enough to be reused in future years of the class.</li>
+<li>Transportable between classrooms.</li>
+</ul>
+<p><strong>Constraints we designed to:</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Constraint</th>
+<th>Why the client needed it</th>
+<th>Final result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Weigh under 40 lb</td>
+<td>One person carries it</td>
+<td><strong>20.7 lb</strong></td>
+</tr>
+<tr class="even">
+<td>Fit on a cart</td>
+<td>Moved between classrooms</td>
+<td>One person carries it from the ends; it fits on a cart</td>
+</tr>
+<tr class="odd">
+<td>Survive repeated use</td>
+<td>Used for many years</td>
+<td><strong>Zero damage after 20 test uses</strong></td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="my-role" class="level2">
 <h2 class="anchored" data-anchor-id="my-role">My Role</h2>
+<p>Our five-person team shared the design work. My contributions:</p>
 <ul>
-<li><strong>CAD:</strong> I modeled the descent paths in SolidWorks with the <strong>Equation Driven Curve</strong> feature.</li>
-<li><strong>Fabrication:</strong> I cut the primary ramp structures and custom corner fixtures on a <strong>CNC router</strong>, keeping assembly precise and within tolerance.</li>
+<li><strong>CAD:</strong> I modeled the descent paths in SolidWorks with the <strong>Equation Driven Curve</strong> feature, so each curve follows its exact equation.</li>
+<li><strong>CNC fabrication:</strong> I was one of two teammates who got <strong>CNC router certified</strong> so we could build the larger final model. I CNC-routed the MDF curves, the base and back wall, and the custom corner fixtures, keeping assembly precise and in tolerance.</li>
 </ul>
 </section>
 <section id="what-we-built" class="level2">
 <h2 class="anchored" data-anchor-id="what-we-built">What We Built</h2>
-<p>Three side-by-side tracks cut into wooden ramp panels, labeled in the demo video as <strong>Linear</strong>, <strong>Brachistochrone</strong>, and <strong>Exponential</strong>. A release at the top starts all three balls together.</p>
+<p>Three side-by-side tracks:</p>
+<ul>
+<li>a <strong>mathematically accurate brachistochrone (cycloid)</strong>,</li>
+<li>a <strong>straight line</strong>, and</li>
+<li>a <strong>20th-degree polynomial with a steep dip</strong> (labeled “Exponential” in the video).</li>
+</ul>
+<p>Each track is two thin MDF rails about 1 inch apart, so the ball rolls in the gap between them. A hinged, pink PVC gate releases all three balls at the same instant.</p>
 <div class="video-frame" style="max-width: 900px;">
   <video controls="" muted="" playsinline="" loop="" preload="metadata" poster="images/projects/brachistochrone/race_video_poster.jpg">
     <source src="videos/brachistochrone_race.mp4" type="video/mp4">
   </video>
 </div>
-<p class="video-cap">The finished model in action: three balls released together race down three different paths.</p>
+<p class="video-cap">The final model in real time: all three balls are released together, and the brachistochrone ball wins.</p>
 </section>
-<section id="how-we-built-it" class="level2">
-<h2 class="anchored" data-anchor-id="how-we-built-it">How We Built It</h2>
+<section id="how-we-built-it-three-prototypes" class="level2">
+<h2 class="anchored" data-anchor-id="how-we-built-it-three-prototypes">How We Built It: Three Prototypes</h2>
+<p>We iterated through three prototypes, each one answering a question from the last.</p>
 <div class="media-grid">
 <div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/projects/brachistochrone/cad_model.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="1. CAD. Descent paths modeled from their equations in SolidWorks."><img src="images/projects/brachistochrone/cad_model.jpg" class="img-fluid figure-img" alt="1. CAD. Descent paths modeled from their equations in SolidWorks."></a></p>
-<figcaption><strong>1. CAD.</strong> Descent paths modeled from their equations in SolidWorks.</figcaption>
+<p><a href="images/projects/brachistochrone/proto1_3d_printed.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Prototype 1: 3D-printed PLA. Curves first drawn in Desmos, then modeled in SolidWorks and printed to check the equations."><img src="images/projects/brachistochrone/proto1_3d_printed.jpg" class="img-fluid figure-img" alt="Prototype 1: 3D-printed PLA. Curves first drawn in Desmos, then modeled in SolidWorks and printed to check the equations."></a></p>
+<figcaption><strong>Prototype 1: 3D-printed PLA.</strong> Curves first drawn in Desmos, then modeled in SolidWorks and printed to check the equations.</figcaption>
 </figure>
 </div>
 </div>
 <div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/projects/brachistochrone/cnc_routing.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="2. CNC routing. Cutting the ramp profiles and fixtures on the CNC router."><img src="images/projects/brachistochrone/cnc_routing.jpg" class="img-fluid figure-img" alt="2. CNC routing. Cutting the ramp profiles and fixtures on the CNC router."></a></p>
-<figcaption><strong>2. CNC routing.</strong> Cutting the ramp profiles and fixtures on the CNC router.</figcaption>
+<p><a href="images/projects/brachistochrone/proto2_plywood.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Prototype 2: laser-cut plywood. Twin-rail “floating ball” tracks and the first hinged PVC release gate."><img src="images/projects/brachistochrone/proto2_plywood.jpg" class="img-fluid figure-img" alt="Prototype 2: laser-cut plywood. Twin-rail “floating ball” tracks and the first hinged PVC release gate."></a></p>
+<figcaption><strong>Prototype 2: laser-cut plywood.</strong> Twin-rail “floating ball” tracks and the first hinged PVC release gate.</figcaption>
 </figure>
 </div>
 </div>
 <div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="images/projects/brachistochrone/finished_model.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="3. Assembly &amp; delivery. The finished model with the team."><img src="images/projects/brachistochrone/finished_model.jpg" class="img-fluid figure-img" alt="3. Assembly &amp; delivery. The finished model with the team."></a></p>
-<figcaption><strong>3. Assembly &amp; delivery.</strong> The finished model with the team.</figcaption>
+<p><a href="images/projects/brachistochrone/final_cad.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Final CAD. All curves and the starting mechanism, modeled in SolidWorks before CNC routing."><img src="images/projects/brachistochrone/final_cad.jpg" class="img-fluid figure-img" alt="Final CAD. All curves and the starting mechanism, modeled in SolidWorks before CNC routing."></a></p>
+<figcaption><strong>Final CAD.</strong> All curves and the starting mechanism, modeled in SolidWorks before CNC routing.</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <div class="steps">
 <ol type="1">
-<li><strong>Model each path from its equation</strong> using SolidWorks’ Equation Driven Curve feature.</li>
-<li><strong>Lay out the ramps and corner fixtures</strong> as parts that can be cut on the CNC router.</li>
-<li><strong>CNC-route the ramp structures and fixtures</strong> so each curve matches the CAD profile.</li>
-<li><strong>Assemble, test with the balls, and demonstrate</strong> the race to the client.</li>
+<li><strong>Prove the math (Prototype 1).</strong> We plotted the curves in Desmos, modeled them in SolidWorks, and 3D printed a small PLA version. It behaved close to the predictions, which confirmed the curve equations. The next priorities were a smoother, lower-friction surface and a simultaneous release.</li>
+<li><strong>Improve friction and visibility (Prototype 2).</strong> We laser cut each curve twice from ¼-inch plywood and glued the two cuts about 1 inch apart, so the ball rides between two thin rails instead of in a walled channel. A half PVC pipe on two hinges released all the balls together.</li>
+<li><strong>Scale up (final).</strong> The client told us visibility mattered more than the original size limit, so we went bigger. I got CNC router certified, and we routed ¾-inch MDF planks down to ¼ inch, cutting two of each curve plus the base and back wall.</li>
+<li><strong>Finish and assemble.</strong> We sanded every edge smooth on the belt and hand sanders. Then we laid out the tracks 3 inches apart with a 1-inch gap for the ball, and fixed them with wood and hot glue.</li>
+<li><strong>Build the release gate.</strong> We cut a 2-inch PVC pipe in half and to 12 inches on the bandsaw, spray painted it pink, and hinged it to the back wall. A small lip lets the steep polynomial curve start at the same moment as the others.</li>
 </ol>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/projects/brachistochrone/final_model.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="The finished model."><img src="images/projects/brachistochrone/final_model.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%" alt="The finished model."></a></p>
+</figure>
+</div>
+<figcaption>The finished model.</figcaption>
+</figure>
 </div>
 </section>
 <section id="why-we-made-these-decisions" class="level2">
@@ -269,30 +327,116 @@ ul.task-list li input[type="checkbox"] {
 <div class="decisions">
 <section id="equation-driven-curves-instead-of-sketched-splines" class="level4 decision">
 <h4 class="anchored" data-anchor-id="equation-driven-curves-instead-of-sketched-splines">Equation Driven Curves instead of sketched splines</h4>
-<p><span class="why">Why:</span> The whole demonstration depends on the exact shape of each path. Driving the geometry from the curve equations keeps the cycloid mathematically accurate, where a hand-fit spline could change the descent times.</p>
+<p><span class="why">Why:</span> The whole demonstration depends on each curve’s exact shape. Driving the geometry from the equations keeps the cycloid mathematically accurate, where a hand-fit spline could change the descent times.</p>
 </section>
-<section id="cnc-router-instead-of-hand-cutting" class="level4 decision">
-<h4 class="anchored" data-anchor-id="cnc-router-instead-of-hand-cutting">CNC router instead of hand cutting</h4>
-<p><span class="why">Why:</span> A router reproduces the CAD profile directly, giving smooth, consistent curves that are very hard to cut accurately by hand. Any bumps in a track would slow the ball and spoil the comparison.</p>
+<section id="a-cheap-printed-prototype-first" class="level4 decision">
+<h4 class="anchored" data-anchor-id="a-cheap-printed-prototype-first">A cheap printed prototype first</h4>
+<p><span class="why">Why:</span> Printing a small PLA version tested the curve math quickly before we spent time and material on a large build.</p>
 </section>
-<section id="custom-corner-fixtures" class="level4 decision">
-<h4 class="anchored" data-anchor-id="custom-corner-fixtures">Custom corner fixtures</h4>
-<p><span class="why">Why:</span> The fixtures hold the ramp structures square and aligned during assembly, so the tracks stay where the CAD put them.</p>
+<section id="twin-floating-ball-rails-instead-of-a-walled-ramp" class="level4 decision">
+<h4 class="anchored" data-anchor-id="twin-floating-ball-rails-instead-of-a-walled-ramp">Twin “floating ball” rails instead of a walled ramp</h4>
+<p><span class="why">Why:</span> The ball touches only two thin edges, which cuts friction. Students can also see more of the ball from across a large classroom.</p>
 </section>
-<section id="tracks-side-by-side-released-together" class="level4 decision">
-<h4 class="anchored" data-anchor-id="tracks-side-by-side-released-together">Tracks side by side, released together</h4>
-<p><span class="why">Why:</span> Viewers can compare all three paths at once in a single run, which makes the physics obvious without any timing equipment.</p>
+<section id="mdf-cnc-routed" class="level4 decision">
+<h4 class="anchored" data-anchor-id="mdf-cnc-routed">MDF, CNC-routed</h4>
+<p><span class="why">Why:</span> MDF is wear resistant, so it suits a model used for years. The CNC router reproduces the CAD curves accurately at a size too large for our laser cutter.</p>
+</section>
+<section id="hinged-gate-with-a-lip" class="level4 decision">
+<h4 class="anchored" data-anchor-id="hinged-gate-with-a-lip">Hinged gate with a lip</h4>
+<p><span class="why">Why:</span> A fair race needs every ball to start at the same instant. The extra lip makes up for the steep start of the polynomial curve.</p>
+</section>
+<section id="bigger-instead-of-smaller" class="level4 decision">
+<h4 class="anchored" data-anchor-id="bigger-instead-of-smaller">Bigger instead of smaller</h4>
+<p><span class="why">Why:</span> The client cared most about visibility. A larger model made the finishing order obvious to the naked eye, without slowing down the video.</p>
 </section>
 </div>
 </section>
-<section id="results-next-iteration" class="level2">
-<h2 class="anchored" data-anchor-id="results-next-iteration">Results &amp; Next Iteration</h2>
-<p>The model was completed and demonstrated to the client: three balls run side by side down the three paths in a single release (see video).</p>
-<div class="improve">
-<p>If I iterated on this design, I would:</p>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p>We released all three balls together five times and timed each run from video.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Curve</th>
+<th>Predicted</th>
+<th>Trial 1</th>
+<th>Trial 2</th>
+<th>Trial 3</th>
+<th>Trial 4</th>
+<th>Trial 5</th>
+<th><strong>Average</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Brachistochrone</strong></td>
+<td>Fastest</td>
+<td>0.71 s</td>
+<td>0.71 s</td>
+<td>0.71 s</td>
+<td>0.70 s</td>
+<td>0.69 s</td>
+<td><strong>0.704 s</strong></td>
+</tr>
+<tr class="even">
+<td>20th-degree polynomial</td>
+<td>Middle</td>
+<td>0.82 s</td>
+<td>0.82 s</td>
+<td>0.81 s</td>
+<td>0.81 s</td>
+<td>0.82 s</td>
+<td><strong>0.816 s</strong></td>
+</tr>
+<tr class="odd">
+<td>Linear</td>
+<td>Slowest</td>
+<td>0.92 s</td>
+<td>0.90 s</td>
+<td>0.89 s</td>
+<td>0.89 s</td>
+<td>0.90 s</td>
+<td><strong>0.900 s</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="result-stats">
+<div class="result-stat">
+<p><strong>5 / 5</strong> <span>Races won by the brachistochrone</span></p>
+</div>
+<div class="result-stat">
+<p><strong>~0.2 s</strong> <span>Faster than the straight line</span></p>
+</div>
+<div class="result-stat">
+<p><strong>~0.1 s</strong> <span>Faster than the polynomial</span></p>
+</div>
+<div class="result-stat">
+<p><strong>20.7 lb</strong> <span>Under the 40 lb limit</span></p>
+</div>
+</div>
 <ul>
-<li><strong>Add timing.</strong> Photogates at the finish would measure each descent time to compare against theory.</li>
-<li><strong>Quantify losses.</strong> Compare measured times with predicted times to see how much rolling friction and track contact matter.</li>
+<li>The finishing order matched our predictions in every trial: brachistochrone first, polynomial second, straight line last.</li>
+<li>The model scored the top mark (5/5) on our accuracy metric: “brachistochrone is clearly the fastest curve.”</li>
+<li>We delivered it to the client ready to use, with balls included (and googly eyes, for fun).</li>
+</ul>
+</section>
+<section id="what-id-improve" class="level2">
+<h2 class="anchored" data-anchor-id="what-id-improve">What I’d Improve</h2>
+<div class="improve">
+<p>Next iteration:</p>
+<ul>
+<li><strong>Reduce friction and air resistance</strong> so the measured times get closer to the ideal, frictionless predictions.</li>
+<li><strong>Compare against theory.</strong> Calculate the predicted descent time for each curve and report the percent error alongside the finishing order.</li>
 </ul>
 </div>
 <p><a href="./engineering_projects.html" class="btn btn-outline-primary">← Back to all projects</a></p>
